@@ -6,25 +6,7 @@ from tkinter.ttk import Combobox
 from tkinter.filedialog import askopenfilename, asksaveasfile
 from PIL import Image, ImageTk
 
-def vit_background():
-    return
-def mgt_background():
-    return
-def mnd_background():
-    return
-def skl_background():
-    return
-def spd_background():
-    return
-def luk_background():
-    return
-def def_background():
-    return
-def spr_background():
-    return
-
-
-# ----------- Main window and tabs creation ----------
+# <editor-fold desc="Main window and tabs initial setup">
 window = Tk()
 window.title("Fire Emblem Akkadia")
 window.geometry("1000x600+150+100")
@@ -39,18 +21,213 @@ tabControl.add(tab_levelup, text = '  Level up  ')
 tabControl.add(tab_statsheet, text = '  Statsheet  ')
 tabControl.add(tab_map, text = '  Map  ')
 tabControl.pack(expand = 1, fill = 'both')
-# ----------------------------------------------------
 
-# ------------------ Level up tab UI -----------------
-image_level = Image.open('UI Resources/levelup_template.png')
-image_resize_level = ImageTk.PhotoImage(image_level.resize([480,320]))
-levelup_image = Label(tab_levelup, image=image_resize_level)
-levelup_image.pack(side=BOTTOM)
+levelup_image = Image.open('UI Resources/Level up tab/Plains.png')
+levelup_ui = Image.open('UI Resources/Level up tab/levelup_template.png')
+levelup_image.paste(levelup_ui, (0,0), mask=levelup_ui)
+levelup_image_resize = ImageTk.PhotoImage(levelup_image.resize([480,320]))
+levelup_image_label = Label(tab_levelup, image=levelup_image_resize)
+levelup_image_label.pack(side=BOTTOM)
+# </editor-fold>
 
-levelup_stats_frame = Frame()
+# <editor-fold desc="Levelup tab - stat update functions">
+def levelup_vit_bg():
+    levelup_vit_num(VIT_levelup_input)
+def levelup_vit_num(levelup_var):
+    levelup_num = VIT_levelup_input.get()
+    lvlup_stat_background = Image.open('UI Resources/Level up tab/VIT_neutral.png')
+    levelup_image.paste(lvlup_stat_background, (68, 316), mask=lvlup_stat_background)
+    if VIT_levelup1.get() == 1:
+        background = Image.open('UI Resources/Level up tab/VIT_levelup1.png')
+        levelup_image.paste(background, (68, 316), mask=background)
+    if VIT_levelup2.get() == 1:
+        background = Image.open('UI Resources/Level up tab/VIT_levelup2.png')
+        levelup_image.paste(background, (68, 316), mask=background)
+    if len(levelup_num) == 1:
+        num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
+        levelup_image.paste(num_image1, (192, 336), mask=num_image1)
+    if len(levelup_num) == 2:
+        num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
+        levelup_image.paste(num_image1, (160, 336), mask=num_image1)
+        num_image2 = Image.open('UI Resources/num' + levelup_num[1] + '.png')
+        levelup_image.paste(num_image2, (192, 336), mask=num_image2)
+    levelup_image_new = ImageTk.PhotoImage(levelup_image.resize([480, 320]))
+    levelup_image_label.configure(image=levelup_image_new)
+    levelup_image_label.image = levelup_image_new
+
+def levelup_mgt_bg():
+    levelup_mgt_num(MGT_levelup_input)
+def levelup_mgt_num(levelup_var):
+    levelup_num = MGT_levelup_input.get()
+    lvlup_stat_background = Image.open('UI Resources/Level up tab/MGT_neutral.png')
+    levelup_image.paste(lvlup_stat_background, (68, 380), mask=lvlup_stat_background)
+    if MGT_levelup1.get() == 1:
+        background = Image.open('UI Resources/Level up tab/MGT_levelup1.png')
+        levelup_image.paste(background, (68, 380), mask=background)
+    if MGT_levelup2.get() == 1:
+        background = Image.open('UI Resources/Level up tab/MGT_levelup2.png')
+        levelup_image.paste(background, (68, 380), mask=background)
+    if len(levelup_num) == 1:
+        num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
+        levelup_image.paste(num_image1, (192, 400), mask=num_image1)
+    if len(levelup_num) == 2:
+        num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
+        levelup_image.paste(num_image1, (160, 400), mask=num_image1)
+        num_image2 = Image.open('UI Resources/num' + levelup_num[1] + '.png')
+        levelup_image.paste(num_image2, (192, 400), mask=num_image2)
+    levelup_image_new = ImageTk.PhotoImage(levelup_image.resize([480, 320]))
+    levelup_image_label.configure(image=levelup_image_new)
+    levelup_image_label.image = levelup_image_new
+
+def levelup_mnd_bg():
+    levelup_mnd_num(MND_levelup_input)
+def levelup_mnd_num(levelup_var):
+    levelup_num = MND_levelup_input.get()
+    lvlup_stat_background = Image.open('UI Resources/Level up tab/MND_neutral.png')
+    levelup_image.paste(lvlup_stat_background, (68, 444), mask=lvlup_stat_background)
+    if MND_levelup1.get() == 1:
+        background = Image.open('UI Resources/Level up tab/MND_levelup1.png')
+        levelup_image.paste(background, (68, 444), mask=background)
+    if MND_levelup2.get() == 1:
+        background = Image.open('UI Resources/Level up tab/MND_levelup2.png')
+        levelup_image.paste(background, (68, 444), mask=background)
+    if len(levelup_num) == 1:
+        num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
+        levelup_image.paste(num_image1, (192, 464), mask=num_image1)
+    if len(levelup_num) == 2:
+        num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
+        levelup_image.paste(num_image1, (160, 464), mask=num_image1)
+        num_image2 = Image.open('UI Resources/num' + levelup_num[1] + '.png')
+        levelup_image.paste(num_image2, (192, 464), mask=num_image2)
+    levelup_image_new = ImageTk.PhotoImage(levelup_image.resize([480, 320]))
+    levelup_image_label.configure(image=levelup_image_new)
+    levelup_image_label.image = levelup_image_new
+
+def levelup_skl_bg():
+    levelup_skl_num(SKL_levelup_input)
+def levelup_skl_num(levelup_var):
+    levelup_num = SKL_levelup_input.get()
+    lvlup_stat_background = Image.open('UI Resources/Level up tab/SKL_neutral.png')
+    levelup_image.paste(lvlup_stat_background, (68, 508), mask=lvlup_stat_background)
+    if SKL_levelup1.get() == 1:
+        background = Image.open('UI Resources/Level up tab/SKL_levelup1.png')
+        levelup_image.paste(background, (68, 508), mask=background)
+    if SKL_levelup2.get() == 1:
+        background = Image.open('UI Resources/Level up tab/SKL_levelup2.png')
+        levelup_image.paste(background, (68, 508), mask=background)
+    if len(levelup_num) == 1:
+        num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
+        levelup_image.paste(num_image1, (192, 528), mask=num_image1)
+    if len(levelup_num) == 2:
+        num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
+        levelup_image.paste(num_image1, (160, 528), mask=num_image1)
+        num_image2 = Image.open('UI Resources/num' + levelup_num[1] + '.png')
+        levelup_image.paste(num_image2, (192, 528), mask=num_image2)
+    levelup_image_new = ImageTk.PhotoImage(levelup_image.resize([480, 320]))
+    levelup_image_label.configure(image=levelup_image_new)
+    levelup_image_label.image = levelup_image_new
+
+def levelup_spd_bg():
+    levelup_spd_num(SPD_levelup_input)
+def levelup_spd_num(levelup_var):
+    levelup_num = SPD_levelup_input.get()
+    lvlup_stat_background = Image.open('UI Resources/Level up tab/SPD_neutral.png')
+    levelup_image.paste(lvlup_stat_background, (324, 316), mask=lvlup_stat_background)
+    if SPD_levelup1.get() == 1:
+        background = Image.open('UI Resources/Level up tab/SPD_levelup1.png')
+        levelup_image.paste(background, (324, 316), mask=background)
+    if SPD_levelup2.get() == 1:
+        background = Image.open('UI Resources/Level up tab/SPD_levelup2.png')
+        levelup_image.paste(background, (324, 316), mask=background)
+    if len(levelup_num) == 1:
+        num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
+        levelup_image.paste(num_image1, (448, 336), mask=num_image1)
+    if len(levelup_num) == 2:
+        num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
+        levelup_image.paste(num_image1, (416, 336), mask=num_image1)
+        num_image2 = Image.open('UI Resources/num' + levelup_num[1] + '.png')
+        levelup_image.paste(num_image2, (448, 336), mask=num_image2)
+    levelup_image_new = ImageTk.PhotoImage(levelup_image.resize([480, 320]))
+    levelup_image_label.configure(image=levelup_image_new)
+    levelup_image_label.image = levelup_image_new
+
+def levelup_luk_bg():
+    levelup_luk_num(LUK_levelup_input)
+def levelup_luk_num(levelup_var):
+    levelup_num = LUK_levelup_input.get()
+    lvlup_stat_background = Image.open('UI Resources/Level up tab/LUK_neutral.png')
+    levelup_image.paste(lvlup_stat_background, (324, 380), mask=lvlup_stat_background)
+    if LUK_levelup1.get() == 1:
+        background = Image.open('UI Resources/Level up tab/LUK_levelup1.png')
+        levelup_image.paste(background, (324, 380), mask=background)
+    if LUK_levelup2.get() == 1:
+        background = Image.open('UI Resources/Level up tab/LUK_levelup2.png')
+        levelup_image.paste(background, (324, 380), mask=background)
+    if len(levelup_num) == 1:
+        num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
+        levelup_image.paste(num_image1, (448, 400), mask=num_image1)
+    if len(levelup_num) == 2:
+        num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
+        levelup_image.paste(num_image1, (416, 400), mask=num_image1)
+        num_image2 = Image.open('UI Resources/num' + levelup_num[1] + '.png')
+        levelup_image.paste(num_image2, (448, 400), mask=num_image2)
+    levelup_image_new = ImageTk.PhotoImage(levelup_image.resize([480, 320]))
+    levelup_image_label.configure(image=levelup_image_new)
+    levelup_image_label.image = levelup_image_new
+
+def levelup_def_bg():
+    levelup_def_num(DEF_levelup_input)
+def levelup_def_num(levelup_var):
+    levelup_num = DEF_levelup_input.get()
+    lvlup_stat_background = Image.open('UI Resources/Level up tab/DEF_neutral.png')
+    levelup_image.paste(lvlup_stat_background, (324, 444), mask=lvlup_stat_background)
+    if DEF_levelup1.get() == 1:
+        background = Image.open('UI Resources/Level up tab/DEF_levelup1.png')
+        levelup_image.paste(background, (324, 444), mask=background)
+    if DEF_levelup2.get() == 1:
+        background = Image.open('UI Resources/Level up tab/DEF_levelup2.png')
+        levelup_image.paste(background, (324, 444), mask=background)
+    if len(levelup_num) == 1:
+        num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
+        levelup_image.paste(num_image1, (448, 464), mask=num_image1)
+    if len(levelup_num) == 2:
+        num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
+        levelup_image.paste(num_image1, (416, 464), mask=num_image1)
+        num_image2 = Image.open('UI Resources/num' + levelup_num[1] + '.png')
+        levelup_image.paste(num_image2, (448, 464), mask=num_image2)
+    levelup_image_new = ImageTk.PhotoImage(levelup_image.resize([480, 320]))
+    levelup_image_label.configure(image=levelup_image_new)
+    levelup_image_label.image = levelup_image_new
+
+def levelup_spr_bg():
+    levelup_spr_num(SPR_levelup_input)
+def levelup_spr_num(levelup_var):
+    levelup_num = SPR_levelup_input.get()
+    lvlup_stat_background = Image.open('UI Resources/Level up tab/SPR_neutral.png')
+    levelup_image.paste(lvlup_stat_background, (324, 508), mask=lvlup_stat_background)
+    if SPR_levelup1.get() == 1:
+        background = Image.open('UI Resources/Level up tab/SPR_levelup1.png')
+        levelup_image.paste(background, (324, 508), mask=background)
+    if SPR_levelup2.get() == 1:
+        background = Image.open('UI Resources/Level up tab/SPR_levelup2.png')
+        levelup_image.paste(background, (324, 508), mask=background)
+    if len(levelup_num) == 1:
+        num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
+        levelup_image.paste(num_image1, (448, 528), mask=num_image1)
+    if len(levelup_num) == 2:
+        num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
+        levelup_image.paste(num_image1, (416, 528), mask=num_image1)
+        num_image2 = Image.open('UI Resources/num' + levelup_num[1] + '.png')
+        levelup_image.paste(num_image2, (448, 528), mask=num_image2)
+    levelup_image_new = ImageTk.PhotoImage(levelup_image.resize([480, 320]))
+    levelup_image_label.configure(image=levelup_image_new)
+    levelup_image_label.image = levelup_image_new
+# </editor-fold>
+# <editor-fold desc="Levelup tab - UI">
+levelup_stats_frame = Frame(tab_levelup)
 levelup_stats_frame.place(x=25, y=300)
 
-STAT_label = Label(levelup_stats_frame, text='STAT', padx=25, pady=10, font=('bold'))
+STAT_label = Label(levelup_stats_frame, text='STAT', padx=25, pady=10)
 plus1_label = Label(levelup_stats_frame, text='+1', padx=2, pady=10, width=3, anchor='w')
 plus2_label = Label(levelup_stats_frame, text='+2', padx=2, pady=10, width=3, anchor='w')
 stat_value_label = Label(levelup_stats_frame, text='Value', padx=10, pady=10)
@@ -76,54 +253,54 @@ LUK_label.grid(row=6, column=0)
 DEF_label.grid(row=7, column=0)
 SPR_label.grid(row=8, column=0)
 
-VIT_up1 = IntVar()
+VIT_levelup1 = IntVar()
 VIT_plus1_checkbox = Checkbutton(levelup_stats_frame, onvalue = 1, offvalue = 0,
-                                 command = vit_background, variable = VIT_up1)
-VIT_up2 = IntVar()
+                                 command = levelup_vit_bg, variable = VIT_levelup1)
+VIT_levelup2 = IntVar()
 VIT_plus2_checkbox = Checkbutton(levelup_stats_frame, onvalue = 1, offvalue = 0,
-                                 command = vit_background, variable = VIT_up2)
-MGT_up1 = IntVar()
+                                 command = levelup_vit_bg, variable = VIT_levelup2)
+MGT_levelup1 = IntVar()
 MGT_plus1_checkbox = Checkbutton(levelup_stats_frame, onvalue = 1, offvalue = 0,
-                                 command = mgt_background, variable = MGT_up1)
-MGT_up2 = IntVar()
+                                 command = levelup_mgt_bg, variable = MGT_levelup1)
+MGT_levelup2 = IntVar()
 MGT_plus2_checkbox = Checkbutton(levelup_stats_frame, onvalue = 1, offvalue = 0,
-                                 command = mgt_background, variable = MGT_up2)
-MND_up1 = IntVar()
+                                 command = levelup_mgt_bg, variable = MGT_levelup2)
+MND_levelup1 = IntVar()
 MND_plus1_checkbox = Checkbutton(levelup_stats_frame, onvalue = 1, offvalue = 0,
-                                 command = mnd_background, variable = MND_up1)
-MND_up2 = IntVar()
+                                 command = levelup_mnd_bg, variable = MND_levelup1)
+MND_levelup2 = IntVar()
 MND_plus2_checkbox = Checkbutton(levelup_stats_frame, onvalue = 1, offvalue = 0,
-                                 command = mnd_background, variable = MND_up2)
-SKL_up1 = IntVar()
+                                 command = levelup_mnd_bg, variable = MND_levelup2)
+SKL_levelup1 = IntVar()
 SKL_plus1_checkbox = Checkbutton(levelup_stats_frame, onvalue = 1, offvalue = 0,
-                                 command = skl_background, variable = SKL_up1)
-SKL_up2 = IntVar()
+                                 command = levelup_skl_bg, variable = SKL_levelup1)
+SKL_levelup2 = IntVar()
 SKL_plus2_checkbox = Checkbutton(levelup_stats_frame, onvalue = 1, offvalue = 0,
-                                 command = skl_background, variable = SKL_up2)
-SPD_up1 = IntVar()
+                                 command = levelup_skl_bg, variable = SKL_levelup2)
+SPD_levelup1 = IntVar()
 SPD_plus1_checkbox = Checkbutton(levelup_stats_frame, onvalue = 1, offvalue = 0,
-                                 command = spd_background, variable = SPD_up1)
-SPD_up2 = IntVar()
+                                 command = levelup_spd_bg, variable = SPD_levelup1)
+SPD_levelup2 = IntVar()
 SPD_plus2_checkbox = Checkbutton(levelup_stats_frame, onvalue = 1, offvalue = 0,
-                                 command = spd_background, variable = SPD_up2)
-LUK_up1 = IntVar()
+                                 command = levelup_spd_bg, variable = SPD_levelup2)
+LUK_levelup1 = IntVar()
 LUK_plus1_checkbox = Checkbutton(levelup_stats_frame, onvalue = 1, offvalue = 0,
-                                 command = luk_background, variable = LUK_up1)
-LUK_up2 = IntVar()
+                                 command = levelup_luk_bg, variable = LUK_levelup1)
+LUK_levelup2 = IntVar()
 LUK_plus2_checkbox = Checkbutton(levelup_stats_frame, onvalue = 1, offvalue = 0,
-                                 command = luk_background, variable = LUK_up2)
-DEF_up1 = IntVar()
+                                 command = levelup_luk_bg, variable = LUK_levelup2)
+DEF_levelup1 = IntVar()
 DEF_plus1_checkbox = Checkbutton(levelup_stats_frame, onvalue = 1, offvalue = 0,
-                                 command = def_background, variable = DEF_up1)
-DEF_up2 = IntVar()
+                                 command = levelup_def_bg, variable = DEF_levelup1)
+DEF_levelup2 = IntVar()
 DEF_plus2_checkbox = Checkbutton(levelup_stats_frame, onvalue = 1, offvalue = 0,
-                                 command = def_background, variable = DEF_up2)
-SPR_up1 = IntVar()
+                                 command = levelup_def_bg, variable = DEF_levelup2)
+SPR_levelup1 = IntVar()
 SPR_plus1_checkbox = Checkbutton(levelup_stats_frame, onvalue = 1, offvalue = 0,
-                                 command = spr_background, variable = SPR_up1)
-SPR_up2 = IntVar()
+                                 command = levelup_spr_bg, variable = SPR_levelup1)
+SPR_levelup2 = IntVar()
 SPR_plus2_checkbox = Checkbutton(levelup_stats_frame, onvalue = 1, offvalue = 0,
-                                 command = spr_background, variable = SPR_up2)
+                                 command = levelup_spr_bg, variable = SPR_levelup2)
 VIT_plus1_checkbox.grid(row=1, column=1)
 MGT_plus1_checkbox.grid(row=2, column=1)
 MND_plus1_checkbox.grid(row=3, column=1)
@@ -141,29 +318,37 @@ LUK_plus2_checkbox.grid(row=6, column=2)
 DEF_plus2_checkbox.grid(row=7, column=2)
 SPR_plus2_checkbox.grid(row=8, column=2)
 
-VIT_input = Entry(levelup_stats_frame, width=5, justify='center')
-MGT_input = Entry(levelup_stats_frame, width=5, justify='center')
-MND_input = Entry(levelup_stats_frame, width=5, justify='center')
-SKL_input = Entry(levelup_stats_frame, width=5, justify='center')
-SPD_input = Entry(levelup_stats_frame, width=5, justify='center')
-LUK_input = Entry(levelup_stats_frame, width=5, justify='center')
-DEF_input = Entry(levelup_stats_frame, width=5, justify='center')
-SPR_input = Entry(levelup_stats_frame, width=5, justify='center')
-VIT_input.grid(row=1, column=3)
-MGT_input.grid(row=2, column=3)
-MND_input.grid(row=3, column=3)
-SKL_input.grid(row=4, column=3)
-SPD_input.grid(row=5, column=3)
-LUK_input.grid(row=6, column=3)
-DEF_input.grid(row=7, column=3)
-SPR_input.grid(row=8, column=3)
-# ----------------------------------------------------
+VIT_levelup_input = Entry(levelup_stats_frame, width=5, justify='center')
+VIT_levelup_input.bind('<KeyRelease>', levelup_vit_num)
+MGT_levelup_input = Entry(levelup_stats_frame, width=5, justify='center')
+MGT_levelup_input.bind('<KeyRelease>', levelup_mgt_num)
+MND_levelup_input = Entry(levelup_stats_frame, width=5, justify='center')
+MND_levelup_input.bind('<KeyRelease>', levelup_mnd_num)
+SKL_levelup_input = Entry(levelup_stats_frame, width=5, justify='center')
+SKL_levelup_input.bind('<KeyRelease>', levelup_skl_num)
+SPD_levelup_input = Entry(levelup_stats_frame, width=5, justify='center')
+SPD_levelup_input.bind('<KeyRelease>', levelup_spd_num)
+LUK_levelup_input = Entry(levelup_stats_frame, width=5, justify='center')
+LUK_levelup_input.bind('<KeyRelease>', levelup_luk_num)
+DEF_levelup_input = Entry(levelup_stats_frame, width=5, justify='center')
+DEF_levelup_input.bind('<KeyRelease>', levelup_def_num)
+SPR_levelup_input = Entry(levelup_stats_frame, width=5, justify='center')
+SPR_levelup_input.bind('<KeyRelease>', levelup_spr_num)
+VIT_levelup_input.grid(row=1, column=3)
+MGT_levelup_input.grid(row=2, column=3)
+MND_levelup_input.grid(row=3, column=3)
+SKL_levelup_input.grid(row=4, column=3)
+SPD_levelup_input.grid(row=5, column=3)
+LUK_levelup_input.grid(row=6, column=3)
+DEF_levelup_input.grid(row=7, column=3)
+SPR_levelup_input.grid(row=8, column=3)
+# </editor-fold>
 
-# ------------ Statsheet generator tab UI ------------
-image_statsheet = Image.open('UI Resources/statsheet_template.png')
+# <editor-fold desc="Statsheet tab UI">
+image_statsheet = Image.open('UI Resources/Statsheet tab/statsheet_template.png')
 image_resize_statsheet = ImageTk.PhotoImage(image_statsheet.resize([780,240]))
 statsheet_image = Label(tab_statsheet, image=image_resize_statsheet)
 statsheet_image.pack(side=BOTTOM)
-# ----------------------------------------------------
+# </editor-fold>
 
 window.mainloop()
