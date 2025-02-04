@@ -30,6 +30,78 @@ levelup_image_label = Label(tab_levelup, image=levelup_image_resize)
 levelup_image_label.pack(side=BOTTOM)
 # </editor-fold>
 
+# <editor-fold desc="Levelup tab - unit update functions">
+def levelup_name(levelup_var):
+    levelup_str = name_levelup_input.get()
+    levelup_word_background = Image.open('UI Resources/Level up tab/name_bg.png')
+    levelup_image.paste(levelup_word_background, (736, 20), mask=levelup_word_background)
+    word_x_coord = 0
+    word_size_px = 4
+    for letter in levelup_str:
+        if letter.isupper():
+            letter_image = Image.open('UI Resources/Dark font/upper_' + letter + '.png')
+        elif letter.islower():
+            letter_image = Image.open('UI Resources/Dark font/lower_' + letter + '.png')
+        else:
+            if letter.isspace():
+                letter = 'blank_space'
+            letter_image = Image.open('UI Resources/Dark font/' + letter + '.png')
+        word_size_px += letter_image.size[0] - 4
+    word_x_coord = 864 - int(word_size_px / 2)
+    for letter in levelup_str:
+        if letter.isupper():
+            letter_image = Image.open('UI Resources/Dark font/upper_' + letter + '.png')
+        elif letter.islower():
+            letter_image = Image.open('UI Resources/Dark font/lower_' + letter + '.png')
+        else:
+            if letter.isspace():
+                letter = 'blank_space'
+            letter_image = Image.open('UI Resources/Dark font/' + letter + '.png')
+        levelup_image.paste(letter_image, (word_x_coord, 44), mask=letter_image)
+        word_x_coord += letter_image.size[0] - 4
+    levelup_image_new = ImageTk.PhotoImage(levelup_image.resize([480, 320]))
+    levelup_image_label.configure(image=levelup_image_new)
+    levelup_image_label.image = levelup_image_new
+
+def levelup_class(levelup_var):
+    levelup_str = class_levelup_input.get()
+    levelup_word_background = Image.open('UI Resources/Level up tab/class_bg.png')
+    levelup_image.paste(levelup_word_background, (32, 180), mask=levelup_word_background)
+    word_x_coord = 0
+    for letter in levelup_str:
+        if letter.isupper():
+            letter_image = Image.open('UI Resources/White font/upper_' + letter + '.png')
+        elif letter.islower():
+            letter_image = Image.open('UI Resources/White font/lower_' + letter + '.png')
+        else:
+            if letter.isspace():
+                letter = 'blank_space'
+            letter_image = Image.open('UI Resources/White font/' + letter + '.png')
+        levelup_image.paste(letter_image, (68 + word_x_coord, 204), mask=letter_image)
+        word_x_coord += letter_image.size[0] - 4
+    levelup_image_new = ImageTk.PhotoImage(levelup_image.resize([480, 320]))
+    levelup_image_label.configure(image=levelup_image_new)
+    levelup_image_label.image = levelup_image_new
+
+def levelup_lvl(levelup_var):
+    levelup_num = lvl_levelup_input.get()
+    lvlup_stat_background = Image.open('UI Resources/Level up tab/level_bg.png')
+    levelup_image.paste(lvlup_stat_background, (340, 180), mask=lvlup_stat_background)
+    if len(levelup_num) == 1:
+        num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
+        levelup_image.paste(num_image1, (448, 208), mask=num_image1)
+    if len(levelup_num) == 2:
+        num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
+        levelup_image.paste(num_image1, (416, 208), mask=num_image1)
+        num_image2 = Image.open('UI Resources/num' + levelup_num[1] + '.png')
+        levelup_image.paste(num_image2, (448, 208), mask=num_image2)
+    levelup_image_new = ImageTk.PhotoImage(levelup_image.resize([480, 320]))
+    levelup_image_label.configure(image=levelup_image_new)
+    levelup_image_label.image = levelup_image_new
+
+def levelup_portrait(levelup_var):
+    return
+# </editor-fold>
 # <editor-fold desc="Levelup tab - stat update functions">
 def levelup_vit_bg():
     levelup_vit_num(VIT_levelup_input)
@@ -224,6 +296,28 @@ def levelup_spr_num(levelup_var):
     levelup_image_label.image = levelup_image_new
 # </editor-fold>
 # <editor-fold desc="Levelup tab - UI">
+levelup_unit_frame = Frame(tab_levelup)
+levelup_unit_frame.place(x=25, y=20)
+
+name_label = Label(levelup_unit_frame, text='Name', padx=25, pady=5)
+class_label = Label(levelup_unit_frame, text='Class', pady=5)
+level_label = Label(levelup_unit_frame, text='Level', pady=5)
+portrait_label = Label(levelup_unit_frame, text='Portrait', pady=5)
+name_label.grid(row=0, column=0)
+class_label.grid(row=1, column=0)
+level_label.grid(row=2, column=0)
+portrait_label.grid(row=3, column=0)
+
+name_levelup_input = Entry(levelup_unit_frame, width=15, justify='center')
+name_levelup_input.bind('<KeyRelease>', levelup_name)
+class_levelup_input = Entry(levelup_unit_frame, width=15, justify='center')
+class_levelup_input.bind('<KeyRelease>', levelup_class)
+lvl_levelup_input = Entry(levelup_unit_frame, width=5, justify='center')
+lvl_levelup_input.bind('<KeyRelease>', levelup_lvl)
+name_levelup_input.grid(row=0, column=1)
+class_levelup_input.grid(row=1, column=1)
+lvl_levelup_input.grid(row=2, column=1)
+
 levelup_stats_frame = Frame(tab_levelup)
 levelup_stats_frame.place(x=25, y=300)
 
