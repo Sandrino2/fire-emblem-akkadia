@@ -165,22 +165,17 @@ def lvlup_background_edit(self):
 # </editor-fold>
 
 # <editor-fold desc="Levelup tab - stat update functions">
-def lvlup_vit_plus1_bg_edit():
-    x = 1
-    levelup_vit_num_edit(x)
-def lvlup_vit_plus2_bg_edit():
-    x = 2
-    levelup_vit_num_edit(x)
-def levelup_vit_num_edit(x):
+def levelup_vit_edit(x):
     levelup_num = lvlup_VIT_input.get()
-    lvlup_stat_background = Image.open('UI Resources/Level up tab/VIT_neutral.png')
-    lvlup_tab_ui.paste(lvlup_stat_background, (588, 876), mask=lvlup_stat_background)
-    if x == 1:
-        background = Image.open('UI Resources/Level up tab/VIT_levelup1.png')
-        lvlup_tab_ui.paste(background, (588, 876), mask=background)
-    if x == 2:
-        background = Image.open('UI Resources/Level up tab/VIT_levelup2.png')
-        lvlup_tab_ui.paste(background, (588, 876), mask=background)
+    levelup_plus = lvlup_VIT_plus_input.get()
+    if levelup_plus == '0':
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/VIT_neutral.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (588, 876), mask=lvlup_stat_background)
+    elif levelup_plus in ['1','2','3','4','5']:
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/VIT_levelup.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (588, 876), mask=lvlup_stat_background)
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/plus_' + levelup_plus + '.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (760, 876), mask=lvlup_stat_background)
     if len(levelup_num) == 1:
         num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
         lvlup_tab_ui.paste(num_image1, (712, 896), mask=num_image1)
@@ -193,22 +188,17 @@ def levelup_vit_num_edit(x):
     lvlup_tab_ui_label.configure(image=lvlup_tab_ui_new)
     lvlup_tab_ui_label.image = lvlup_tab_ui_new
 
-def lvlup_mgt_plus1_bg_edit():
-    x = 1
-    levelup_mgt_num_edit(x)
-def lvlup_mgt_plus2_bg_edit():
-    x = 2
-    levelup_mgt_num_edit(x)
-def levelup_mgt_num_edit(x):
+def levelup_mgt_edit(x):
     levelup_num = lvlup_MGT_input.get()
-    lvlup_stat_background = Image.open('UI Resources/Level up tab/MGT_neutral.png')
-    lvlup_tab_ui.paste(lvlup_stat_background, (588, 940), mask=lvlup_stat_background)
-    if x == 1:
-        background = Image.open('UI Resources/Level up tab/MGT_levelup1.png')
-        lvlup_tab_ui.paste(background, (588, 940), mask=background)
-    if x == 2:
-        background = Image.open('UI Resources/Level up tab/MGT_levelup2.png')
-        lvlup_tab_ui.paste(background, (588, 940), mask=background)
+    levelup_plus = lvlup_MGT_plus_input.get()
+    if levelup_plus == '0':
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/MGT_neutral.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (588, 940), mask=lvlup_stat_background)
+    elif levelup_plus in ['1','2','3','4','5']:
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/MGT_levelup.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (588, 940), mask=lvlup_stat_background)
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/plus_' + levelup_plus + '.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (760, 940), mask=lvlup_stat_background)
     if len(levelup_num) == 1:
         num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
         lvlup_tab_ui.paste(num_image1, (712, 960), mask=num_image1)
@@ -221,22 +211,17 @@ def levelup_mgt_num_edit(x):
     lvlup_tab_ui_label.configure(image=lvlup_tab_ui_new)
     lvlup_tab_ui_label.image = lvlup_tab_ui_new
 
-def lvlup_mnd_plus1_bg_edit():
-    x = 1
-    levelup_mnd_num_edit(x)
-def lvlup_mnd_plus2_bg_edit():
-    x = 2
-    levelup_mnd_num_edit(x)
-def levelup_mnd_num_edit(x):
+def levelup_mnd_edit(x):
     levelup_num = lvlup_MND_input.get()
-    lvlup_stat_background = Image.open('UI Resources/Level up tab/MND_neutral.png')
-    lvlup_tab_ui.paste(lvlup_stat_background, (588, 1004), mask=lvlup_stat_background)
-    if x == 1:
-        background = Image.open('UI Resources/Level up tab/MND_levelup1.png')
-        lvlup_tab_ui.paste(background, (588, 1004), mask=background)
-    if x == 2:
-        background = Image.open('UI Resources/Level up tab/MND_levelup2.png')
-        lvlup_tab_ui.paste(background, (588, 1004), mask=background)
+    levelup_plus = lvlup_MND_plus_input.get()
+    if levelup_plus == '0':
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/MND_neutral.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (588, 1004), mask=lvlup_stat_background)
+    elif levelup_plus in ['1','2','3','4','5']:
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/MND_levelup.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (588, 1004), mask=lvlup_stat_background)
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/plus_' + levelup_plus + '.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (760, 1004), mask=lvlup_stat_background)
     if len(levelup_num) == 1:
         num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
         lvlup_tab_ui.paste(num_image1, (712, 1024), mask=num_image1)
@@ -249,22 +234,17 @@ def levelup_mnd_num_edit(x):
     lvlup_tab_ui_label.configure(image=lvlup_tab_ui_new)
     lvlup_tab_ui_label.image = lvlup_tab_ui_new
 
-def lvlup_skl_plus1_bg_edit():
-    x = 1
-    levelup_skl_num_edit(x)
-def lvlup_skl_plus2_bg_edit():
-    x = 2
-    levelup_skl_num_edit(x)
-def levelup_skl_num_edit(x):
+def levelup_skl_edit(x):
     levelup_num = lvlup_SKL_input.get()
-    lvlup_stat_background = Image.open('UI Resources/Level up tab/SKL_neutral.png')
-    lvlup_tab_ui.paste(lvlup_stat_background, (588, 1068), mask=lvlup_stat_background)
-    if x == 1:
-        background = Image.open('UI Resources/Level up tab/SKL_levelup1.png')
-        lvlup_tab_ui.paste(background, (588, 1068), mask=background)
-    if x == 2:
-        background = Image.open('UI Resources/Level up tab/SKL_levelup2.png')
-        lvlup_tab_ui.paste(background, (588, 1068), mask=background)
+    levelup_plus = lvlup_SKL_plus_input.get()
+    if levelup_plus == '0':
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/SKL_neutral.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (588, 1068), mask=lvlup_stat_background)
+    elif levelup_plus in ['1','2','3','4','5']:
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/SKL_levelup.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (588, 1068), mask=lvlup_stat_background)
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/plus_' + levelup_plus + '.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (760, 1068), mask=lvlup_stat_background)
     if len(levelup_num) == 1:
         num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
         lvlup_tab_ui.paste(num_image1, (712, 1088), mask=num_image1)
@@ -277,22 +257,17 @@ def levelup_skl_num_edit(x):
     lvlup_tab_ui_label.configure(image=lvlup_tab_ui_new)
     lvlup_tab_ui_label.image = lvlup_tab_ui_new
 
-def lvlup_spd_plus1_bg_edit():
-    x = 1
-    levelup_spd_num_edit(x)
-def lvlup_spd_plus2_bg_edit():
-    x = 2
-    levelup_spd_num_edit(x)
-def levelup_spd_num_edit(x):
+def levelup_spd_edit(x):
     levelup_num = lvlup_SPD_input.get()
-    lvlup_stat_background = Image.open('UI Resources/Level up tab/SPD_neutral.png')
-    lvlup_tab_ui.paste(lvlup_stat_background, (844, 876), mask=lvlup_stat_background)
-    if x == 1:
-        background = Image.open('UI Resources/Level up tab/SPD_levelup1.png')
-        lvlup_tab_ui.paste(background, (844, 876), mask=background)
-    if x == 2:
-        background = Image.open('UI Resources/Level up tab/SPD_levelup2.png')
-        lvlup_tab_ui.paste(background, (844, 876), mask=background)
+    levelup_plus = lvlup_SPD_plus_input.get()
+    if levelup_plus == '0':
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/SPD_neutral.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (844, 876), mask=lvlup_stat_background)
+    elif levelup_plus in ['1','2','3','4','5']:
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/SPD_levelup.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (844, 876), mask=lvlup_stat_background)
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/plus_' + levelup_plus + '.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (1016, 876), mask=lvlup_stat_background)
     if len(levelup_num) == 1:
         num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
         lvlup_tab_ui.paste(num_image1, (968, 896), mask=num_image1)
@@ -305,22 +280,17 @@ def levelup_spd_num_edit(x):
     lvlup_tab_ui_label.configure(image=lvlup_tab_ui_new)
     lvlup_tab_ui_label.image = lvlup_tab_ui_new
 
-def lvlup_luk_plus1_bg_edit():
-    x = 1
-    levelup_luk_num_edit(x)
-def lvlup_luk_plus2_bg_edit():
-    x = 2
-    levelup_luk_num_edit(x)
-def levelup_luk_num_edit(x):
+def levelup_luk_edit(x):
     levelup_num = lvlup_LUK_input.get()
-    lvlup_stat_background = Image.open('UI Resources/Level up tab/LUK_neutral.png')
-    lvlup_tab_ui.paste(lvlup_stat_background, (844, 940), mask=lvlup_stat_background)
-    if x == 1:
-        background = Image.open('UI Resources/Level up tab/LUK_levelup1.png')
-        lvlup_tab_ui.paste(background, (844, 940), mask=background)
-    if x == 2:
-        background = Image.open('UI Resources/Level up tab/LUK_levelup2.png')
-        lvlup_tab_ui.paste(background, (844, 940), mask=background)
+    levelup_plus = lvlup_LUK_plus_input.get()
+    if levelup_plus == '0':
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/LUK_neutral.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (844, 940), mask=lvlup_stat_background)
+    elif levelup_plus in ['1','2','3','4','5']:
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/LUK_levelup.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (844, 940), mask=lvlup_stat_background)
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/plus_' + levelup_plus + '.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (1016, 940), mask=lvlup_stat_background)
     if len(levelup_num) == 1:
         num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
         lvlup_tab_ui.paste(num_image1, (968, 960), mask=num_image1)
@@ -333,22 +303,17 @@ def levelup_luk_num_edit(x):
     lvlup_tab_ui_label.configure(image=lvlup_tab_ui_new)
     lvlup_tab_ui_label.image = lvlup_tab_ui_new
 
-def lvlup_def_plus1_bg_edit():
-    x = 1
-    levelup_def_num_edit(x)
-def lvlup_def_plus2_bg_edit():
-    x = 2
-    levelup_def_num_edit(x)
-def levelup_def_num_edit(x):
+def levelup_def_edit(x):
     levelup_num = lvlup_DEF_input.get()
-    lvlup_stat_background = Image.open('UI Resources/Level up tab/DEF_neutral.png')
-    lvlup_tab_ui.paste(lvlup_stat_background, (844, 1004), mask=lvlup_stat_background)
-    if x == 1:
-        background = Image.open('UI Resources/Level up tab/DEF_levelup1.png')
-        lvlup_tab_ui.paste(background, (844, 1004), mask=background)
-    if x == 2:
-        background = Image.open('UI Resources/Level up tab/DEF_levelup2.png')
-        lvlup_tab_ui.paste(background, (844, 1004), mask=background)
+    levelup_plus = lvlup_DEF_plus_input.get()
+    if levelup_plus == '0':
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/DEF_neutral.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (844, 1004), mask=lvlup_stat_background)
+    elif levelup_plus in ['1','2','3','4','5']:
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/DEF_levelup.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (844, 1004), mask=lvlup_stat_background)
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/plus_' + levelup_plus + '.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (1016, 1004), mask=lvlup_stat_background)
     if len(levelup_num) == 1:
         num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
         lvlup_tab_ui.paste(num_image1, (968, 1024), mask=num_image1)
@@ -361,22 +326,17 @@ def levelup_def_num_edit(x):
     lvlup_tab_ui_label.configure(image=lvlup_tab_ui_new)
     lvlup_tab_ui_label.image = lvlup_tab_ui_new
 
-def lvlup_spr_plus1_bg_edit():
-    x = 1
-    levelup_spr_num_edit(x)
-def lvlup_spr_plus2_bg_edit():
-    x = 2
-    levelup_spr_num_edit(x)
-def levelup_spr_num_edit(x):
+def levelup_spr_edit(x):
     levelup_num = lvlup_SPR_input.get()
-    lvlup_stat_background = Image.open('UI Resources/Level up tab/SPR_neutral.png')
-    lvlup_tab_ui.paste(lvlup_stat_background, (844, 1068), mask=lvlup_stat_background)
-    if x == 1:
-        background = Image.open('UI Resources/Level up tab/SPR_levelup1.png')
-        lvlup_tab_ui.paste(background, (844, 1068), mask=background)
-    if x == 2:
-        background = Image.open('UI Resources/Level up tab/SPR_levelup2.png')
-        lvlup_tab_ui.paste(background, (844, 1068), mask=background)
+    levelup_plus = lvlup_SPR_plus_input.get()
+    if levelup_plus == '0':
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/SPR_neutral.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (844, 1068), mask=lvlup_stat_background)
+    elif levelup_plus in ['1','2','3','4','5']:
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/SPR_levelup.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (844, 1068), mask=lvlup_stat_background)
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/plus_' + levelup_plus + '.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (1016, 1068), mask=lvlup_stat_background)
     if len(levelup_num) == 1:
         num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
         lvlup_tab_ui.paste(num_image1, (968, 1088), mask=num_image1)
@@ -395,74 +355,64 @@ lvlup_export_button = Button(tab_levelup, text='Export', width=7, command=lvlup_
 lvlup_export_button.place(x=130, y=46)
 
 lvlup_name_input = Entry(tab_levelup, width=15, justify='center')
-lvlup_name_input.bind('<KeyRelease>', lvlup_name_edit)
 lvlup_class_input = Entry(tab_levelup, width=15, justify='center')
-lvlup_class_input.bind('<KeyRelease>', lvlup_class_edit)
 lvlup_level_input = Entry(tab_levelup, width=5, justify='center')
+lvlup_name_input.bind('<KeyRelease>', lvlup_name_edit)
+lvlup_class_input.bind('<KeyRelease>', lvlup_class_edit)
 lvlup_level_input.bind('<KeyRelease>', lvlup_level_edit)
 lvlup_name_input.place(x=104, y=114)
 lvlup_class_input.place(x=104, y=146)
 lvlup_level_input.place(x=134, y=178)
 
-lvlup_VIT_input = Entry(tab_levelup, width=5, justify='center')
-lvlup_VIT_input.bind('<KeyRelease>', levelup_vit_num_edit)
-lvlup_MGT_input = Entry(tab_levelup, width=5, justify='center')
-lvlup_MGT_input.bind('<KeyRelease>', levelup_mgt_num_edit)
-lvlup_MND_input = Entry(tab_levelup, width=5, justify='center')
-lvlup_MND_input.bind('<KeyRelease>', levelup_mnd_num_edit)
-lvlup_SKL_input = Entry(tab_levelup, width=5, justify='center')
-lvlup_SKL_input.bind('<KeyRelease>', levelup_skl_num_edit)
-lvlup_SPD_input = Entry(tab_levelup, width=5, justify='center')
-lvlup_SPD_input.bind('<KeyRelease>', levelup_spd_num_edit)
-lvlup_LUK_input = Entry(tab_levelup, width=5, justify='center')
-lvlup_LUK_input.bind('<KeyRelease>', levelup_luk_num_edit)
-lvlup_DEF_input = Entry(tab_levelup, width=5, justify='center')
-lvlup_DEF_input.bind('<KeyRelease>', levelup_def_num_edit)
-lvlup_SPR_input = Entry(tab_levelup, width=5, justify='center')
-lvlup_SPR_input.bind('<KeyRelease>', levelup_spr_num_edit)
-lvlup_VIT_input.place(x=92, y=242)
-lvlup_MGT_input.place(x=92, y=274)
-lvlup_MND_input.place(x=92, y=306)
-lvlup_SKL_input.place(x=92, y=338)
-lvlup_SPD_input.place(x=92, y=370)
-lvlup_LUK_input.place(x=92, y=402)
-lvlup_DEF_input.place(x=92, y=434)
-lvlup_SPR_input.place(x=92, y=466)
+lvlup_VIT_input = Entry(tab_levelup, width=6, justify='center')
+lvlup_MGT_input = Entry(tab_levelup, width=6, justify='center')
+lvlup_MND_input = Entry(tab_levelup, width=6, justify='center')
+lvlup_SKL_input = Entry(tab_levelup, width=6, justify='center')
+lvlup_SPD_input = Entry(tab_levelup, width=6, justify='center')
+lvlup_LUK_input = Entry(tab_levelup, width=6, justify='center')
+lvlup_DEF_input = Entry(tab_levelup, width=6, justify='center')
+lvlup_SPR_input = Entry(tab_levelup, width=6, justify='center')
+lvlup_VIT_input.bind('<KeyRelease>', levelup_vit_edit)
+lvlup_MGT_input.bind('<KeyRelease>', levelup_mgt_edit)
+lvlup_MND_input.bind('<KeyRelease>', levelup_mnd_edit)
+lvlup_SKL_input.bind('<KeyRelease>', levelup_skl_edit)
+lvlup_SPD_input.bind('<KeyRelease>', levelup_spd_edit)
+lvlup_LUK_input.bind('<KeyRelease>', levelup_luk_edit)
+lvlup_DEF_input.bind('<KeyRelease>', levelup_def_edit)
+lvlup_SPR_input.bind('<KeyRelease>', levelup_spr_edit)
+lvlup_VIT_input.place(x=94, y=242)
+lvlup_MGT_input.place(x=94, y=274)
+lvlup_MND_input.place(x=94, y=306)
+lvlup_SKL_input.place(x=94, y=338)
+lvlup_SPD_input.place(x=94, y=370)
+lvlup_LUK_input.place(x=94, y=402)
+lvlup_DEF_input.place(x=94, y=434)
+lvlup_SPR_input.place(x=94, y=466)
 
-lvlup_plus1_image = PhotoImage(file = 'UI Resources/Level up tab/plus_1.png')
-lvlup_plus2_image = PhotoImage(file = 'UI Resources/Level up tab/plus_2.png')
-lvlup_VIT_plus1_button = Button(tab_levelup, command = lvlup_vit_plus1_bg_edit, image = lvlup_plus1_image, bg='#c0e8a0')
-lvlup_MGT_plus1_button = Button(tab_levelup, command = lvlup_mgt_plus1_bg_edit, image = lvlup_plus1_image, bg='#c0e8a0')
-lvlup_MND_plus1_button = Button(tab_levelup, command = lvlup_mnd_plus1_bg_edit, image = lvlup_plus1_image, bg='#c0e8a0')
-lvlup_SKL_plus1_button = Button(tab_levelup, command = lvlup_skl_plus1_bg_edit, image = lvlup_plus1_image, bg='#c0e8a0')
-lvlup_SPD_plus1_button = Button(tab_levelup, command = lvlup_spd_plus1_bg_edit, image = lvlup_plus1_image, bg='#c0e8a0')
-lvlup_LUK_plus1_button = Button(tab_levelup, command = lvlup_luk_plus1_bg_edit, image = lvlup_plus1_image, bg='#c0e8a0')
-lvlup_DEF_plus1_button = Button(tab_levelup, command = lvlup_def_plus1_bg_edit, image = lvlup_plus1_image, bg='#c0e8a0')
-lvlup_SPR_plus1_button = Button(tab_levelup, command = lvlup_spr_plus1_bg_edit, image = lvlup_plus1_image, bg='#c0e8a0')
-lvlup_VIT_plus2_button = Button(tab_levelup, command = lvlup_vit_plus2_bg_edit, image = lvlup_plus2_image, bg='#88d8c0')
-lvlup_MGT_plus2_button = Button(tab_levelup, command = lvlup_mgt_plus2_bg_edit, image = lvlup_plus2_image, bg='#88d8c0')
-lvlup_MND_plus2_button = Button(tab_levelup, command = lvlup_mnd_plus2_bg_edit, image = lvlup_plus2_image, bg='#88d8c0')
-lvlup_SKL_plus2_button = Button(tab_levelup, command = lvlup_skl_plus2_bg_edit, image = lvlup_plus2_image, bg='#88d8c0')
-lvlup_SPD_plus2_button = Button(tab_levelup, command = lvlup_spd_plus2_bg_edit, image = lvlup_plus2_image, bg='#88d8c0')
-lvlup_LUK_plus2_button = Button(tab_levelup, command = lvlup_luk_plus2_bg_edit, image = lvlup_plus2_image, bg='#88d8c0')
-lvlup_DEF_plus2_button = Button(tab_levelup, command = lvlup_def_plus2_bg_edit, image = lvlup_plus2_image, bg='#88d8c0')
-lvlup_SPR_plus2_button = Button(tab_levelup, command = lvlup_spr_plus2_bg_edit, image = lvlup_plus2_image, bg='#88d8c0')
-lvlup_VIT_plus1_button.place(x=136, y=241)
-lvlup_MGT_plus1_button.place(x=136, y=273)
-lvlup_MND_plus1_button.place(x=136, y=305)
-lvlup_SKL_plus1_button.place(x=136, y=337)
-lvlup_SPD_plus1_button.place(x=136, y=369)
-lvlup_LUK_plus1_button.place(x=136, y=401)
-lvlup_DEF_plus1_button.place(x=136, y=433)
-lvlup_SPR_plus1_button.place(x=136, y=465)
-lvlup_VIT_plus2_button.place(x=168, y=241)
-lvlup_MGT_plus2_button.place(x=168, y=273)
-lvlup_MND_plus2_button.place(x=168, y=305)
-lvlup_SKL_plus2_button.place(x=168, y=337)
-lvlup_SPD_plus2_button.place(x=168, y=369)
-lvlup_LUK_plus2_button.place(x=168, y=401)
-lvlup_DEF_plus2_button.place(x=168, y=433)
-lvlup_SPR_plus2_button.place(x=168, y=465)
+lvlup_VIT_plus_input = Entry(tab_levelup, width=6, justify='center')
+lvlup_MGT_plus_input = Entry(tab_levelup, width=6, justify='center')
+lvlup_MND_plus_input = Entry(tab_levelup, width=6, justify='center')
+lvlup_SKL_plus_input = Entry(tab_levelup, width=6, justify='center')
+lvlup_SPD_plus_input = Entry(tab_levelup, width=6, justify='center')
+lvlup_LUK_plus_input = Entry(tab_levelup, width=6, justify='center')
+lvlup_DEF_plus_input = Entry(tab_levelup, width=6, justify='center')
+lvlup_SPR_plus_input = Entry(tab_levelup, width=6, justify='center')
+lvlup_VIT_plus_input.bind('<KeyRelease>', levelup_vit_edit)
+lvlup_MGT_plus_input.bind('<KeyRelease>', levelup_mgt_edit)
+lvlup_MND_plus_input.bind('<KeyRelease>', levelup_mnd_edit)
+lvlup_SKL_plus_input.bind('<KeyRelease>', levelup_skl_edit)
+lvlup_SPD_plus_input.bind('<KeyRelease>', levelup_spd_edit)
+lvlup_LUK_plus_input.bind('<KeyRelease>', levelup_luk_edit)
+lvlup_DEF_plus_input.bind('<KeyRelease>', levelup_def_edit)
+lvlup_SPR_plus_input.bind('<KeyRelease>', levelup_spr_edit)
+lvlup_VIT_plus_input.place(x=158, y=241)
+lvlup_MGT_plus_input.place(x=158, y=273)
+lvlup_MND_plus_input.place(x=158, y=305)
+lvlup_SKL_plus_input.place(x=158, y=337)
+lvlup_SPD_plus_input.place(x=158, y=369)
+lvlup_LUK_plus_input.place(x=158, y=401)
+lvlup_DEF_plus_input.place(x=158, y=433)
+lvlup_SPR_plus_input.place(x=158, y=465)
 
 lvlup_portrait_names = os.listdir('UI Resources/Unit portraits')
 lvlup_portrait_names_no_ext = [os.path.splitext(file)[0] for file in lvlup_portrait_names]
