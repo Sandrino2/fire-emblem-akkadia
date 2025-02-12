@@ -24,17 +24,25 @@ tabControl.pack(expand = 1, fill = 'both')
 
 lvlup_tab_ui = Image.open('UI Resources/Level up tab/levelup_tab_ui.png')
 lvlup_tab_background_image = Image.open('UI Resources/Battle backgrounds/Plains.png')
-lvlup_tab_template_image = Image.open('UI Resources/Level up tab/levelup_template.png')
+lvlup_tab_main_image = Image.open('UI Resources/Level up tab/levelup_template.png')
 lvlup_tab_ui.paste(lvlup_tab_background_image, (520,560), mask=lvlup_tab_background_image)
-lvlup_tab_ui.paste(lvlup_tab_template_image, (520,560), mask=lvlup_tab_template_image)
+lvlup_tab_ui.paste(lvlup_tab_main_image, (520,560), mask=lvlup_tab_main_image)
 lvlup_tab_ui_resize = ImageTk.PhotoImage(lvlup_tab_ui.resize([1000, 750]))
 lvlup_tab_ui_label = Label(tab_levelup, image=lvlup_tab_ui_resize)
 lvlup_tab_ui_label.place(x=0, y=0)
 
 statsheet_tab_ui = Image.open('UI Resources/Statsheet tab/statsheet_tab_ui.png')
+statsheet_tab_main_image = Image.open('UI Resources/Statsheet tab/statsheet_template.png')
+statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
 statsheet_tab_ui_resize = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
 statsheet_tab_ui_label = Label(tab_statsheet, image=statsheet_tab_ui_resize)
 statsheet_tab_ui_label.place(x=0, y=0)
+
+map_tab_ui = Image.open('UI Resources/Map tab/map_tab_ui.png')
+map_tab_ui_resize = ImageTk.PhotoImage(map_tab_ui.resize([1000, 750]))
+map_tab_ui_label = Label(tab_map, image=map_tab_ui_resize)
+map_tab_ui_label.place(x=0, y=0)
+
 # </editor-fold>
 # -----------------------------------------------------------------------------
 # <editor-fold desc="Levelup tab - unit update functions">
@@ -51,6 +59,7 @@ def lvlup_name_edit(x):
     lvlup_tab_ui.paste(levelup_word_background, (1256, 580), mask=levelup_word_background)
     word_x_coord = 0
     word_size_px = 4
+    # loop to check how long the word is in pixels, -4 because of overlap
     for letter in levelup_str:
         if letter.isupper():
             letter_image = Image.open('UI Resources/Dark font/upper_' + letter + '.png')
@@ -61,7 +70,8 @@ def lvlup_name_edit(x):
                 letter = 'blank_space'
             letter_image = Image.open('UI Resources/Dark font/' + letter + '.png')
         word_size_px += letter_image.size[0] - 4
-    word_x_coord = 1384 - int(word_size_px / 2)
+    word_x_coord = 1384 - int(word_size_px / 2) # 1384 is half the size of the target area
+    # loop to paste letters images one by one
     for letter in levelup_str:
         if letter.isupper():
             letter_image = Image.open('UI Resources/Dark font/upper_' + letter + '.png')
@@ -73,6 +83,7 @@ def lvlup_name_edit(x):
             letter_image = Image.open('UI Resources/Dark font/' + letter + '.png')
         lvlup_tab_ui.paste(letter_image, (word_x_coord, 604), mask=letter_image)
         word_x_coord += letter_image.size[0] - 4
+    # resize and merge back with tab UI
     lvlup_tab_ui_new = ImageTk.PhotoImage(lvlup_tab_ui.resize([1000, 750]))
     lvlup_tab_ui_label.configure(image=lvlup_tab_ui_new)
     lvlup_tab_ui_label.image = lvlup_tab_ui_new
@@ -168,14 +179,14 @@ def lvlup_background_edit(self):
 def levelup_vit_edit(x):
     levelup_num = lvlup_VIT_input.get()
     levelup_plus = lvlup_VIT_plus_input.get()
-    if levelup_plus == '0':
-        lvlup_stat_background = Image.open('UI Resources/Level up tab/VIT_neutral.png')
-        lvlup_tab_ui.paste(lvlup_stat_background, (588, 876), mask=lvlup_stat_background)
-    elif levelup_plus in ['1','2','3','4','5']:
+    if levelup_plus in ['1','2','3','4','5']:
         lvlup_stat_background = Image.open('UI Resources/Level up tab/VIT_levelup.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (588, 876), mask=lvlup_stat_background)
         lvlup_stat_background = Image.open('UI Resources/Level up tab/plus_' + levelup_plus + '.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (760, 876), mask=lvlup_stat_background)
+    else:
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/VIT_neutral.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (588, 876), mask=lvlup_stat_background)
     if len(levelup_num) == 1:
         num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
         lvlup_tab_ui.paste(num_image1, (712, 896), mask=num_image1)
@@ -191,14 +202,14 @@ def levelup_vit_edit(x):
 def levelup_mgt_edit(x):
     levelup_num = lvlup_MGT_input.get()
     levelup_plus = lvlup_MGT_plus_input.get()
-    if levelup_plus == '0':
-        lvlup_stat_background = Image.open('UI Resources/Level up tab/MGT_neutral.png')
-        lvlup_tab_ui.paste(lvlup_stat_background, (588, 940), mask=lvlup_stat_background)
-    elif levelup_plus in ['1','2','3','4','5']:
+    if levelup_plus in ['1','2','3','4','5']:
         lvlup_stat_background = Image.open('UI Resources/Level up tab/MGT_levelup.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (588, 940), mask=lvlup_stat_background)
         lvlup_stat_background = Image.open('UI Resources/Level up tab/plus_' + levelup_plus + '.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (760, 940), mask=lvlup_stat_background)
+    else:
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/MGT_neutral.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (588, 940), mask=lvlup_stat_background)
     if len(levelup_num) == 1:
         num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
         lvlup_tab_ui.paste(num_image1, (712, 960), mask=num_image1)
@@ -214,14 +225,14 @@ def levelup_mgt_edit(x):
 def levelup_mnd_edit(x):
     levelup_num = lvlup_MND_input.get()
     levelup_plus = lvlup_MND_plus_input.get()
-    if levelup_plus == '0':
-        lvlup_stat_background = Image.open('UI Resources/Level up tab/MND_neutral.png')
-        lvlup_tab_ui.paste(lvlup_stat_background, (588, 1004), mask=lvlup_stat_background)
-    elif levelup_plus in ['1','2','3','4','5']:
+    if levelup_plus in ['1','2','3','4','5']:
         lvlup_stat_background = Image.open('UI Resources/Level up tab/MND_levelup.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (588, 1004), mask=lvlup_stat_background)
         lvlup_stat_background = Image.open('UI Resources/Level up tab/plus_' + levelup_plus + '.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (760, 1004), mask=lvlup_stat_background)
+    else:
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/MND_neutral.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (588, 1004), mask=lvlup_stat_background)
     if len(levelup_num) == 1:
         num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
         lvlup_tab_ui.paste(num_image1, (712, 1024), mask=num_image1)
@@ -237,14 +248,14 @@ def levelup_mnd_edit(x):
 def levelup_skl_edit(x):
     levelup_num = lvlup_SKL_input.get()
     levelup_plus = lvlup_SKL_plus_input.get()
-    if levelup_plus == '0':
-        lvlup_stat_background = Image.open('UI Resources/Level up tab/SKL_neutral.png')
-        lvlup_tab_ui.paste(lvlup_stat_background, (588, 1068), mask=lvlup_stat_background)
-    elif levelup_plus in ['1','2','3','4','5']:
+    if levelup_plus in ['1','2','3','4','5']:
         lvlup_stat_background = Image.open('UI Resources/Level up tab/SKL_levelup.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (588, 1068), mask=lvlup_stat_background)
         lvlup_stat_background = Image.open('UI Resources/Level up tab/plus_' + levelup_plus + '.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (760, 1068), mask=lvlup_stat_background)
+    else:
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/SKL_neutral.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (588, 1068), mask=lvlup_stat_background)
     if len(levelup_num) == 1:
         num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
         lvlup_tab_ui.paste(num_image1, (712, 1088), mask=num_image1)
@@ -260,14 +271,14 @@ def levelup_skl_edit(x):
 def levelup_spd_edit(x):
     levelup_num = lvlup_SPD_input.get()
     levelup_plus = lvlup_SPD_plus_input.get()
-    if levelup_plus == '0':
-        lvlup_stat_background = Image.open('UI Resources/Level up tab/SPD_neutral.png')
-        lvlup_tab_ui.paste(lvlup_stat_background, (844, 876), mask=lvlup_stat_background)
-    elif levelup_plus in ['1','2','3','4','5']:
+    if levelup_plus in ['1','2','3','4','5']:
         lvlup_stat_background = Image.open('UI Resources/Level up tab/SPD_levelup.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (844, 876), mask=lvlup_stat_background)
         lvlup_stat_background = Image.open('UI Resources/Level up tab/plus_' + levelup_plus + '.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (1016, 876), mask=lvlup_stat_background)
+    else:
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/SPD_neutral.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (844, 876), mask=lvlup_stat_background)
     if len(levelup_num) == 1:
         num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
         lvlup_tab_ui.paste(num_image1, (968, 896), mask=num_image1)
@@ -283,14 +294,14 @@ def levelup_spd_edit(x):
 def levelup_luk_edit(x):
     levelup_num = lvlup_LUK_input.get()
     levelup_plus = lvlup_LUK_plus_input.get()
-    if levelup_plus == '0':
-        lvlup_stat_background = Image.open('UI Resources/Level up tab/LUK_neutral.png')
-        lvlup_tab_ui.paste(lvlup_stat_background, (844, 940), mask=lvlup_stat_background)
-    elif levelup_plus in ['1','2','3','4','5']:
+    if levelup_plus in ['1','2','3','4','5']:
         lvlup_stat_background = Image.open('UI Resources/Level up tab/LUK_levelup.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (844, 940), mask=lvlup_stat_background)
         lvlup_stat_background = Image.open('UI Resources/Level up tab/plus_' + levelup_plus + '.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (1016, 940), mask=lvlup_stat_background)
+    else:
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/LUK_neutral.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (844, 940), mask=lvlup_stat_background)
     if len(levelup_num) == 1:
         num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
         lvlup_tab_ui.paste(num_image1, (968, 960), mask=num_image1)
@@ -306,14 +317,14 @@ def levelup_luk_edit(x):
 def levelup_def_edit(x):
     levelup_num = lvlup_DEF_input.get()
     levelup_plus = lvlup_DEF_plus_input.get()
-    if levelup_plus == '0':
-        lvlup_stat_background = Image.open('UI Resources/Level up tab/DEF_neutral.png')
-        lvlup_tab_ui.paste(lvlup_stat_background, (844, 1004), mask=lvlup_stat_background)
-    elif levelup_plus in ['1','2','3','4','5']:
+    if levelup_plus in ['1','2','3','4','5']:
         lvlup_stat_background = Image.open('UI Resources/Level up tab/DEF_levelup.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (844, 1004), mask=lvlup_stat_background)
         lvlup_stat_background = Image.open('UI Resources/Level up tab/plus_' + levelup_plus + '.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (1016, 1004), mask=lvlup_stat_background)
+    else:
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/DEF_neutral.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (844, 1004), mask=lvlup_stat_background)
     if len(levelup_num) == 1:
         num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
         lvlup_tab_ui.paste(num_image1, (968, 1024), mask=num_image1)
@@ -329,14 +340,14 @@ def levelup_def_edit(x):
 def levelup_spr_edit(x):
     levelup_num = lvlup_SPR_input.get()
     levelup_plus = lvlup_SPR_plus_input.get()
-    if levelup_plus == '0':
-        lvlup_stat_background = Image.open('UI Resources/Level up tab/SPR_neutral.png')
-        lvlup_tab_ui.paste(lvlup_stat_background, (844, 1068), mask=lvlup_stat_background)
-    elif levelup_plus in ['1','2','3','4','5']:
+    if levelup_plus in ['1','2','3','4','5']:
         lvlup_stat_background = Image.open('UI Resources/Level up tab/SPR_levelup.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (844, 1068), mask=lvlup_stat_background)
         lvlup_stat_background = Image.open('UI Resources/Level up tab/plus_' + levelup_plus + '.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (1016, 1068), mask=lvlup_stat_background)
+    else:
+        lvlup_stat_background = Image.open('UI Resources/Level up tab/SPR_neutral.png')
+        lvlup_tab_ui.paste(lvlup_stat_background, (844, 1068), mask=lvlup_stat_background)
     if len(levelup_num) == 1:
         num_image1 = Image.open('UI Resources/num' + levelup_num[0] + '.png')
         lvlup_tab_ui.paste(num_image1, (968, 1088), mask=num_image1)
@@ -442,10 +453,58 @@ def statsheet_export_image():
     return
 
 def statsheet_name_edit(x):
-    return
+    statsheet_str = statsheet_name_input.get()
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab/name_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (16, 332), mask=statsheet_word_background)
+    word_x_coord = 0
+    word_size_px = 4
+    for letter in statsheet_str:
+        if letter.isupper():
+            letter_image = Image.open('UI Resources/Dark font/upper_' + letter + '.png')
+        elif letter.islower():
+            letter_image = Image.open('UI Resources/Dark font/lower_' + letter + '.png')
+        else:
+            if letter.isspace():
+                letter = 'blank_space'
+            letter_image = Image.open('UI Resources/Dark font/' + letter + '.png')
+        word_size_px += letter_image.size[0] - 4
+    word_x_coord = 236 - int(word_size_px / 2)
+    for letter in statsheet_str:
+        if letter.isupper():
+            letter_image = Image.open('UI Resources/White font/upper_' + letter + '.png')
+        elif letter.islower():
+            letter_image = Image.open('UI Resources/White font/lower_' + letter + '.png')
+        else:
+            if letter.isspace():
+                letter = 'blank_space'
+            letter_image = Image.open('UI Resources/White font/' + letter + '.png')
+        statsheet_tab_main_image.paste(letter_image, (word_x_coord, 332), mask=letter_image)
+        word_x_coord += letter_image.size[0] - 4
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_class_edit(x):
-    return
+    statsheet_str = statsheet_class_input.get()
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab/class_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (32, 428), mask=statsheet_word_background)
+    word_x_coord = 0
+    for letter in statsheet_str:
+        if letter.isupper():
+            letter_image = Image.open('UI Resources/White font/upper_' + letter + '.png')
+        elif letter.islower():
+            letter_image = Image.open('UI Resources/White font/lower_' + letter + '.png')
+        else:
+            if letter.isspace():
+                letter = 'blank_space'
+            letter_image = Image.open('UI Resources/White font/' + letter + '.png')
+        statsheet_tab_main_image.paste(letter_image, (32 + word_x_coord, 428), mask=letter_image)
+        word_x_coord += letter_image.size[0] - 4
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_level_edit(x):
     return
