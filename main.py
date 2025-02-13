@@ -507,7 +507,21 @@ def statsheet_class_edit(x):
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_level_edit(x):
-    return
+    statsheet_num = statsheet_level_input.get()
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab/level_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (28, 488), mask=statsheet_word_background)
+    if len(statsheet_num) == 1:
+        num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (160, 500), mask=num_image1)
+    if len(statsheet_num) == 2:
+        num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (128, 500), mask=num_image1)
+        num_image2 = Image.open('UI Resources/num' + statsheet_num[1] + '.png')
+        statsheet_tab_main_image.paste(num_image2, (160, 500), mask=num_image2)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_portrait_edit(self):
     return
