@@ -450,23 +450,27 @@ lvlup_background_menu.place(x=380, y=112)
 # -----------------------------------------------------------------------------
 # <editor-fold desc="Statsheet tab - unit update functions">
 def statsheet_load_image():
-    # continua a prendere l'immagine pulita che modifico, meglio fare come lvlup tab e resize ogni cosa piuttosto
     filename = askopenfilename(initialdir='Desktop', title='Select an image', filetypes=(("png files", "*.png"),("all files", "*")))
     if not filename:
         return
     loaded_statsheet = Image.open(filename)
-    statsheet_tab_ui.paste(loaded_statsheet.resize([1560, 480]), (216, 912))
+    statsheet_tab_main_image.paste(loaded_statsheet.resize([2080, 640]), (0, 0))
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
     statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
     statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_export_image():
-    return
+    filename = asksaveasfile(mode='w', filetypes=(("png files", "*.png"),("all files", "*")), defaultextension='png')
+    if not filename:
+        return
+    statsheet_tab_ui_crop = statsheet_tab_ui.crop([216, 912, 1776, 1392]).resize([1560, 480])
+    statsheet_tab_ui_crop.save(filename.name)
 
 def statsheet_name_edit(x):
     statsheet_str = statsheet_name_input.get()
     statsheet_word_background = Image.open('UI Resources/Statsheet tab/name_bg.png')
-    statsheet_tab_main_image.paste(statsheet_word_background, (16, 332), mask=statsheet_word_background)
+    statsheet_tab_main_image.paste(statsheet_word_background, (16, 332))
     word_x_coord = 0
     word_size_px = 4
     for letter in statsheet_str:
@@ -523,7 +527,7 @@ def statsheet_level_edit(x):
     statsheet_tab_main_image.paste(statsheet_word_background, (28, 488), mask=statsheet_word_background)
     if len(statsheet_num) == 1:
         num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
-        statsheet_tab_main_image.paste(num_image1, (160, 500), mask=num_image1)
+        statsheet_tab_main_image.paste(num_image1, (128, 500), mask=num_image1)
     if len(statsheet_num) == 2:
         num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
         statsheet_tab_main_image.paste(num_image1, (128, 500), mask=num_image1)
@@ -585,7 +589,7 @@ def statsheet_trait4_edit(x):
 def statsheet_vit_num_edit(x):
     statsheet_num = statsheet_VIT_input.get()
     statsheet_word_background = Image.open('UI Resources/Statsheet tab/hp_bg.png')
-    statsheet_tab_main_image.paste(statsheet_word_background, (28, 556), mask=statsheet_word_background)
+    statsheet_tab_main_image.paste(statsheet_word_background, (28, 556))
     if len(statsheet_num) == 1:
         num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
         statsheet_tab_main_image.paste(num_image1, (160, 564), mask=num_image1)
