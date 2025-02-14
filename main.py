@@ -43,6 +43,11 @@ map_tab_ui_resize = ImageTk.PhotoImage(map_tab_ui.resize([1000, 750]))
 map_tab_ui_label = Label(tab_map, image=map_tab_ui_resize)
 map_tab_ui_label.place(x=0, y=0)
 
+portrait_names = os.listdir('UI Resources/Unit portraits')
+sprite_names = os.listdir('UI Resources/Unit sprites')
+portrait_names_no_ext = [os.path.splitext(file)[0] for file in portrait_names]
+sprite_names_no_ext = [os.path.splitext(file)[0] for file in sprite_names]
+
 # </editor-fold>
 # -----------------------------------------------------------------------------
 # <editor-fold desc="Levelup tab - unit update functions">
@@ -425,11 +430,9 @@ lvlup_LUK_plus_input.place(x=158, y=401)
 lvlup_DEF_plus_input.place(x=158, y=433)
 lvlup_SPR_plus_input.place(x=158, y=465)
 
-lvlup_portrait_names = os.listdir('UI Resources/Unit portraits')
-lvlup_portrait_names_no_ext = [os.path.splitext(file)[0] for file in lvlup_portrait_names]
 lvlup_unit_name = StringVar()
 lvlup_portrait_menu = Combobox(tab_levelup, textvariable=lvlup_unit_name, width=10)
-lvlup_portrait_menu['values'] = lvlup_portrait_names_no_ext
+lvlup_portrait_menu['values'] = portrait_names_no_ext
 lvlup_portrait_menu.bind('<<ComboboxSelected>>', lvlup_portrait_edit)
 lvlup_portrait_menu.place(x=352, y=48)
 
@@ -447,7 +450,15 @@ lvlup_background_menu.place(x=380, y=112)
 # -----------------------------------------------------------------------------
 # <editor-fold desc="Statsheet tab - unit update functions">
 def statsheet_load_image():
-    return
+    # continua a prendere l'immagine pulita che modifico, meglio fare come lvlup tab e resize ogni cosa piuttosto
+    filename = askopenfilename(initialdir='Desktop', title='Select an image', filetypes=(("png files", "*.png"),("all files", "*")))
+    if not filename:
+        return
+    loaded_statsheet = Image.open(filename)
+    statsheet_tab_ui.paste(loaded_statsheet.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_export_image():
     return
@@ -524,10 +535,30 @@ def statsheet_level_edit(x):
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_portrait_edit(self):
-    return
+    if statsheet_unit_name.get():
+        statsheet_portrait_background = Image.open('UI Resources/Statsheet tab/portrait_bg.png')
+        statsheet_tab_main_image.paste(statsheet_portrait_background, (16, 16))
+        unit_portrait = Image.open('UI Resources/Unit portraits/' + statsheet_unit_name.get() + '.png').resize((384, 384))
+        unit_portrait_crop = unit_portrait.crop([24, 68, 344, 356])
+        statsheet_tab_main_image.paste(unit_portrait_crop, (32, 32), mask=unit_portrait_crop)
+        statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+        statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+        statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+        statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_custom_portrait():
-    return
+    filename = askopenfilename(initialdir='Desktop', title='Select an image', filetypes=(("png files", "*.png"),("all files", "*")))
+    if not filename:
+        return
+    statsheet_portrait_background = Image.open('UI Resources/Statsheet tab/portrait_bg.png')
+    statsheet_tab_main_image.paste(statsheet_portrait_background, (16, 16))
+    unit_portrait = Image.open(filename).resize((384, 384))
+    unit_portrait_crop = unit_portrait.crop([24, 68, 344, 356])
+    statsheet_tab_main_image.paste(unit_portrait_crop, (32, 32), mask=unit_portrait_crop)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_sprite_edit(self):
     return
@@ -552,7 +583,21 @@ def statsheet_trait4_edit(x):
 
 # <editor-fold desc="Statsheet tab - stat update functions">
 def statsheet_vit_num_edit(x):
-    return
+    statsheet_num = statsheet_VIT_input.get()
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab/hp_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (28, 556), mask=statsheet_word_background)
+    if len(statsheet_num) == 1:
+        num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (160, 564), mask=num_image1)
+    if len(statsheet_num) == 2:
+        num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (128, 564), mask=num_image1)
+        num_image2 = Image.open('UI Resources/num' + statsheet_num[1] + '.png')
+        statsheet_tab_main_image.paste(num_image2, (160, 564), mask=num_image2)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_mgt_num_edit(x):
     return
@@ -616,6 +661,22 @@ statsheet_trait1_input.place(x=52, y=305)
 statsheet_trait2_input.place(x=52, y=337)
 statsheet_trait3_input.place(x=52, y=369)
 statsheet_trait4_input.place(x=52, y=401)
+
+statsheet_unit_name = StringVar()
+statsheet_sprite_name = StringVar()
+statsheet_portrait_menu = Combobox(tab_statsheet, textvariable=statsheet_unit_name, width=10)
+statsheet_sprite_menu = Combobox(tab_statsheet, textvariable=statsheet_sprite_name, width=10)
+statsheet_portrait_menu['values'] = portrait_names_no_ext
+statsheet_sprite_menu['values'] = sprite_names_no_ext
+statsheet_portrait_menu.bind('<<ComboboxSelected>>', statsheet_portrait_edit)
+statsheet_sprite_menu.bind('<<ComboboxSelected>>', statsheet_sprite_edit)
+statsheet_portrait_menu.place(x=342, y=48)
+statsheet_sprite_menu.place(x=342, y=80)
+
+statsheet_custom_portrait_button = Button(tab_statsheet, text='Custom', command=statsheet_custom_portrait)
+statsheet_custom_sprite_button = Button(tab_statsheet, text='Custom', command=statsheet_custom_sprite)
+statsheet_custom_portrait_button.place(x=434, y=46)
+statsheet_custom_sprite_button.place(x=434, y=78)
 
 statsheet_VIT_input = Entry(tab_statsheet, width=5, justify='center')
 statsheet_MGT_input = Entry(tab_statsheet, width=5, justify='center')
