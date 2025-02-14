@@ -1,6 +1,6 @@
 import os
-from tkinter import *
-from tkinter import ttk
+# from tkinter import *
+from tkinter import ttk, Tk, Frame, Label, Button, Entry, StringVar
 from tkinter.ttk import Combobox
 from tkinter.filedialog import askopenfilename, asksaveasfile
 from PIL import Image, ImageTk
@@ -539,10 +539,10 @@ def statsheet_level_edit(x):
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_portrait_edit(self):
-    if statsheet_unit_name.get():
+    if statsheet_portrait_name.get():
         statsheet_portrait_background = Image.open('UI Resources/Statsheet tab/portrait_bg.png')
         statsheet_tab_main_image.paste(statsheet_portrait_background, (16, 16))
-        unit_portrait = Image.open('UI Resources/Unit portraits/' + statsheet_unit_name.get() + '.png').resize((384, 384))
+        unit_portrait = Image.open('UI Resources/Unit portraits/' + statsheet_portrait_name.get() + '.png').resize((384, 384))
         unit_portrait_crop = unit_portrait.crop([24, 68, 344, 356])
         statsheet_tab_main_image.paste(unit_portrait_crop, (32, 32), mask=unit_portrait_crop)
         statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
@@ -634,7 +634,50 @@ def statsheet_spr_num_edit(x):
 # </editor-fold>
 
 # <editor-fold desc="Statsheet tab - supports update functions">
+def statsheet_support1_affinity_edit(x):
+    if statsheet_affinity_type1.get():
+        statsheet_affinity = Image.open('UI Resources/Statsheet tab/' + statsheet_affinity_type1.get() + '_affinity.png')
+        statsheet_tab_main_image.paste(statsheet_affinity, (1636, 264), mask=statsheet_affinity)
+        statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+        statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+        statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+        statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
+def statsheet_support2_affinity_edit(x):
+    if statsheet_affinity_type2.get():
+        statsheet_affinity = Image.open('UI Resources/Statsheet tab/' + statsheet_affinity_type2.get() + '_affinity.png')
+        statsheet_tab_main_image.paste(statsheet_affinity, (1636, 328), mask=statsheet_affinity)
+        statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+        statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+        statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+        statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_support3_affinity_edit(x):
+    if statsheet_affinity_type3.get():
+        statsheet_affinity = Image.open('UI Resources/Statsheet tab/' + statsheet_affinity_type3.get() + '_affinity.png')
+        statsheet_tab_main_image.paste(statsheet_affinity, (1636, 392), mask=statsheet_affinity)
+        statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+        statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+        statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+        statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_support1_name_edit():
+    return
+
+def statsheet_support2_name_edit():
+    return
+
+def statsheet_support3_name_edit():
+    return
+
+def statsheet_support1_level_edit():
+    return
+
+def statsheet_support2_level_edit():
+    return
+
+def statsheet_support3_level_edit():
+    return
 # </editor-fold>
 
 # <editor-fold desc="Statsheet tab - UI">
@@ -666,9 +709,9 @@ statsheet_trait2_input.place(x=52, y=337)
 statsheet_trait3_input.place(x=52, y=369)
 statsheet_trait4_input.place(x=52, y=401)
 
-statsheet_unit_name = StringVar()
+statsheet_portrait_name = StringVar()
 statsheet_sprite_name = StringVar()
-statsheet_portrait_menu = Combobox(tab_statsheet, textvariable=statsheet_unit_name, width=10)
+statsheet_portrait_menu = Combobox(tab_statsheet, textvariable=statsheet_portrait_name, width=10)
 statsheet_sprite_menu = Combobox(tab_statsheet, textvariable=statsheet_sprite_name, width=10)
 statsheet_portrait_menu['values'] = portrait_names_no_ext
 statsheet_sprite_menu['values'] = sprite_names_no_ext
@@ -706,6 +749,44 @@ statsheet_SPD_input.place(x=310, y=273)
 statsheet_LUK_input.place(x=310, y=305)
 statsheet_DEF_input.place(x=310, y=337)
 statsheet_SPR_input.place(x=310, y=369)
+
+affinity_types = ['Fire', 'Thunder', 'Wind', 'Ice', 'Dark', 'Light', 'Anima']
+statsheet_affinity_type1 = StringVar()
+statsheet_affinity_type2 = StringVar()
+statsheet_affinity_type3 = StringVar()
+statsheet_support1_affinity_input = Combobox(tab_statsheet, values=affinity_types, textvariable=statsheet_affinity_type1, width=3, justify='center')
+statsheet_support2_affinity_input = Combobox(tab_statsheet, values=affinity_types, textvariable=statsheet_affinity_type2, width=3, justify='center')
+statsheet_support3_affinity_input = Combobox(tab_statsheet, values=affinity_types, textvariable=statsheet_affinity_type3, width=3, justify='center')
+statsheet_support1_affinity_input.bind('<<ComboboxSelected>>', statsheet_support1_affinity_edit)
+statsheet_support2_affinity_input.bind('<<ComboboxSelected>>', statsheet_support2_affinity_edit)
+statsheet_support3_affinity_input.bind('<<ComboboxSelected>>', statsheet_support3_affinity_edit)
+statsheet_support1_affinity_input.place(x=810, y=272)
+statsheet_support2_affinity_input.place(x=810, y=304)
+statsheet_support3_affinity_input.place(x=810, y=336)
+
+statsheet_support1_name_input = Entry(tab_statsheet, width=10, justify='center')
+statsheet_support2_name_input = Entry(tab_statsheet, width=10, justify='center')
+statsheet_support3_name_input = Entry(tab_statsheet, width=10, justify='center')
+statsheet_support1_name_input.bind('<KeyRelease>', statsheet_support1_name_edit)
+statsheet_support2_name_input.bind('<KeyRelease>', statsheet_support2_name_edit)
+statsheet_support3_name_input.bind('<KeyRelease>', statsheet_support3_name_edit)
+statsheet_support1_name_input.place(x=860, y=273)
+statsheet_support2_name_input.place(x=860, y=305)
+statsheet_support3_name_input.place(x=860, y=337)
+
+support_levels = ['S', 'A', 'B', 'C', 'D']
+statsheet_support_level1 = StringVar()
+statsheet_support_level2 = StringVar()
+statsheet_support_level3 = StringVar()
+statsheet_support1_level_input = Combobox(tab_statsheet, values=support_levels, textvariable=statsheet_support_level1, width=2, justify='center')
+statsheet_support2_level_input = Combobox(tab_statsheet, values=support_levels, textvariable=statsheet_support_level2, width=2, justify='center')
+statsheet_support3_level_input = Combobox(tab_statsheet, values=support_levels, textvariable=statsheet_support_level3, width=2, justify='center')
+statsheet_support1_level_input.bind('<<ComboboxSelected>>', statsheet_support1_level_edit)
+statsheet_support2_level_input.bind('<<ComboboxSelected>>', statsheet_support2_level_edit)
+statsheet_support3_level_input.bind('<<ComboboxSelected>>', statsheet_support3_level_edit)
+statsheet_support1_level_input.place(x=932, y=272)
+statsheet_support2_level_input.place(x=932, y=304)
+statsheet_support3_level_input.place(x=932, y=336)
 # </editor-fold>
 
 window.mainloop()
