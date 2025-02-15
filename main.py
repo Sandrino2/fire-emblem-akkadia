@@ -8,7 +8,7 @@ from PIL import Image, ImageTk
 # <editor-fold desc="Main window and tabs initial setup">
 window = Tk()
 window.title("Fire Emblem Akkadia")
-window.geometry("1000x750+150+100")
+window.geometry("1000x750+150+20")
 window.resizable(False, False)
 window.iconbitmap('UI Resources/fe_akkadia.ico')
 
@@ -634,50 +634,146 @@ def statsheet_spr_num_edit(x):
 # </editor-fold>
 
 # <editor-fold desc="Statsheet tab - supports update functions">
-def statsheet_support1_affinity_edit(x):
-    if statsheet_affinity_type1.get():
-        statsheet_affinity = Image.open('UI Resources/Statsheet tab/' + statsheet_affinity_type1.get() + '_affinity.png')
-        statsheet_tab_main_image.paste(statsheet_affinity, (1636, 264), mask=statsheet_affinity)
-        statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
-        statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
-        statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
-        statsheet_tab_ui_label.image = statsheet_tab_ui_new
+def statsheet_support1_affinity_edit(self):
+    affinity_type = statsheet_support_affinity_type1.get()
+    if affinity_type in ['Fire', 'Thunder', 'Wind', 'Ice', 'Dark', 'Light', 'Anima']:
+        statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/' + affinity_type + '_affinity.png')
+        statsheet_tab_main_image.paste(statsheet_affinity_image, (1636, 264), mask=statsheet_affinity_image)
+    elif affinity_type == 'None':
+        statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/support_affinity_bg.png')
+        statsheet_tab_main_image.paste(statsheet_affinity_image, (1636, 264), mask=statsheet_affinity_image)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
-def statsheet_support2_affinity_edit(x):
-    if statsheet_affinity_type2.get():
-        statsheet_affinity = Image.open('UI Resources/Statsheet tab/' + statsheet_affinity_type2.get() + '_affinity.png')
-        statsheet_tab_main_image.paste(statsheet_affinity, (1636, 328), mask=statsheet_affinity)
-        statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
-        statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
-        statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
-        statsheet_tab_ui_label.image = statsheet_tab_ui_new
+def statsheet_support2_affinity_edit(self):
+    affinity_type = statsheet_support_affinity_type2.get()
+    if affinity_type in ['Fire', 'Thunder', 'Wind', 'Ice', 'Dark', 'Light', 'Anima']:
+        statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/' + affinity_type + '_affinity.png')
+        statsheet_tab_main_image.paste(statsheet_affinity_image, (1636, 328), mask=statsheet_affinity_image)
+    elif affinity_type == 'None':
+        statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/support_affinity_bg.png')
+        statsheet_tab_main_image.paste(statsheet_affinity_image, (1636, 328), mask=statsheet_affinity_image)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
-def statsheet_support3_affinity_edit(x):
-    if statsheet_affinity_type3.get():
-        statsheet_affinity = Image.open('UI Resources/Statsheet tab/' + statsheet_affinity_type3.get() + '_affinity.png')
-        statsheet_tab_main_image.paste(statsheet_affinity, (1636, 392), mask=statsheet_affinity)
-        statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
-        statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
-        statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
-        statsheet_tab_ui_label.image = statsheet_tab_ui_new
+def statsheet_support3_affinity_edit(self):
+    affinity_type = statsheet_support_affinity_type3.get()
+    if affinity_type in ['Fire', 'Thunder', 'Wind', 'Ice', 'Dark', 'Light', 'Anima']:
+        statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/' + affinity_type + '_affinity.png')
+        statsheet_tab_main_image.paste(statsheet_affinity_image, (1636, 392), mask=statsheet_affinity_image)
+    elif affinity_type == 'None':
+        statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/support_affinity_bg.png')
+        statsheet_tab_main_image.paste(statsheet_affinity_image, (1636, 392), mask=statsheet_affinity_image)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
-def statsheet_support1_name_edit():
-    return
+def statsheet_support1_name_edit(self):
+    statsheet_str = statsheet_support1_name_input.get()
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab/support_name_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (1728, 268), mask=statsheet_word_background)
+    word_x_coord = 0
+    for letter in statsheet_str:
+        if letter.isupper():
+            letter_image = Image.open('UI Resources/White font/upper_' + letter + '.png')
+        elif letter.islower():
+            letter_image = Image.open('UI Resources/White font/lower_' + letter + '.png')
+        else:
+            if letter.isspace():
+                letter = 'blank_space'
+            letter_image = Image.open('UI Resources/White font/' + letter + '.png')
+        statsheet_tab_main_image.paste(letter_image, (1728 + word_x_coord, 268), mask=letter_image)
+        word_x_coord += letter_image.size[0] - 4
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
-def statsheet_support2_name_edit():
-    return
+def statsheet_support2_name_edit(self):
+    statsheet_str = statsheet_support2_name_input.get()
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab/support_name_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (1728, 332), mask=statsheet_word_background)
+    word_x_coord = 0
+    for letter in statsheet_str:
+        if letter.isupper():
+            letter_image = Image.open('UI Resources/White font/upper_' + letter + '.png')
+        elif letter.islower():
+            letter_image = Image.open('UI Resources/White font/lower_' + letter + '.png')
+        else:
+            if letter.isspace():
+                letter = 'blank_space'
+            letter_image = Image.open('UI Resources/White font/' + letter + '.png')
+        statsheet_tab_main_image.paste(letter_image, (1728 + word_x_coord, 332), mask=letter_image)
+        word_x_coord += letter_image.size[0] - 4
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
-def statsheet_support3_name_edit():
-    return
+def statsheet_support3_name_edit(self):
+    statsheet_str = statsheet_support3_name_input.get()
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab/support_name_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (1728, 396), mask=statsheet_word_background)
+    word_x_coord = 0
+    for letter in statsheet_str:
+        if letter.isupper():
+            letter_image = Image.open('UI Resources/White font/upper_' + letter + '.png')
+        elif letter.islower():
+            letter_image = Image.open('UI Resources/White font/lower_' + letter + '.png')
+        else:
+            if letter.isspace():
+                letter = 'blank_space'
+            letter_image = Image.open('UI Resources/White font/' + letter + '.png')
+        statsheet_tab_main_image.paste(letter_image, (1728 + word_x_coord, 396), mask=letter_image)
+        word_x_coord += letter_image.size[0] - 4
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
-def statsheet_support1_level_edit():
-    return
+def statsheet_support1_rank_edit(self):
+    support_rank = statsheet_support_rank1.get()
+    if support_rank in ['S', 'A', 'B', 'C', 'D', 'E']:
+        statsheet_rank_image = Image.open('UI Resources/Statsheet tab/rank_' + support_rank + '.png')
+        statsheet_tab_main_image.paste(statsheet_rank_image, (1920, 268), mask=statsheet_rank_image)
+    elif support_rank == 'None':
+        statsheet_rank_image = Image.open('UI Resources/Statsheet tab/support_rank_bg.png')
+        statsheet_tab_main_image.paste(statsheet_rank_image, (1920, 268), mask=statsheet_rank_image)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
-def statsheet_support2_level_edit():
-    return
+def statsheet_support2_rank_edit(self):
+    support_rank = statsheet_support_rank2.get()
+    if support_rank in ['S', 'A', 'B', 'C', 'D', 'E']:
+        statsheet_rank_image = Image.open('UI Resources/Statsheet tab/rank_' + support_rank + '.png')
+        statsheet_tab_main_image.paste(statsheet_rank_image, (1920, 333), mask=statsheet_rank_image)
+    elif support_rank == 'None':
+        statsheet_rank_image = Image.open('UI Resources/Statsheet tab/support_rank_bg.png')
+        statsheet_tab_main_image.paste(statsheet_rank_image, (1920, 333), mask=statsheet_rank_image)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
-def statsheet_support3_level_edit():
-    return
+def statsheet_support3_rank_edit(self):
+    support_rank = statsheet_support_rank3.get()
+    if support_rank in ['S', 'A', 'B', 'C', 'D', 'E']:
+        statsheet_rank_image = Image.open('UI Resources/Statsheet tab/rank_' + support_rank + '.png')
+        statsheet_tab_main_image.paste(statsheet_rank_image, (1920, 400), mask=statsheet_rank_image)
+    elif support_rank == 'None':
+        statsheet_rank_image = Image.open('UI Resources/Statsheet tab/support_rank_bg.png')
+        statsheet_tab_main_image.paste(statsheet_rank_image, (1920, 400), mask=statsheet_rank_image)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 # </editor-fold>
 
 # <editor-fold desc="Statsheet tab - UI">
@@ -750,13 +846,16 @@ statsheet_LUK_input.place(x=310, y=305)
 statsheet_DEF_input.place(x=310, y=337)
 statsheet_SPR_input.place(x=310, y=369)
 
-affinity_types = ['Fire', 'Thunder', 'Wind', 'Ice', 'Dark', 'Light', 'Anima']
-statsheet_affinity_type1 = StringVar()
-statsheet_affinity_type2 = StringVar()
-statsheet_affinity_type3 = StringVar()
-statsheet_support1_affinity_input = Combobox(tab_statsheet, values=affinity_types, textvariable=statsheet_affinity_type1, width=3, justify='center')
-statsheet_support2_affinity_input = Combobox(tab_statsheet, values=affinity_types, textvariable=statsheet_affinity_type2, width=3, justify='center')
-statsheet_support3_affinity_input = Combobox(tab_statsheet, values=affinity_types, textvariable=statsheet_affinity_type3, width=3, justify='center')
+affinity_types = ['Fire', 'Thunder', 'Wind', 'Ice', 'Dark', 'Light', 'Anima', 'None']
+statsheet_support_affinity_type1 = StringVar()
+statsheet_support_affinity_type2 = StringVar()
+statsheet_support_affinity_type3 = StringVar()
+statsheet_support1_affinity_input = Combobox(tab_statsheet, values=affinity_types, width=3, justify='center',
+                                             textvariable=statsheet_support_affinity_type1)
+statsheet_support2_affinity_input = Combobox(tab_statsheet, values=affinity_types, width=3, justify='center',
+                                             textvariable=statsheet_support_affinity_type2)
+statsheet_support3_affinity_input = Combobox(tab_statsheet, values=affinity_types, width=3, justify='center',
+                                             textvariable=statsheet_support_affinity_type3)
 statsheet_support1_affinity_input.bind('<<ComboboxSelected>>', statsheet_support1_affinity_edit)
 statsheet_support2_affinity_input.bind('<<ComboboxSelected>>', statsheet_support2_affinity_edit)
 statsheet_support3_affinity_input.bind('<<ComboboxSelected>>', statsheet_support3_affinity_edit)
@@ -774,19 +873,22 @@ statsheet_support1_name_input.place(x=860, y=273)
 statsheet_support2_name_input.place(x=860, y=305)
 statsheet_support3_name_input.place(x=860, y=337)
 
-support_levels = ['S', 'A', 'B', 'C', 'D']
-statsheet_support_level1 = StringVar()
-statsheet_support_level2 = StringVar()
-statsheet_support_level3 = StringVar()
-statsheet_support1_level_input = Combobox(tab_statsheet, values=support_levels, textvariable=statsheet_support_level1, width=2, justify='center')
-statsheet_support2_level_input = Combobox(tab_statsheet, values=support_levels, textvariable=statsheet_support_level2, width=2, justify='center')
-statsheet_support3_level_input = Combobox(tab_statsheet, values=support_levels, textvariable=statsheet_support_level3, width=2, justify='center')
-statsheet_support1_level_input.bind('<<ComboboxSelected>>', statsheet_support1_level_edit)
-statsheet_support2_level_input.bind('<<ComboboxSelected>>', statsheet_support2_level_edit)
-statsheet_support3_level_input.bind('<<ComboboxSelected>>', statsheet_support3_level_edit)
-statsheet_support1_level_input.place(x=932, y=272)
-statsheet_support2_level_input.place(x=932, y=304)
-statsheet_support3_level_input.place(x=932, y=336)
+support_levels = ['S', 'A', 'B', 'C', 'D', 'E', 'None']
+statsheet_support_rank1 = StringVar()
+statsheet_support_rank2 = StringVar()
+statsheet_support_rank3 = StringVar()
+statsheet_support1_rank_input = Combobox(tab_statsheet, values=support_levels, width=2, justify='center',
+                                         textvariable=statsheet_support_rank1)
+statsheet_support2_rank_input = Combobox(tab_statsheet, values=support_levels, width=2, justify='center',
+                                         textvariable=statsheet_support_rank2)
+statsheet_support3_rank_input = Combobox(tab_statsheet, values=support_levels, width=2, justify='center',
+                                         textvariable=statsheet_support_rank3)
+statsheet_support1_rank_input.bind('<<ComboboxSelected>>', statsheet_support1_rank_edit)
+statsheet_support2_rank_input.bind('<<ComboboxSelected>>', statsheet_support2_rank_edit)
+statsheet_support3_rank_input.bind('<<ComboboxSelected>>', statsheet_support3_rank_edit)
+statsheet_support1_rank_input.place(x=932, y=272)
+statsheet_support2_rank_input.place(x=932, y=304)
+statsheet_support3_rank_input.place(x=932, y=336)
 # </editor-fold>
 
 window.mainloop()
