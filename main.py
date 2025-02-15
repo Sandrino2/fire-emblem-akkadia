@@ -44,9 +44,9 @@ map_tab_ui_label = Label(tab_map, image=map_tab_ui_resize)
 map_tab_ui_label.place(x=0, y=0)
 
 portrait_names = os.listdir('UI Resources/Unit portraits')
-sprite_names = os.listdir('UI Resources/Unit sprites')
+#sprite_names = os.listdir('UI Resources/Unit sprites')
 portrait_names_no_ext = [os.path.splitext(file)[0] for file in portrait_names]
-sprite_names_no_ext = [os.path.splitext(file)[0] for file in sprite_names]
+#sprite_names_no_ext = [os.path.splitext(file)[0] for file in sprite_names]
 
 # </editor-fold>
 # -----------------------------------------------------------------------------
@@ -810,7 +810,7 @@ statsheet_sprite_name = StringVar()
 statsheet_portrait_menu = Combobox(tab_statsheet, textvariable=statsheet_portrait_name, width=10)
 statsheet_sprite_menu = Combobox(tab_statsheet, textvariable=statsheet_sprite_name, width=10)
 statsheet_portrait_menu['values'] = portrait_names_no_ext
-statsheet_sprite_menu['values'] = sprite_names_no_ext
+#statsheet_sprite_menu['values'] = sprite_names_no_ext
 statsheet_portrait_menu.bind('<<ComboboxSelected>>', statsheet_portrait_edit)
 statsheet_sprite_menu.bind('<<ComboboxSelected>>', statsheet_sprite_edit)
 statsheet_portrait_menu.place(x=342, y=48)
