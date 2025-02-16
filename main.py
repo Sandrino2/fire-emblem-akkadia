@@ -130,9 +130,9 @@ def lvlup_level_edit(x):
     lvlup_tab_ui_label.image = lvlup_tab_ui_new
 
 def lvlup_portrait_edit(self):
-    if lvlup_unit_name.get():
+    if lvlup_unit_name.get().capitalize() in portrait_names_no_ext:
         unit_portrait = Image.open('UI Resources/Unit portraits/' + lvlup_unit_name.get() + '.png').resize((384, 384))
-        if lvlup_background_name.get():
+        if lvlup_background_name.get().capitalize() in lvlup_background_names_no_ext:
             background_image = Image.open('UI Resources/Battle backgrounds/' + lvlup_background_name.get() + '.png')
         else:
             background_image = Image.open('UI Resources/Battle backgrounds/Plains.png')
@@ -434,6 +434,7 @@ lvlup_unit_name = StringVar()
 lvlup_portrait_menu = Combobox(tab_levelup, textvariable=lvlup_unit_name, width=10)
 lvlup_portrait_menu['values'] = portrait_names_no_ext
 lvlup_portrait_menu.bind('<<ComboboxSelected>>', lvlup_portrait_edit)
+lvlup_portrait_menu.bind('<KeyRelease>', lvlup_portrait_edit)
 lvlup_portrait_menu.place(x=352, y=48)
 
 lvlup_custom_portrait_button = Button(tab_levelup, text='Custom', command=lvlup_custom_portrait)
@@ -445,6 +446,7 @@ lvlup_background_name = StringVar()
 lvlup_background_menu = Combobox(tab_levelup, textvariable=lvlup_background_name, width=16)
 lvlup_background_menu['values'] = lvlup_background_names_no_ext
 lvlup_background_menu.bind('<<ComboboxSelected>>', lvlup_background_edit)
+lvlup_background_menu.bind('<KeyRelease>', lvlup_background_edit)
 lvlup_background_menu.place(x=380, y=112)
 # </editor-fold>
 # -----------------------------------------------------------------------------
@@ -539,7 +541,7 @@ def statsheet_level_edit(x):
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_portrait_edit(self):
-    if statsheet_portrait_name.get():
+    if statsheet_portrait_name.get().capitalize() in portrait_names_no_ext:
         statsheet_portrait_background = Image.open('UI Resources/Statsheet tab/portrait_bg.png')
         statsheet_tab_main_image.paste(statsheet_portrait_background, (16, 16))
         unit_portrait = Image.open('UI Resources/Unit portraits/' + statsheet_portrait_name.get() + '.png').resize((384, 384))
@@ -586,7 +588,7 @@ def statsheet_trait4_edit(x):
 # </editor-fold>
 
 # <editor-fold desc="Statsheet tab - stat update functions">
-def statsheet_vit_num_edit(x):
+def statsheet_vit_num_edit(self):
     statsheet_num = statsheet_VIT_input.get()
     statsheet_word_background = Image.open('UI Resources/Statsheet tab/hp_bg.png')
     statsheet_tab_main_image.paste(statsheet_word_background, (28, 556))
@@ -603,26 +605,279 @@ def statsheet_vit_num_edit(x):
     statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
-def statsheet_mgt_num_edit(x):
+def statsheet_mgt_num_edit(self):
+    statsheet_num = statsheet_MGT_input.get()
+    if statsheet_num == '':
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (496, 116))
+    elif 0 <= int(statsheet_num) <= 20:
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (496, 116))
+        statsheet_statbar_image = Image.open('UI Resources/Statsheet tab/statbar_' + statsheet_num + '.png')
+        statsheet_tab_main_image.paste(statsheet_statbar_image, (496, 132))
+        if len(statsheet_num) == 1:
+            num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+            statsheet_tab_main_image.paste(num_image1, (544, 116), mask=num_image1)
+        elif len(statsheet_num) == 2:
+            num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+            statsheet_tab_main_image.paste(num_image1, (512, 116), mask=num_image1)
+            num_image2 = Image.open('UI Resources/num' + statsheet_num[1] + '.png')
+            statsheet_tab_main_image.paste(num_image2, (544, 116), mask=num_image2)
+    elif 21 <= int(statsheet_num) <= 99:
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (496, 116))
+        statsheet_statbar_image = Image.open('UI Resources/Statsheet tab/statbar_20.png')
+        statsheet_tab_main_image.paste(statsheet_statbar_image, (496, 132))
+        num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (512, 116), mask=num_image1)
+        num_image2 = Image.open('UI Resources/num' + statsheet_num[1] + '.png')
+        statsheet_tab_main_image.paste(num_image2, (544, 116), mask=num_image2)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_mnd_num_edit(self):
+    statsheet_num = statsheet_MND_input.get()
+    if statsheet_num == '':
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (496, 180))
+    elif 0 <= int(statsheet_num) <= 20:
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (496, 180))
+        statsheet_statbar_image = Image.open('UI Resources/Statsheet tab/statbar_' + statsheet_num + '.png')
+        statsheet_tab_main_image.paste(statsheet_statbar_image, (496, 196))
+        if len(statsheet_num) == 1:
+            num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+            statsheet_tab_main_image.paste(num_image1, (544, 180), mask=num_image1)
+        elif len(statsheet_num) == 2:
+            num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+            statsheet_tab_main_image.paste(num_image1, (512, 180), mask=num_image1)
+            num_image2 = Image.open('UI Resources/num' + statsheet_num[1] + '.png')
+            statsheet_tab_main_image.paste(num_image2, (544, 180), mask=num_image2)
+    elif 21 <= int(statsheet_num) <= 99:
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (496, 180))
+        statsheet_statbar_image = Image.open('UI Resources/Statsheet tab/statbar_20.png')
+        statsheet_tab_main_image.paste(statsheet_statbar_image, (496, 196))
+        num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (512, 180), mask=num_image1)
+        num_image2 = Image.open('UI Resources/num' + statsheet_num[1] + '.png')
+        statsheet_tab_main_image.paste(num_image2, (544, 180), mask=num_image2)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_skl_num_edit(self):
+    statsheet_num = statsheet_SKL_input.get()
+    if statsheet_num == '':
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (496, 244))
+    elif 0 <= int(statsheet_num) <= 20:
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (496, 244))
+        statsheet_statbar_image = Image.open('UI Resources/Statsheet tab/statbar_' + statsheet_num + '.png')
+        statsheet_tab_main_image.paste(statsheet_statbar_image, (496, 260))
+        if len(statsheet_num) == 1:
+            num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+            statsheet_tab_main_image.paste(num_image1, (544, 244), mask=num_image1)
+        elif len(statsheet_num) == 2:
+            num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+            statsheet_tab_main_image.paste(num_image1, (512, 244), mask=num_image1)
+            num_image2 = Image.open('UI Resources/num' + statsheet_num[1] + '.png')
+            statsheet_tab_main_image.paste(num_image2, (544, 244), mask=num_image2)
+    elif 21 <= int(statsheet_num) <= 99:
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (496, 244))
+        statsheet_statbar_image = Image.open('UI Resources/Statsheet tab/statbar_20.png')
+        statsheet_tab_main_image.paste(statsheet_statbar_image, (496, 260))
+        num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (512, 244), mask=num_image1)
+        num_image2 = Image.open('UI Resources/num' + statsheet_num[1] + '.png')
+        statsheet_tab_main_image.paste(num_image2, (544, 244), mask=num_image2)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_spd_num_edit(self):
+    statsheet_num = statsheet_SPD_input.get()
+    if statsheet_num == '':
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (496, 308))
+    elif 0 <= int(statsheet_num) <= 20:
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (496, 308))
+        statsheet_statbar_image = Image.open('UI Resources/Statsheet tab/statbar_' + statsheet_num + '.png')
+        statsheet_tab_main_image.paste(statsheet_statbar_image, (496, 324))
+        if len(statsheet_num) == 1:
+            num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+            statsheet_tab_main_image.paste(num_image1, (544, 308), mask=num_image1)
+        elif len(statsheet_num) == 2:
+            num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+            statsheet_tab_main_image.paste(num_image1, (512, 308), mask=num_image1)
+            num_image2 = Image.open('UI Resources/num' + statsheet_num[1] + '.png')
+            statsheet_tab_main_image.paste(num_image2, (544, 308), mask=num_image2)
+    elif 21 <= int(statsheet_num) <= 99:
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (496, 308))
+        statsheet_statbar_image = Image.open('UI Resources/Statsheet tab/statbar_20.png')
+        statsheet_tab_main_image.paste(statsheet_statbar_image, (496, 324))
+        num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (512, 308), mask=num_image1)
+        num_image2 = Image.open('UI Resources/num' + statsheet_num[1] + '.png')
+        statsheet_tab_main_image.paste(num_image2, (544, 308), mask=num_image2)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_luk_num_edit(self):
+    statsheet_num = statsheet_LUK_input.get()
+    if statsheet_num == '':
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (496, 372))
+    elif 0 <= int(statsheet_num) <= 20:
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (496, 372))
+        statsheet_statbar_image = Image.open('UI Resources/Statsheet tab/statbar_' + statsheet_num + '.png')
+        statsheet_tab_main_image.paste(statsheet_statbar_image, (496, 388))
+        if len(statsheet_num) == 1:
+            num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+            statsheet_tab_main_image.paste(num_image1, (544, 372), mask=num_image1)
+        elif len(statsheet_num) == 2:
+            num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+            statsheet_tab_main_image.paste(num_image1, (512, 372), mask=num_image1)
+            num_image2 = Image.open('UI Resources/num' + statsheet_num[1] + '.png')
+            statsheet_tab_main_image.paste(num_image2, (544, 372), mask=num_image2)
+    elif 21 <= int(statsheet_num) <= 99:
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (496, 372))
+        statsheet_statbar_image = Image.open('UI Resources/Statsheet tab/statbar_20.png')
+        statsheet_tab_main_image.paste(statsheet_statbar_image, (496, 388))
+        num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (512, 372), mask=num_image1)
+        num_image2 = Image.open('UI Resources/num' + statsheet_num[1] + '.png')
+        statsheet_tab_main_image.paste(num_image2, (544, 372), mask=num_image2)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_def_num_edit(self):
+    statsheet_num = statsheet_DEF_input.get()
+    if statsheet_num == '':
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (496, 436))
+    elif 0 <= int(statsheet_num) <= 20:
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (496, 436))
+        statsheet_statbar_image = Image.open('UI Resources/Statsheet tab/statbar_' + statsheet_num + '.png')
+        statsheet_tab_main_image.paste(statsheet_statbar_image, (496, 452))
+        if len(statsheet_num) == 1:
+            num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+            statsheet_tab_main_image.paste(num_image1, (544, 436), mask=num_image1)
+        elif len(statsheet_num) == 2:
+            num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+            statsheet_tab_main_image.paste(num_image1, (512, 436), mask=num_image1)
+            num_image2 = Image.open('UI Resources/num' + statsheet_num[1] + '.png')
+            statsheet_tab_main_image.paste(num_image2, (544, 436), mask=num_image2)
+    elif 21 <= int(statsheet_num) <= 99:
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (496, 436))
+        statsheet_statbar_image = Image.open('UI Resources/Statsheet tab/statbar_20.png')
+        statsheet_tab_main_image.paste(statsheet_statbar_image, (496, 452))
+        num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (512, 436), mask=num_image1)
+        num_image2 = Image.open('UI Resources/num' + statsheet_num[1] + '.png')
+        statsheet_tab_main_image.paste(num_image2, (544, 436), mask=num_image2)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_spr_num_edit(self):
+    statsheet_num = statsheet_SPR_input.get()
+    if statsheet_num == '':
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (496, 500))
+    elif 0 <= int(statsheet_num) <= 20:
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (496, 500))
+        statsheet_statbar_image = Image.open('UI Resources/Statsheet tab/statbar_' + statsheet_num + '.png')
+        statsheet_tab_main_image.paste(statsheet_statbar_image, (496, 516))
+        if len(statsheet_num) == 1:
+            num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+            statsheet_tab_main_image.paste(num_image1, (544, 500), mask=num_image1)
+        elif len(statsheet_num) == 2:
+            num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+            statsheet_tab_main_image.paste(num_image1, (512, 500), mask=num_image1)
+            num_image2 = Image.open('UI Resources/num' + statsheet_num[1] + '.png')
+            statsheet_tab_main_image.paste(num_image2, (544, 500), mask=num_image2)
+    elif 21 <= int(statsheet_num) <= 99:
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (496, 500))
+        statsheet_statbar_image = Image.open('UI Resources/Statsheet tab/statbar_20.png')
+        statsheet_tab_main_image.paste(statsheet_statbar_image, (496, 516))
+        num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (512, 500), mask=num_image1)
+        num_image2 = Image.open('UI Resources/num' + statsheet_num[1] + '.png')
+        statsheet_tab_main_image.paste(num_image2, (544, 500), mask=num_image2)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_mov_num_edit(self):
     return
 
-def statsheet_mnd_num_edit(x):
-    return
+def statsheet_con_num_edit(self):
+    statsheet_num = statsheet_CON_input.get()
+    if statsheet_num == '':
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (752, 180))
+    elif 0 <= int(statsheet_num) <= 20:
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (752, 180))
+        statsheet_statbar_image = Image.open('UI Resources/Statsheet tab/statbar_' + statsheet_num + '.png')
+        statsheet_tab_main_image.paste(statsheet_statbar_image, (752, 196))
+        if len(statsheet_num) == 1:
+            num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+            statsheet_tab_main_image.paste(num_image1, (800, 180), mask=num_image1)
+        elif len(statsheet_num) == 2:
+            num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+            statsheet_tab_main_image.paste(num_image1, (768, 180), mask=num_image1)
+            num_image2 = Image.open('UI Resources/num' + statsheet_num[1] + '.png')
+            statsheet_tab_main_image.paste(num_image2, (800, 180), mask=num_image2)
+    elif 21 <= int(statsheet_num) <= 99:
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab/stat_num_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (752, 180))
+        statsheet_statbar_image = Image.open('UI Resources/Statsheet tab/statbar_20.png')
+        statsheet_tab_main_image.paste(statsheet_statbar_image, (752, 196))
+        num_image1 = Image.open('UI Resources/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (768, 180), mask=num_image1)
+        num_image2 = Image.open('UI Resources/num' + statsheet_num[1] + '.png')
+        statsheet_tab_main_image.paste(num_image2, (800, 180), mask=num_image2)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
-def statsheet_skl_num_edit(x):
-    return
-
-def statsheet_spd_num_edit(x):
-    return
-
-def statsheet_luk_num_edit(x):
-    return
-
-def statsheet_def_num_edit(x):
-    return
-
-def statsheet_spr_num_edit(x):
-    return
+def statsheet_unit_affinity_edit(self):
+    affinity_type = statsheet_unit_affinity_type.get().capitalize()
+    if affinity_type in ['Fire', 'Thunder', 'Wind', 'Ice', 'Dark', 'Light', 'Anima']:
+        statsheet_affinity_background = Image.open('UI Resources/Statsheet tab/affinity_stat_bg.png')
+        statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/' + affinity_type + '_affinity.png')
+        statsheet_tab_main_image.paste(statsheet_affinity_background, (772, 232))
+        statsheet_tab_main_image.paste(statsheet_affinity_image, (772, 232), mask=statsheet_affinity_image)
+    elif affinity_type == 'None':
+        statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/no_affinity.png')
+        statsheet_tab_main_image.paste(statsheet_affinity_image, (772, 232))
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 # </editor-fold>
 
 # <editor-fold desc="Statsheet tab - equipment update functions">
@@ -635,7 +890,7 @@ def statsheet_spr_num_edit(x):
 
 # <editor-fold desc="Statsheet tab - supports update functions">
 def statsheet_support1_affinity_edit(self):
-    affinity_type = statsheet_support_affinity_type1.get()
+    affinity_type = statsheet_support_affinity_type1.get().capitalize()
     if affinity_type in ['Fire', 'Thunder', 'Wind', 'Ice', 'Dark', 'Light', 'Anima']:
         statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/' + affinity_type + '_affinity.png')
         statsheet_tab_main_image.paste(statsheet_affinity_image, (1636, 264), mask=statsheet_affinity_image)
@@ -648,7 +903,7 @@ def statsheet_support1_affinity_edit(self):
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_support2_affinity_edit(self):
-    affinity_type = statsheet_support_affinity_type2.get()
+    affinity_type = statsheet_support_affinity_type2.get().capitalize()
     if affinity_type in ['Fire', 'Thunder', 'Wind', 'Ice', 'Dark', 'Light', 'Anima']:
         statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/' + affinity_type + '_affinity.png')
         statsheet_tab_main_image.paste(statsheet_affinity_image, (1636, 328), mask=statsheet_affinity_image)
@@ -661,7 +916,7 @@ def statsheet_support2_affinity_edit(self):
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_support3_affinity_edit(self):
-    affinity_type = statsheet_support_affinity_type3.get()
+    affinity_type = statsheet_support_affinity_type3.get().capitalize()
     if affinity_type in ['Fire', 'Thunder', 'Wind', 'Ice', 'Dark', 'Light', 'Anima']:
         statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/' + affinity_type + '_affinity.png')
         statsheet_tab_main_image.paste(statsheet_affinity_image, (1636, 392), mask=statsheet_affinity_image)
@@ -737,9 +992,11 @@ def statsheet_support3_name_edit(self):
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_support1_rank_edit(self):
-    support_rank = statsheet_support_rank1.get()
+    support_rank = statsheet_support_rank1.get().capitalize()
     if support_rank in ['S', 'A', 'B', 'C', 'D', 'E']:
+        statsheet_rank_background = Image.open('UI Resources/Statsheet tab/support_rank_bg.png')
         statsheet_rank_image = Image.open('UI Resources/Statsheet tab/rank_' + support_rank + '.png')
+        statsheet_tab_main_image.paste(statsheet_rank_background, (1920, 268))
         statsheet_tab_main_image.paste(statsheet_rank_image, (1920, 268), mask=statsheet_rank_image)
     elif support_rank == 'None':
         statsheet_rank_image = Image.open('UI Resources/Statsheet tab/support_rank_bg.png')
@@ -750,9 +1007,11 @@ def statsheet_support1_rank_edit(self):
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_support2_rank_edit(self):
-    support_rank = statsheet_support_rank2.get()
+    support_rank = statsheet_support_rank2.get().capitalize()
     if support_rank in ['S', 'A', 'B', 'C', 'D', 'E']:
+        statsheet_rank_background = Image.open('UI Resources/Statsheet tab/support_rank_bg.png')
         statsheet_rank_image = Image.open('UI Resources/Statsheet tab/rank_' + support_rank + '.png')
+        statsheet_tab_main_image.paste(statsheet_rank_background, (1920, 333))
         statsheet_tab_main_image.paste(statsheet_rank_image, (1920, 333), mask=statsheet_rank_image)
     elif support_rank == 'None':
         statsheet_rank_image = Image.open('UI Resources/Statsheet tab/support_rank_bg.png')
@@ -763,9 +1022,11 @@ def statsheet_support2_rank_edit(self):
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_support3_rank_edit(self):
-    support_rank = statsheet_support_rank3.get()
+    support_rank = statsheet_support_rank3.get().capitalize()
     if support_rank in ['S', 'A', 'B', 'C', 'D', 'E']:
+        statsheet_rank_background = Image.open('UI Resources/Statsheet tab/support_rank_bg.png')
         statsheet_rank_image = Image.open('UI Resources/Statsheet tab/rank_' + support_rank + '.png')
+        statsheet_tab_main_image.paste(statsheet_rank_background, (1920, 400))
         statsheet_tab_main_image.paste(statsheet_rank_image, (1920, 400), mask=statsheet_rank_image)
     elif support_rank == 'None':
         statsheet_rank_image = Image.open('UI Resources/Statsheet tab/support_rank_bg.png')
@@ -812,7 +1073,9 @@ statsheet_sprite_menu = Combobox(tab_statsheet, textvariable=statsheet_sprite_na
 statsheet_portrait_menu['values'] = portrait_names_no_ext
 #statsheet_sprite_menu['values'] = sprite_names_no_ext
 statsheet_portrait_menu.bind('<<ComboboxSelected>>', statsheet_portrait_edit)
+statsheet_portrait_menu.bind('<KeyRelease>', statsheet_portrait_edit)
 statsheet_sprite_menu.bind('<<ComboboxSelected>>', statsheet_sprite_edit)
+statsheet_sprite_menu.bind('<KeyRelease>', statsheet_sprite_edit)
 statsheet_portrait_menu.place(x=342, y=48)
 statsheet_sprite_menu.place(x=342, y=80)
 
@@ -847,6 +1110,19 @@ statsheet_DEF_input.place(x=310, y=337)
 statsheet_SPR_input.place(x=310, y=369)
 
 affinity_types = ['Fire', 'Thunder', 'Wind', 'Ice', 'Dark', 'Light', 'Anima', 'None']
+statsheet_MOV_input = Entry(tab_statsheet, width=5, justify='center')
+statsheet_CON_input = Entry(tab_statsheet, width=5, justify='center')
+statsheet_unit_affinity_type = StringVar()
+statsheet_unit_affinity_input = Combobox(tab_statsheet, values=affinity_types, width=8, justify='center',
+                                         textvariable=statsheet_unit_affinity_type)
+statsheet_MOV_input.bind('<KeyRelease>', statsheet_mov_num_edit)
+statsheet_CON_input.bind('<KeyRelease>', statsheet_con_num_edit)
+statsheet_unit_affinity_input.bind('<<ComboboxSelected>>', statsheet_unit_affinity_edit)
+statsheet_unit_affinity_input.bind('<KeyRelease>', statsheet_unit_affinity_edit)
+statsheet_MOV_input.place(x=468, y=145)
+statsheet_CON_input.place(x=468, y=177)
+statsheet_unit_affinity_input.place(x=468, y=209)
+
 statsheet_support_affinity_type1 = StringVar()
 statsheet_support_affinity_type2 = StringVar()
 statsheet_support_affinity_type3 = StringVar()
@@ -857,8 +1133,11 @@ statsheet_support2_affinity_input = Combobox(tab_statsheet, values=affinity_type
 statsheet_support3_affinity_input = Combobox(tab_statsheet, values=affinity_types, width=3, justify='center',
                                              textvariable=statsheet_support_affinity_type3)
 statsheet_support1_affinity_input.bind('<<ComboboxSelected>>', statsheet_support1_affinity_edit)
+statsheet_support1_affinity_input.bind('<KeyRelease>', statsheet_support1_affinity_edit)
 statsheet_support2_affinity_input.bind('<<ComboboxSelected>>', statsheet_support2_affinity_edit)
+statsheet_support2_affinity_input.bind('<KeyRelease>', statsheet_support2_affinity_edit)
 statsheet_support3_affinity_input.bind('<<ComboboxSelected>>', statsheet_support3_affinity_edit)
+statsheet_support3_affinity_input.bind('<KeyRelease>', statsheet_support3_affinity_edit)
 statsheet_support1_affinity_input.place(x=810, y=272)
 statsheet_support2_affinity_input.place(x=810, y=304)
 statsheet_support3_affinity_input.place(x=810, y=336)
@@ -884,8 +1163,11 @@ statsheet_support2_rank_input = Combobox(tab_statsheet, values=support_levels, w
 statsheet_support3_rank_input = Combobox(tab_statsheet, values=support_levels, width=2, justify='center',
                                          textvariable=statsheet_support_rank3)
 statsheet_support1_rank_input.bind('<<ComboboxSelected>>', statsheet_support1_rank_edit)
+statsheet_support1_rank_input.bind('<KeyRelease>', statsheet_support1_rank_edit)
 statsheet_support2_rank_input.bind('<<ComboboxSelected>>', statsheet_support2_rank_edit)
+statsheet_support2_rank_input.bind('<KeyRelease>', statsheet_support2_rank_edit)
 statsheet_support3_rank_input.bind('<<ComboboxSelected>>', statsheet_support3_rank_edit)
+statsheet_support3_rank_input.bind('<KeyRelease>', statsheet_support3_rank_edit)
 statsheet_support1_rank_input.place(x=932, y=272)
 statsheet_support2_rank_input.place(x=932, y=304)
 statsheet_support3_rank_input.place(x=932, y=336)
