@@ -575,16 +575,88 @@ def statsheet_custom_sprite():
 
 # <editor-fold desc="Statsheet tab - traits update functions">
 def statsheet_trait1_edit(x):
-    return
+    statsheet_str = statsheet_trait1_input.get()
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab/trait1_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (672, 324), mask=statsheet_word_background)
+    word_x_coord = 0
+    for letter in statsheet_str:
+        if letter.isupper():
+            letter_image = Image.open('UI Resources/White font/upper_' + letter + '.png')
+        elif letter.islower():
+            letter_image = Image.open('UI Resources/White font/lower_' + letter + '.png')
+        else:
+            if letter.isspace():
+                letter = 'blank_space'
+            letter_image = Image.open('UI Resources/White font/' + letter + '.png')
+        statsheet_tab_main_image.paste(letter_image, (672 + word_x_coord, 324), mask=letter_image)
+        word_x_coord += letter_image.size[0] - 4
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_trait2_edit(x):
-    return
+    statsheet_str = statsheet_trait2_input.get()
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab/trait2_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (672, 380), mask=statsheet_word_background)
+    word_x_coord = 0
+    for letter in statsheet_str:
+        if letter.isupper():
+            letter_image = Image.open('UI Resources/White font/upper_' + letter + '.png')
+        elif letter.islower():
+            letter_image = Image.open('UI Resources/White font/lower_' + letter + '.png')
+        else:
+            if letter.isspace():
+                letter = 'blank_space'
+            letter_image = Image.open('UI Resources/White font/' + letter + '.png')
+        statsheet_tab_main_image.paste(letter_image, (672 + word_x_coord, 380), mask=letter_image)
+        word_x_coord += letter_image.size[0] - 4
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_trait3_edit(x):
-    return
+    statsheet_str = statsheet_trait3_input.get()
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab/trait3_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (672, 436), mask=statsheet_word_background)
+    word_x_coord = 0
+    for letter in statsheet_str:
+        if letter.isupper():
+            letter_image = Image.open('UI Resources/White font/upper_' + letter + '.png')
+        elif letter.islower():
+            letter_image = Image.open('UI Resources/White font/lower_' + letter + '.png')
+        else:
+            if letter.isspace():
+                letter = 'blank_space'
+            letter_image = Image.open('UI Resources/White font/' + letter + '.png')
+        statsheet_tab_main_image.paste(letter_image, (672 + word_x_coord, 436), mask=letter_image)
+        word_x_coord += letter_image.size[0] - 4
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_trait4_edit(x):
-    return
+    statsheet_str = statsheet_trait4_input.get()
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab/trait4_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (672, 492), mask=statsheet_word_background)
+    word_x_coord = 0
+    for letter in statsheet_str:
+        if letter.isupper():
+            letter_image = Image.open('UI Resources/White font/upper_' + letter + '.png')
+        elif letter.islower():
+            letter_image = Image.open('UI Resources/White font/lower_' + letter + '.png')
+        else:
+            if letter.isspace():
+                letter = 'blank_space'
+            letter_image = Image.open('UI Resources/White font/' + letter + '.png')
+        statsheet_tab_main_image.paste(letter_image, (672 + word_x_coord, 492), mask=letter_image)
+        word_x_coord += letter_image.size[0] - 4
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 # </editor-fold>
 
 # <editor-fold desc="Statsheet tab - stat update functions">
