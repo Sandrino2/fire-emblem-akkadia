@@ -574,7 +574,7 @@ def statsheet_custom_sprite():
 # </editor-fold>
 
 # <editor-fold desc="Statsheet tab - traits update functions">
-def statsheet_trait1_edit(x):
+def statsheet_trait1_edit(self):
     statsheet_str = statsheet_trait1_input.get()
     statsheet_word_background = Image.open('UI Resources/Statsheet tab/trait1_bg.png')
     statsheet_tab_main_image.paste(statsheet_word_background, (672, 324), mask=statsheet_word_background)
@@ -595,7 +595,7 @@ def statsheet_trait1_edit(x):
     statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
-def statsheet_trait2_edit(x):
+def statsheet_trait2_edit(self):
     statsheet_str = statsheet_trait2_input.get()
     statsheet_word_background = Image.open('UI Resources/Statsheet tab/trait2_bg.png')
     statsheet_tab_main_image.paste(statsheet_word_background, (672, 380), mask=statsheet_word_background)
@@ -616,7 +616,7 @@ def statsheet_trait2_edit(x):
     statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
-def statsheet_trait3_edit(x):
+def statsheet_trait3_edit(self):
     statsheet_str = statsheet_trait3_input.get()
     statsheet_word_background = Image.open('UI Resources/Statsheet tab/trait3_bg.png')
     statsheet_tab_main_image.paste(statsheet_word_background, (672, 436), mask=statsheet_word_background)
@@ -637,7 +637,7 @@ def statsheet_trait3_edit(x):
     statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
-def statsheet_trait4_edit(x):
+def statsheet_trait4_edit(self):
     statsheet_str = statsheet_trait4_input.get()
     statsheet_word_background = Image.open('UI Resources/Statsheet tab/trait4_bg.png')
     statsheet_tab_main_image.paste(statsheet_word_background, (672, 492), mask=statsheet_word_background)
@@ -953,6 +953,110 @@ def statsheet_unit_affinity_edit(self):
 # </editor-fold>
 
 # <editor-fold desc="Statsheet tab - equipment update functions">
+def statsheet_equip1_edit(self):
+    statsheet_str = statsheet_equip1_input.get()
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab/equip_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (1040, 108), mask=statsheet_word_background)
+    word_x_coord = 0
+    for letter in statsheet_str:
+        if letter.isupper():
+            letter_image = Image.open('UI Resources/White font/upper_' + letter + '.png')
+        elif letter.islower():
+            letter_image = Image.open('UI Resources/White font/lower_' + letter + '.png')
+        else:
+            if letter.isspace():
+                letter = 'blank_space'
+            letter_image = Image.open('UI Resources/White font/' + letter + '.png')
+        statsheet_tab_main_image.paste(letter_image, (1040 + word_x_coord, 108), mask=letter_image)
+        word_x_coord += letter_image.size[0] - 4
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_equip2_edit(self):
+    statsheet_str = statsheet_equip2_input.get()
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab/equip_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (1040, 172), mask=statsheet_word_background)
+    word_x_coord = 0
+    for letter in statsheet_str:
+        if letter.isupper():
+            letter_image = Image.open('UI Resources/White font/upper_' + letter + '.png')
+        elif letter.islower():
+            letter_image = Image.open('UI Resources/White font/lower_' + letter + '.png')
+        else:
+            if letter.isspace():
+                letter = 'blank_space'
+            letter_image = Image.open('UI Resources/White font/' + letter + '.png')
+        statsheet_tab_main_image.paste(letter_image, (1040 + word_x_coord, 172), mask=letter_image)
+        word_x_coord += letter_image.size[0] - 4
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_equip3_edit(self):
+    statsheet_str = statsheet_equip3_input.get()
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab/equip_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (1040, 236), mask=statsheet_word_background)
+    word_x_coord = 0
+    for letter in statsheet_str:
+        if letter.isupper():
+            letter_image = Image.open('UI Resources/White font/upper_' + letter + '.png')
+        elif letter.islower():
+            letter_image = Image.open('UI Resources/White font/lower_' + letter + '.png')
+        else:
+            if letter.isspace():
+                letter = 'blank_space'
+            letter_image = Image.open('UI Resources/White font/' + letter + '.png')
+        statsheet_tab_main_image.paste(letter_image, (1040 + word_x_coord, 236), mask=letter_image)
+        word_x_coord += letter_image.size[0] - 4
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_equip4_edit(self):
+    statsheet_str = statsheet_equip4_input.get()
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab/equip_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (1040, 300), mask=statsheet_word_background)
+    word_x_coord = 0
+    for letter in statsheet_str:
+        if letter.isupper():
+            letter_image = Image.open('UI Resources/White font/upper_' + letter + '.png')
+        elif letter.islower():
+            letter_image = Image.open('UI Resources/White font/lower_' + letter + '.png')
+        else:
+            if letter.isspace():
+                letter = 'blank_space'
+            letter_image = Image.open('UI Resources/White font/' + letter + '.png')
+        statsheet_tab_main_image.paste(letter_image, (1040 + word_x_coord, 300), mask=letter_image)
+        word_x_coord += letter_image.size[0] - 4
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_equip5_edit(self):
+    statsheet_str = statsheet_equip5_input.get()
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab/equip_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (1040, 364), mask=statsheet_word_background)
+    word_x_coord = 0
+    for letter in statsheet_str:
+        if letter.isupper():
+            letter_image = Image.open('UI Resources/White font/upper_' + letter + '.png')
+        elif letter.islower():
+            letter_image = Image.open('UI Resources/White font/lower_' + letter + '.png')
+        else:
+            if letter.isspace():
+                letter = 'blank_space'
+            letter_image = Image.open('UI Resources/White font/' + letter + '.png')
+        statsheet_tab_main_image.paste(letter_image, (1040 + word_x_coord, 364), mask=letter_image)
+        word_x_coord += letter_image.size[0] - 4
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 # </editor-fold>
 
@@ -1194,6 +1298,22 @@ statsheet_unit_affinity_input.bind('<KeyRelease>', statsheet_unit_affinity_edit)
 statsheet_MOV_input.place(x=468, y=145)
 statsheet_CON_input.place(x=468, y=177)
 statsheet_unit_affinity_input.place(x=468, y=209)
+
+statsheet_equip1_input = Entry(tab_statsheet, width=20, justify='center')
+statsheet_equip2_input = Entry(tab_statsheet, width=20, justify='center')
+statsheet_equip3_input = Entry(tab_statsheet, width=20, justify='center')
+statsheet_equip4_input = Entry(tab_statsheet, width=20, justify='center')
+statsheet_equip5_input = Entry(tab_statsheet, width=20, justify='center')
+statsheet_equip1_input.bind('<KeyRelease>', statsheet_equip1_edit)
+statsheet_equip2_input.bind('<KeyRelease>', statsheet_equip2_edit)
+statsheet_equip3_input.bind('<KeyRelease>', statsheet_equip3_edit)
+statsheet_equip4_input.bind('<KeyRelease>', statsheet_equip4_edit)
+statsheet_equip5_input.bind('<KeyRelease>', statsheet_equip5_edit)
+statsheet_equip1_input.place(x=600, y=80)
+statsheet_equip2_input.place(x=600, y=112)
+statsheet_equip3_input.place(x=600, y=144)
+statsheet_equip4_input.place(x=600, y=176)
+statsheet_equip5_input.place(x=600, y=208)
 
 statsheet_support_affinity_type1 = StringVar()
 statsheet_support_affinity_type2 = StringVar()
