@@ -48,6 +48,10 @@ portrait_names = os.listdir('UI Resources/Unit portraits')
 portrait_names_no_ext = [os.path.splitext(file)[0] for file in portrait_names]
 #sprite_names_no_ext = [os.path.splitext(file)[0] for file in sprite_names]
 
+equipment_file = open('UI Resources/Equipment list.txt', 'r')
+equipment_list = equipment_file.read().splitlines()
+equipment_images = os.listdir('UI Resources/Equipment sprites')
+equipment_images_no_ext = [os.path.splitext(file)[0] for file in equipment_images]
 # </editor-fold>
 # -----------------------------------------------------------------------------
 # <editor-fold desc="Levelup tab - unit update functions">
@@ -955,8 +959,16 @@ def statsheet_unit_affinity_edit(self):
 # <editor-fold desc="Statsheet tab - equipment update functions">
 def statsheet_equip1_edit(self):
     statsheet_str = statsheet_equip1_input.get()
-    statsheet_word_background = Image.open('UI Resources/Statsheet tab/equip_bg.png')
-    statsheet_tab_main_image.paste(statsheet_word_background, (1040, 108), mask=statsheet_word_background)
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab/no_equip_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (1040, 108))
+    if statsheet_str == '':
+        statsheet_weapon_image_background = Image.open('UI Resources/Statsheet tab/equip_sprite_bg.png')
+        statsheet_tab_main_image.paste(statsheet_weapon_image_background, (976, 96))
+    elif statsheet_str in equipment_images_no_ext:
+        statsheet_weapon_image_background = Image.open('UI Resources/Statsheet tab/equip_sprite_bg.png')
+        statsheet_tab_main_image.paste(statsheet_weapon_image_background, (976, 96))
+        statsheet_weapon_image = Image.open('UI Resources/Equipment sprites/' + statsheet_str + '.png')
+        statsheet_tab_main_image.paste(statsheet_weapon_image, (976, 96), mask=statsheet_weapon_image)
     word_x_coord = 0
     for letter in statsheet_str:
         if letter.isupper():
@@ -976,8 +988,16 @@ def statsheet_equip1_edit(self):
 
 def statsheet_equip2_edit(self):
     statsheet_str = statsheet_equip2_input.get()
-    statsheet_word_background = Image.open('UI Resources/Statsheet tab/equip_bg.png')
-    statsheet_tab_main_image.paste(statsheet_word_background, (1040, 172), mask=statsheet_word_background)
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab/no_equip_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (1040, 172))
+    if statsheet_str == '':
+        statsheet_weapon_image_background = Image.open('UI Resources/Statsheet tab/equip_sprite_bg.png')
+        statsheet_tab_main_image.paste(statsheet_weapon_image_background, (976, 160))
+    elif statsheet_str in equipment_images_no_ext:
+        statsheet_weapon_image_background = Image.open('UI Resources/Statsheet tab/equip_sprite_bg.png')
+        statsheet_tab_main_image.paste(statsheet_weapon_image_background, (976, 160))
+        statsheet_weapon_image = Image.open('UI Resources/Equipment sprites/' + statsheet_str + '.png')
+        statsheet_tab_main_image.paste(statsheet_weapon_image, (976, 160), mask=statsheet_weapon_image)
     word_x_coord = 0
     for letter in statsheet_str:
         if letter.isupper():
@@ -997,8 +1017,16 @@ def statsheet_equip2_edit(self):
 
 def statsheet_equip3_edit(self):
     statsheet_str = statsheet_equip3_input.get()
-    statsheet_word_background = Image.open('UI Resources/Statsheet tab/equip_bg.png')
-    statsheet_tab_main_image.paste(statsheet_word_background, (1040, 236), mask=statsheet_word_background)
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab/no_equip_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (1040, 236))
+    if statsheet_str == '':
+        statsheet_weapon_image_background = Image.open('UI Resources/Statsheet tab/equip_sprite_bg.png')
+        statsheet_tab_main_image.paste(statsheet_weapon_image_background, (976, 224))
+    elif statsheet_str in equipment_images_no_ext:
+        statsheet_weapon_image_background = Image.open('UI Resources/Statsheet tab/equip_sprite_bg.png')
+        statsheet_tab_main_image.paste(statsheet_weapon_image_background, (976, 224))
+        statsheet_weapon_image = Image.open('UI Resources/Equipment sprites/' + statsheet_str + '.png')
+        statsheet_tab_main_image.paste(statsheet_weapon_image, (976, 224), mask=statsheet_weapon_image)
     word_x_coord = 0
     for letter in statsheet_str:
         if letter.isupper():
@@ -1018,8 +1046,16 @@ def statsheet_equip3_edit(self):
 
 def statsheet_equip4_edit(self):
     statsheet_str = statsheet_equip4_input.get()
-    statsheet_word_background = Image.open('UI Resources/Statsheet tab/equip_bg.png')
-    statsheet_tab_main_image.paste(statsheet_word_background, (1040, 300), mask=statsheet_word_background)
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab/no_equip_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (1040, 300))
+    if statsheet_str == '':
+        statsheet_weapon_image_background = Image.open('UI Resources/Statsheet tab/equip_sprite_bg.png')
+        statsheet_tab_main_image.paste(statsheet_weapon_image_background, (976, 288))
+    elif statsheet_str in equipment_images_no_ext:
+        statsheet_weapon_image_background = Image.open('UI Resources/Statsheet tab/equip_sprite_bg.png')
+        statsheet_tab_main_image.paste(statsheet_weapon_image_background, (976, 288))
+        statsheet_weapon_image = Image.open('UI Resources/Equipment sprites/' + statsheet_str + '.png')
+        statsheet_tab_main_image.paste(statsheet_weapon_image, (976, 288), mask=statsheet_weapon_image)
     word_x_coord = 0
     for letter in statsheet_str:
         if letter.isupper():
@@ -1039,8 +1075,16 @@ def statsheet_equip4_edit(self):
 
 def statsheet_equip5_edit(self):
     statsheet_str = statsheet_equip5_input.get()
-    statsheet_word_background = Image.open('UI Resources/Statsheet tab/equip_bg.png')
-    statsheet_tab_main_image.paste(statsheet_word_background, (1040, 364), mask=statsheet_word_background)
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab/no_equip_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (1040, 364))
+    if statsheet_str == '':
+        statsheet_weapon_image_background = Image.open('UI Resources/Statsheet tab/equip_sprite_bg.png')
+        statsheet_tab_main_image.paste(statsheet_weapon_image_background, (976, 352))
+    elif statsheet_str in equipment_images_no_ext:
+        statsheet_weapon_image_background = Image.open('UI Resources/Statsheet tab/equip_sprite_bg.png')
+        statsheet_tab_main_image.paste(statsheet_weapon_image_background, (976, 352))
+        statsheet_weapon_image = Image.open('UI Resources/Equipment sprites/' + statsheet_str + '.png')
+        statsheet_tab_main_image.paste(statsheet_weapon_image, (976, 352), mask=statsheet_weapon_image)
     word_x_coord = 0
     for letter in statsheet_str:
         if letter.isupper():
@@ -1299,11 +1343,26 @@ statsheet_MOV_input.place(x=468, y=145)
 statsheet_CON_input.place(x=468, y=177)
 statsheet_unit_affinity_input.place(x=468, y=209)
 
-statsheet_equip1_input = Entry(tab_statsheet, width=20, justify='center')
-statsheet_equip2_input = Entry(tab_statsheet, width=20, justify='center')
-statsheet_equip3_input = Entry(tab_statsheet, width=20, justify='center')
-statsheet_equip4_input = Entry(tab_statsheet, width=20, justify='center')
-statsheet_equip5_input = Entry(tab_statsheet, width=20, justify='center')
+statsheet_equip1_name = StringVar()
+statsheet_equip2_name = StringVar()
+statsheet_equip3_name = StringVar()
+statsheet_equip4_name = StringVar()
+statsheet_equip5_name = StringVar()
+statsheet_equip1_input = Combobox(tab_statsheet, values=equipment_list, width=13, justify='center',
+                                  textvariable=statsheet_equip1_name)
+statsheet_equip2_input = Combobox(tab_statsheet, values=equipment_list, width=13, justify='center',
+                                  textvariable=statsheet_equip2_name)
+statsheet_equip3_input = Combobox(tab_statsheet, values=equipment_list, width=13, justify='center',
+                                  textvariable=statsheet_equip3_name)
+statsheet_equip4_input = Combobox(tab_statsheet, values=equipment_list, width=13, justify='center',
+                                  textvariable=statsheet_equip4_name)
+statsheet_equip5_input = Combobox(tab_statsheet, values=equipment_list, width=13, justify='center',
+                                  textvariable=statsheet_equip5_name)
+statsheet_equip1_input.bind('<<ComboboxSelected>>', statsheet_equip1_edit)
+statsheet_equip2_input.bind('<<ComboboxSelected>>', statsheet_equip2_edit)
+statsheet_equip3_input.bind('<<ComboboxSelected>>', statsheet_equip3_edit)
+statsheet_equip4_input.bind('<<ComboboxSelected>>', statsheet_equip4_edit)
+statsheet_equip5_input.bind('<<ComboboxSelected>>', statsheet_equip5_edit)
 statsheet_equip1_input.bind('<KeyRelease>', statsheet_equip1_edit)
 statsheet_equip2_input.bind('<KeyRelease>', statsheet_equip2_edit)
 statsheet_equip3_input.bind('<KeyRelease>', statsheet_equip3_edit)
@@ -1325,10 +1384,10 @@ statsheet_support2_affinity_input = Combobox(tab_statsheet, values=affinity_type
 statsheet_support3_affinity_input = Combobox(tab_statsheet, values=affinity_types, width=3, justify='center',
                                              textvariable=statsheet_support_affinity_type3)
 statsheet_support1_affinity_input.bind('<<ComboboxSelected>>', statsheet_support1_affinity_edit)
-statsheet_support1_affinity_input.bind('<KeyRelease>', statsheet_support1_affinity_edit)
 statsheet_support2_affinity_input.bind('<<ComboboxSelected>>', statsheet_support2_affinity_edit)
-statsheet_support2_affinity_input.bind('<KeyRelease>', statsheet_support2_affinity_edit)
 statsheet_support3_affinity_input.bind('<<ComboboxSelected>>', statsheet_support3_affinity_edit)
+statsheet_support1_affinity_input.bind('<KeyRelease>', statsheet_support1_affinity_edit)
+statsheet_support2_affinity_input.bind('<KeyRelease>', statsheet_support2_affinity_edit)
 statsheet_support3_affinity_input.bind('<KeyRelease>', statsheet_support3_affinity_edit)
 statsheet_support1_affinity_input.place(x=810, y=272)
 statsheet_support2_affinity_input.place(x=810, y=304)
