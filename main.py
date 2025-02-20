@@ -477,7 +477,6 @@ def statsheet_name_edit(x):
     statsheet_str = statsheet_name_input.get()
     statsheet_word_background = Image.open('UI Resources/Statsheet tab/name_bg.png')
     statsheet_tab_main_image.paste(statsheet_word_background, (16, 332))
-    word_x_coord = 0
     word_size_px = 4
     for letter in statsheet_str:
         if letter.isupper():
@@ -1102,6 +1101,20 @@ def statsheet_equip5_edit(self):
     statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
+def statsheet_weapon_attack_edit(self):
+    return
+
+def statsheet_weapon_accuracy_edit(self):
+    return
+
+def statsheet_weapon_range_edit(self):
+    return
+
+def statsheet_weapon_weight_edit(self):
+    return
+
+def statsheet_weapon_critical_edit(self):
+    return
 # </editor-fold>
 
 # <editor-fold desc="Statsheet tab - proficiency update functions">
@@ -1373,6 +1386,23 @@ statsheet_equip2_input.place(x=600, y=112)
 statsheet_equip3_input.place(x=600, y=144)
 statsheet_equip4_input.place(x=600, y=176)
 statsheet_equip5_input.place(x=600, y=208)
+
+statsheet_weapon_attack_input = Entry(tab_statsheet, width=8, justify='center')
+statsheet_weapon_accuracy_input = Entry(tab_statsheet, width=8, justify='center')
+statsheet_weapon_range_input = Entry(tab_statsheet, width=8, justify='center')
+statsheet_weapon_weight_input = Entry(tab_statsheet, width=8, justify='center')
+statsheet_weapon_critical_input = Entry(tab_statsheet, width=8, justify='center')
+statsheet_weapon_attack_input.bind('<KeyRelease>', statsheet_weapon_attack_edit)
+statsheet_weapon_accuracy_input.bind('<KeyRelease>', statsheet_weapon_accuracy_edit)
+statsheet_weapon_range_input.bind('<KeyRelease>', statsheet_weapon_range_edit)
+statsheet_weapon_weight_input.bind('<KeyRelease>', statsheet_weapon_weight_edit)
+statsheet_weapon_critical_input.bind('<KeyRelease>', statsheet_weapon_critical_edit)
+statsheet_weapon_attack_input.place(x=680, y=273)
+statsheet_weapon_accuracy_input.place(x=680, y=305)
+statsheet_weapon_range_input.place(x=680, y=337)
+statsheet_weapon_weight_input.place(x=680, y=369)
+statsheet_weapon_critical_input.place(x=680, y=401)
+
 
 statsheet_support_affinity_type1 = StringVar()
 statsheet_support_affinity_type2 = StringVar()
