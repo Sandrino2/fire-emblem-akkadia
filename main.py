@@ -52,6 +52,10 @@ equipment_file = open('UI Resources/Equipment list.txt', 'r')
 equipment_list = equipment_file.read().splitlines()
 equipment_images = os.listdir('UI Resources/Equipment sprites')
 equipment_images_no_ext = [os.path.splitext(file)[0] for file in equipment_images]
+
+rank_levels = ['S', 'A', 'B', 'C', 'D', 'E', 'None']
+affinity_types = ['Fire', 'Thunder', 'Wind', 'Ice', 'Dark', 'Light', 'Anima', 'None']
+weapon_types = ['Swords', 'Axes', 'Spears', 'Bows', 'Mysticism', 'Grave', 'Light', 'Theurgy', 'None']
 # </editor-fold>
 # -----------------------------------------------------------------------------
 # <editor-fold desc="Levelup tab - unit update functions">
@@ -957,7 +961,7 @@ def statsheet_unit_affinity_edit(self):
 
 # <editor-fold desc="Statsheet tab - equipment update functions">
 def statsheet_equip1_edit(self):
-    statsheet_str = statsheet_equip1_input.get()
+    statsheet_str = statsheet_equip1_input.get().capitalize()
     statsheet_word_background = Image.open('UI Resources/Statsheet tab/no_equip_bg.png')
     statsheet_tab_main_image.paste(statsheet_word_background, (1040, 108))
     if statsheet_str == '':
@@ -986,7 +990,7 @@ def statsheet_equip1_edit(self):
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_equip2_edit(self):
-    statsheet_str = statsheet_equip2_input.get()
+    statsheet_str = statsheet_equip2_input.get().capitalize()
     statsheet_word_background = Image.open('UI Resources/Statsheet tab/no_equip_bg.png')
     statsheet_tab_main_image.paste(statsheet_word_background, (1040, 172))
     if statsheet_str == '':
@@ -1015,7 +1019,7 @@ def statsheet_equip2_edit(self):
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_equip3_edit(self):
-    statsheet_str = statsheet_equip3_input.get()
+    statsheet_str = statsheet_equip3_input.get().capitalize()
     statsheet_word_background = Image.open('UI Resources/Statsheet tab/no_equip_bg.png')
     statsheet_tab_main_image.paste(statsheet_word_background, (1040, 236))
     if statsheet_str == '':
@@ -1044,7 +1048,7 @@ def statsheet_equip3_edit(self):
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_equip4_edit(self):
-    statsheet_str = statsheet_equip4_input.get()
+    statsheet_str = statsheet_equip4_input.get().capitalize()
     statsheet_word_background = Image.open('UI Resources/Statsheet tab/no_equip_bg.png')
     statsheet_tab_main_image.paste(statsheet_word_background, (1040, 300))
     if statsheet_str == '':
@@ -1073,7 +1077,7 @@ def statsheet_equip4_edit(self):
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_equip5_edit(self):
-    statsheet_str = statsheet_equip5_input.get()
+    statsheet_str = statsheet_equip5_input.get().capitalize()
     statsheet_word_background = Image.open('UI Resources/Statsheet tab/no_equip_bg.png')
     statsheet_tab_main_image.paste(statsheet_word_background, (1040, 364))
     if statsheet_str == '':
@@ -1118,17 +1122,115 @@ def statsheet_weapon_critical_edit(self):
 # </editor-fold>
 
 # <editor-fold desc="Statsheet tab - proficiency update functions">
+def statsheet_proficiency_type1_edit(self):
+    weapon_type = statsheet_proficiency_type1_input.get().capitalize()
+    if weapon_type == 'None':
+        statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/weapon_proficiency_icon_bg.png')
+        statsheet_tab_main_image.paste(statsheet_affinity_image, (1540, 100))
+    elif weapon_type in weapon_types:
+        statsheet_affinity_image = Image.open('UI Resources/Weapon proficiency icons/' + weapon_type + '_icon.png')
+        statsheet_tab_main_image.paste(statsheet_affinity_image, (1540, 100), mask=statsheet_affinity_image)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
+def statsheet_proficiency_type2_edit(self):
+    weapon_type = statsheet_proficiency_type2_input.get().capitalize()
+    if weapon_type == 'None':
+        statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/weapon_proficiency_icon_bg.png')
+        statsheet_tab_main_image.paste(statsheet_affinity_image, (1796, 100))
+    elif weapon_type in weapon_types:
+        statsheet_affinity_image = Image.open('UI Resources/Weapon proficiency icons/' + weapon_type + '_icon.png')
+        statsheet_tab_main_image.paste(statsheet_affinity_image, (1796, 100), mask=statsheet_affinity_image)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_proficiency_type3_edit(self):
+    weapon_type = statsheet_proficiency_type3_input.get().capitalize()
+    if weapon_type == 'None':
+        statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/weapon_proficiency_icon_bg.png')
+        statsheet_tab_main_image.paste(statsheet_affinity_image, (1540, 164))
+    elif weapon_type in weapon_types:
+        statsheet_affinity_image = Image.open('UI Resources/Weapon proficiency icons/' + weapon_type + '_icon.png')
+        statsheet_tab_main_image.paste(statsheet_affinity_image, (1540, 164), mask=statsheet_affinity_image)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_proficiency_type4_edit(self):
+    weapon_type = statsheet_proficiency_type4_input.get().capitalize()
+    if weapon_type == 'None':
+        statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/weapon_proficiency_icon_bg.png')
+        statsheet_tab_main_image.paste(statsheet_affinity_image, (1796, 164))
+    elif weapon_type in weapon_types:
+        statsheet_affinity_image = Image.open('UI Resources/Weapon proficiency icons/' + weapon_type + '_icon.png')
+        statsheet_tab_main_image.paste(statsheet_affinity_image, (1796, 164), mask=statsheet_affinity_image)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_proficiency_rank1_edit(self):
+    proficiency_rank = statsheet_proficiency_rank1_input.get().capitalize()
+    if proficiency_rank in rank_levels:
+        statsheet_rank_background = Image.open('UI Resources/Statsheet tab/weapon_proficiency_rank_bg.png')
+        statsheet_rank_image = Image.open('UI Resources/Statsheet tab/rank_' + proficiency_rank + '.png')
+        statsheet_tab_main_image.paste(statsheet_rank_background, (1692, 108))
+        statsheet_tab_main_image.paste(statsheet_rank_image, (1692, 108), mask=statsheet_rank_image)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_proficiency_rank2_edit(self):
+    proficiency_rank = statsheet_proficiency_rank2_input.get().capitalize()
+    if proficiency_rank in rank_levels:
+        statsheet_rank_background = Image.open('UI Resources/Statsheet tab/weapon_proficiency_rank_bg.png')
+        statsheet_rank_image = Image.open('UI Resources/Statsheet tab/rank_' + proficiency_rank + '.png')
+        statsheet_tab_main_image.paste(statsheet_rank_background, (1948, 108))
+        statsheet_tab_main_image.paste(statsheet_rank_image, (1948, 108), mask=statsheet_rank_image)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_proficiency_rank3_edit(self):
+    proficiency_rank = statsheet_proficiency_rank3_input.get().capitalize()
+    if proficiency_rank in rank_levels:
+        statsheet_rank_background = Image.open('UI Resources/Statsheet tab/weapon_proficiency_rank_bg.png')
+        statsheet_rank_image = Image.open('UI Resources/Statsheet tab/rank_' + proficiency_rank + '.png')
+        statsheet_tab_main_image.paste(statsheet_rank_background, (1692, 172))
+        statsheet_tab_main_image.paste(statsheet_rank_image, (1692, 172), mask=statsheet_rank_image)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_proficiency_rank4_edit(self):
+    proficiency_rank = statsheet_proficiency_rank4_input.get().capitalize()
+    if proficiency_rank in rank_levels:
+        statsheet_rank_background = Image.open('UI Resources/Statsheet tab/weapon_proficiency_rank_bg.png')
+        statsheet_rank_image = Image.open('UI Resources/Statsheet tab/rank_' + proficiency_rank + '.png')
+        statsheet_tab_main_image.paste(statsheet_rank_background, (1948, 172))
+        statsheet_tab_main_image.paste(statsheet_rank_image, (1948, 172), mask=statsheet_rank_image)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 # </editor-fold>
 
 # <editor-fold desc="Statsheet tab - supports update functions">
 def statsheet_support1_affinity_edit(self):
     affinity_type = statsheet_support_affinity_type1.get().capitalize()
-    if affinity_type in ['Fire', 'Thunder', 'Wind', 'Ice', 'Dark', 'Light', 'Anima']:
-        statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/' + affinity_type + '_affinity.png')
-        statsheet_tab_main_image.paste(statsheet_affinity_image, (1636, 264), mask=statsheet_affinity_image)
-    elif affinity_type == 'None':
+    if affinity_type == 'None':
         statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/support_affinity_bg.png')
+        statsheet_tab_main_image.paste(statsheet_affinity_image, (1636, 264), mask=statsheet_affinity_image)
+    elif affinity_type in affinity_types:
+        statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/' + affinity_type + '_affinity.png')
         statsheet_tab_main_image.paste(statsheet_affinity_image, (1636, 264), mask=statsheet_affinity_image)
     statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
     statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
@@ -1137,11 +1239,11 @@ def statsheet_support1_affinity_edit(self):
 
 def statsheet_support2_affinity_edit(self):
     affinity_type = statsheet_support_affinity_type2.get().capitalize()
-    if affinity_type in ['Fire', 'Thunder', 'Wind', 'Ice', 'Dark', 'Light', 'Anima']:
-        statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/' + affinity_type + '_affinity.png')
-        statsheet_tab_main_image.paste(statsheet_affinity_image, (1636, 328), mask=statsheet_affinity_image)
-    elif affinity_type == 'None':
+    if affinity_type == 'None':
         statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/support_affinity_bg.png')
+        statsheet_tab_main_image.paste(statsheet_affinity_image, (1636, 328), mask=statsheet_affinity_image)
+    elif affinity_type in affinity_types:
+        statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/' + affinity_type + '_affinity.png')
         statsheet_tab_main_image.paste(statsheet_affinity_image, (1636, 328), mask=statsheet_affinity_image)
     statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
     statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
@@ -1150,11 +1252,11 @@ def statsheet_support2_affinity_edit(self):
 
 def statsheet_support3_affinity_edit(self):
     affinity_type = statsheet_support_affinity_type3.get().capitalize()
-    if affinity_type in ['Fire', 'Thunder', 'Wind', 'Ice', 'Dark', 'Light', 'Anima']:
-        statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/' + affinity_type + '_affinity.png')
-        statsheet_tab_main_image.paste(statsheet_affinity_image, (1636, 392), mask=statsheet_affinity_image)
-    elif affinity_type == 'None':
+    if affinity_type == 'None':
         statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/support_affinity_bg.png')
+        statsheet_tab_main_image.paste(statsheet_affinity_image, (1636, 392), mask=statsheet_affinity_image)
+    elif affinity_type in affinity_types:
+        statsheet_affinity_image = Image.open('UI Resources/Statsheet tab/' + affinity_type + '_affinity.png')
         statsheet_tab_main_image.paste(statsheet_affinity_image, (1636, 392), mask=statsheet_affinity_image)
     statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
     statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
@@ -1226,13 +1328,13 @@ def statsheet_support3_name_edit(self):
 
 def statsheet_support1_rank_edit(self):
     support_rank = statsheet_support_rank1.get().capitalize()
-    if support_rank in ['S', 'A', 'B', 'C', 'D', 'E']:
+    if support_rank == 'None':
+        statsheet_rank_image = Image.open('UI Resources/Statsheet tab/support_rank_bg.png')
+        statsheet_tab_main_image.paste(statsheet_rank_image, (1920, 268), mask=statsheet_rank_image)
+    elif support_rank in rank_levels:
         statsheet_rank_background = Image.open('UI Resources/Statsheet tab/support_rank_bg.png')
         statsheet_rank_image = Image.open('UI Resources/Statsheet tab/rank_' + support_rank + '.png')
         statsheet_tab_main_image.paste(statsheet_rank_background, (1920, 268))
-        statsheet_tab_main_image.paste(statsheet_rank_image, (1920, 268), mask=statsheet_rank_image)
-    elif support_rank == 'None':
-        statsheet_rank_image = Image.open('UI Resources/Statsheet tab/support_rank_bg.png')
         statsheet_tab_main_image.paste(statsheet_rank_image, (1920, 268), mask=statsheet_rank_image)
     statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
     statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
@@ -1241,13 +1343,13 @@ def statsheet_support1_rank_edit(self):
 
 def statsheet_support2_rank_edit(self):
     support_rank = statsheet_support_rank2.get().capitalize()
-    if support_rank in ['S', 'A', 'B', 'C', 'D', 'E']:
+    if support_rank == 'None':
+        statsheet_rank_image = Image.open('UI Resources/Statsheet tab/support_rank_bg.png')
+        statsheet_tab_main_image.paste(statsheet_rank_image, (1920, 333), mask=statsheet_rank_image)
+    elif support_rank in rank_levels:
         statsheet_rank_background = Image.open('UI Resources/Statsheet tab/support_rank_bg.png')
         statsheet_rank_image = Image.open('UI Resources/Statsheet tab/rank_' + support_rank + '.png')
         statsheet_tab_main_image.paste(statsheet_rank_background, (1920, 333))
-        statsheet_tab_main_image.paste(statsheet_rank_image, (1920, 333), mask=statsheet_rank_image)
-    elif support_rank == 'None':
-        statsheet_rank_image = Image.open('UI Resources/Statsheet tab/support_rank_bg.png')
         statsheet_tab_main_image.paste(statsheet_rank_image, (1920, 333), mask=statsheet_rank_image)
     statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
     statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
@@ -1256,13 +1358,13 @@ def statsheet_support2_rank_edit(self):
 
 def statsheet_support3_rank_edit(self):
     support_rank = statsheet_support_rank3.get().capitalize()
-    if support_rank in ['S', 'A', 'B', 'C', 'D', 'E']:
+    if support_rank == 'None':
+        statsheet_rank_image = Image.open('UI Resources/Statsheet tab/support_rank_bg.png')
+        statsheet_tab_main_image.paste(statsheet_rank_image, (1920, 400), mask=statsheet_rank_image)
+    elif support_rank in rank_levels:
         statsheet_rank_background = Image.open('UI Resources/Statsheet tab/support_rank_bg.png')
         statsheet_rank_image = Image.open('UI Resources/Statsheet tab/rank_' + support_rank + '.png')
         statsheet_tab_main_image.paste(statsheet_rank_background, (1920, 400))
-        statsheet_tab_main_image.paste(statsheet_rank_image, (1920, 400), mask=statsheet_rank_image)
-    elif support_rank == 'None':
-        statsheet_rank_image = Image.open('UI Resources/Statsheet tab/support_rank_bg.png')
         statsheet_tab_main_image.paste(statsheet_rank_image, (1920, 400), mask=statsheet_rank_image)
     statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
     statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
@@ -1342,7 +1444,6 @@ statsheet_LUK_input.place(x=310, y=305)
 statsheet_DEF_input.place(x=310, y=337)
 statsheet_SPR_input.place(x=310, y=369)
 
-affinity_types = ['Fire', 'Thunder', 'Wind', 'Ice', 'Dark', 'Light', 'Anima', 'None']
 statsheet_MOV_input = Entry(tab_statsheet, width=5, justify='center')
 statsheet_CON_input = Entry(tab_statsheet, width=5, justify='center')
 statsheet_unit_affinity_type = StringVar()
@@ -1403,6 +1504,55 @@ statsheet_weapon_range_input.place(x=680, y=337)
 statsheet_weapon_weight_input.place(x=680, y=369)
 statsheet_weapon_critical_input.place(x=680, y=401)
 
+statsheet_proficiency_type1 = StringVar()
+statsheet_proficiency_type2 = StringVar()
+statsheet_proficiency_type3 = StringVar()
+statsheet_proficiency_type4 = StringVar()
+statsheet_proficiency_type1_input = Combobox(tab_statsheet, values=weapon_types, width=10, justify='center',
+                                             textvariable=statsheet_proficiency_type1)
+statsheet_proficiency_type2_input = Combobox(tab_statsheet, values=weapon_types, width=10, justify='center',
+                                             textvariable=statsheet_proficiency_type2)
+statsheet_proficiency_type3_input = Combobox(tab_statsheet, values=weapon_types, width=10, justify='center',
+                                             textvariable=statsheet_proficiency_type3)
+statsheet_proficiency_type4_input = Combobox(tab_statsheet, values=weapon_types, width=10, justify='center',
+                                             textvariable=statsheet_proficiency_type4)
+statsheet_proficiency_type1_input.bind('<<ComboboxSelected>>', statsheet_proficiency_type1_edit)
+statsheet_proficiency_type2_input.bind('<<ComboboxSelected>>', statsheet_proficiency_type2_edit)
+statsheet_proficiency_type3_input.bind('<<ComboboxSelected>>', statsheet_proficiency_type3_edit)
+statsheet_proficiency_type4_input.bind('<<ComboboxSelected>>', statsheet_proficiency_type4_edit)
+statsheet_proficiency_type1_input.bind('<KeyRelease>', statsheet_proficiency_type1_edit)
+statsheet_proficiency_type2_input.bind('<KeyRelease>', statsheet_proficiency_type2_edit)
+statsheet_proficiency_type3_input.bind('<KeyRelease>', statsheet_proficiency_type3_edit)
+statsheet_proficiency_type4_input.bind('<KeyRelease>', statsheet_proficiency_type4_edit)
+statsheet_proficiency_type1_input.place(x=816, y=80)
+statsheet_proficiency_type2_input.place(x=816, y=112)
+statsheet_proficiency_type3_input.place(x=816, y=144)
+statsheet_proficiency_type4_input.place(x=816, y=176)
+
+statsheet_proficiency_rank1 = StringVar()
+statsheet_proficiency_rank2 = StringVar()
+statsheet_proficiency_rank3 = StringVar()
+statsheet_proficiency_rank4 = StringVar()
+statsheet_proficiency_rank1_input = Combobox(tab_statsheet, values=rank_levels, width=5, justify='center',
+                                             textvariable=statsheet_proficiency_rank1)
+statsheet_proficiency_rank2_input = Combobox(tab_statsheet, values=rank_levels, width=5, justify='center',
+                                             textvariable=statsheet_proficiency_rank2)
+statsheet_proficiency_rank3_input = Combobox(tab_statsheet, values=rank_levels, width=5, justify='center',
+                                             textvariable=statsheet_proficiency_rank3)
+statsheet_proficiency_rank4_input = Combobox(tab_statsheet, values=rank_levels, width=5, justify='center',
+                                             textvariable=statsheet_proficiency_rank4)
+statsheet_proficiency_rank1_input.bind('<<ComboboxSelected>>', statsheet_proficiency_rank1_edit)
+statsheet_proficiency_rank2_input.bind('<<ComboboxSelected>>', statsheet_proficiency_rank2_edit)
+statsheet_proficiency_rank3_input.bind('<<ComboboxSelected>>', statsheet_proficiency_rank3_edit)
+statsheet_proficiency_rank4_input.bind('<<ComboboxSelected>>', statsheet_proficiency_rank4_edit)
+statsheet_proficiency_rank1_input.bind('<KeyRelease>', statsheet_proficiency_rank1_edit)
+statsheet_proficiency_rank2_input.bind('<KeyRelease>', statsheet_proficiency_rank2_edit)
+statsheet_proficiency_rank3_input.bind('<KeyRelease>', statsheet_proficiency_rank3_edit)
+statsheet_proficiency_rank4_input.bind('<KeyRelease>', statsheet_proficiency_rank4_edit)
+statsheet_proficiency_rank1_input.place(x=910, y=80)
+statsheet_proficiency_rank2_input.place(x=910, y=112)
+statsheet_proficiency_rank3_input.place(x=910, y=144)
+statsheet_proficiency_rank4_input.place(x=910, y=176)
 
 statsheet_support_affinity_type1 = StringVar()
 statsheet_support_affinity_type2 = StringVar()
@@ -1433,15 +1583,14 @@ statsheet_support1_name_input.place(x=860, y=273)
 statsheet_support2_name_input.place(x=860, y=305)
 statsheet_support3_name_input.place(x=860, y=337)
 
-support_levels = ['S', 'A', 'B', 'C', 'D', 'E', 'None']
 statsheet_support_rank1 = StringVar()
 statsheet_support_rank2 = StringVar()
 statsheet_support_rank3 = StringVar()
-statsheet_support1_rank_input = Combobox(tab_statsheet, values=support_levels, width=2, justify='center',
+statsheet_support1_rank_input = Combobox(tab_statsheet, values=rank_levels, width=2, justify='center',
                                          textvariable=statsheet_support_rank1)
-statsheet_support2_rank_input = Combobox(tab_statsheet, values=support_levels, width=2, justify='center',
+statsheet_support2_rank_input = Combobox(tab_statsheet, values=rank_levels, width=2, justify='center',
                                          textvariable=statsheet_support_rank2)
-statsheet_support3_rank_input = Combobox(tab_statsheet, values=support_levels, width=2, justify='center',
+statsheet_support3_rank_input = Combobox(tab_statsheet, values=rank_levels, width=2, justify='center',
                                          textvariable=statsheet_support_rank3)
 statsheet_support1_rank_input.bind('<<ComboboxSelected>>', statsheet_support1_rank_edit)
 statsheet_support1_rank_input.bind('<KeyRelease>', statsheet_support1_rank_edit)
