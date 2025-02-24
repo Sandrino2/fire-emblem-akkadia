@@ -936,7 +936,51 @@ def statsheet_spr_num_edit(self):
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_mov_num_edit(self):
-    return
+    statsheet_num = statsheet_MOV_input.get()
+    if statsheet_num == '':
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab UI/movement_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (764, 116))
+    elif 0 <= int(statsheet_num) <= 13:
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab UI/movement_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (764, 116))
+        statsheet_statbar_image = Image.open('UI Resources/Statsheet tab UI/movement_statbar_' + statsheet_num + '.png')
+        statsheet_tab_main_image.paste(statsheet_statbar_image, (764, 132))
+        if len(statsheet_num) == 1:
+            num_image1 = Image.open('UI Resources/Fonts/num' + statsheet_num[0] + '.png')
+            statsheet_tab_main_image.paste(num_image1, (800, 116), mask=num_image1)
+        elif len(statsheet_num) == 2:
+            num_image1 = Image.open('UI Resources/Fonts/num' + statsheet_num[0] + '.png')
+            statsheet_tab_main_image.paste(num_image1, (768, 116), mask=num_image1)
+            num_image2 = Image.open('UI Resources/Fonts/num' + statsheet_num[1] + '.png')
+            statsheet_tab_main_image.paste(num_image2, (800, 116), mask=num_image2)
+    elif 14 <= int(statsheet_num) <= 99:
+        statsheet_num_background = Image.open('UI Resources/Statsheet tab UI/movement_bg.png')
+        statsheet_tab_main_image.paste(statsheet_num_background, (764, 116))
+        statsheet_statbar_image = Image.open('UI Resources/Statsheet tab UI/movement_statbar_13.png')
+        statsheet_tab_main_image.paste(statsheet_statbar_image, (764, 132))
+        num_image1 = Image.open('UI Resources/Fonts/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (768, 116), mask=num_image1)
+        num_image2 = Image.open('UI Resources/Fonts/num' + statsheet_num[1] + '.png')
+        statsheet_tab_main_image.paste(num_image2, (800, 116), mask=num_image2)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_mount_edit(self):
+    mount_type = statsheet_mount_type_input.get().capitalize()
+    if mount_type in ['Horse', 'Pegasus', 'Wyvern']:
+        statsheet_mount_background = Image.open('UI Resources/Statsheet tab UI/mount_icon_bg.png')
+        statsheet_mount_image = Image.open('UI Resources/Statsheet tab UI/' + mount_type + '_icon.png')
+        statsheet_tab_main_image.paste(statsheet_mount_background, (844, 96))
+        statsheet_tab_main_image.paste(statsheet_mount_image, (844, 96), mask=statsheet_mount_image)
+    elif mount_type == 'None':
+        statsheet_mount_image = Image.open('UI Resources/Statsheet tab UI/mount_icon_bg.png')
+        statsheet_tab_main_image.paste(statsheet_mount_image, (844, 96))
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_con_num_edit(self):
     statsheet_num = statsheet_CON_input.get()
@@ -1133,19 +1177,139 @@ def statsheet_equip5_edit(self):
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_weapon_attack_edit(self):
-    return
-
-def statsheet_weapon_accuracy_edit(self):
-    return
-
-def statsheet_weapon_range_edit(self):
-    return
-
-def statsheet_weapon_weight_edit(self):
-    return
+    statsheet_num = statsheet_weapon_attack_input.get()
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab UI/weapon_stat_bg_2num.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (1168, 436))
+    if len(statsheet_num) == 1:
+        num_image1 = Image.open('UI Resources/Fonts/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (1200, 436), mask=num_image1)
+    if len(statsheet_num) == 2:
+        num_image1 = Image.open('UI Resources/Fonts/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (1168, 436), mask=num_image1)
+        num_image2 = Image.open('UI Resources/Fonts/num' + statsheet_num[1] + '.png')
+        statsheet_tab_main_image.paste(num_image2, (1200, 436), mask=num_image2)
+    if statsheet_num == '':
+        num_dash = Image.open('UI Resources/Statsheet tab UI/rank_none.png')
+        statsheet_tab_main_image.paste(num_dash, (1168, 428), mask=num_dash)
+        statsheet_tab_main_image.paste(num_dash, (1200, 428), mask=num_dash)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_weapon_critical_edit(self):
-    return
+    statsheet_num = statsheet_weapon_critical_input.get()
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab UI/weapon_stat_bg_2num.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (1392, 436))
+    if len(statsheet_num) == 1:
+        num_image1 = Image.open('UI Resources/Fonts/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (1424, 436), mask=num_image1)
+    if len(statsheet_num) == 2:
+        num_image1 = Image.open('UI Resources/Fonts/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (1392, 436), mask=num_image1)
+        num_image2 = Image.open('UI Resources/Fonts/num' + statsheet_num[1] + '.png')
+        statsheet_tab_main_image.paste(num_image2, (1424, 436), mask=num_image2)
+    if statsheet_num == '':
+        num_dash = Image.open('UI Resources/Statsheet tab UI/rank_none.png')
+        statsheet_tab_main_image.paste(num_dash, (1392, 428), mask=num_dash)
+        statsheet_tab_main_image.paste(num_dash, (1424, 428), mask=num_dash)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_weapon_accuracy_edit(self):
+    statsheet_num = statsheet_weapon_accuracy_input.get()
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab UI/weapon_stat_bg_3num.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (1136, 500))
+    if len(statsheet_num) == 1:
+        num_image1 = Image.open('UI Resources/Fonts/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (1200, 500), mask=num_image1)
+    if len(statsheet_num) == 2:
+        num_image1 = Image.open('UI Resources/Fonts/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (1168, 500), mask=num_image1)
+        num_image2 = Image.open('UI Resources/Fonts/num' + statsheet_num[1] + '.png')
+        statsheet_tab_main_image.paste(num_image2, (1200, 500), mask=num_image2)
+    if len(statsheet_num) == 3:
+        num_image1 = Image.open('UI Resources/Fonts/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (1136, 500), mask=num_image1)
+        num_image2 = Image.open('UI Resources/Fonts/num' + statsheet_num[1] + '.png')
+        statsheet_tab_main_image.paste(num_image2, (1168, 500), mask=num_image2)
+        num_image3 = Image.open('UI Resources/Fonts/num' + statsheet_num[2] + '.png')
+        statsheet_tab_main_image.paste(num_image3, (1200, 500), mask=num_image3)
+    if statsheet_num == '':
+        num_dash = Image.open('UI Resources/Statsheet tab UI/rank_none.png')
+        statsheet_tab_main_image.paste(num_dash, (1168, 492), mask=num_dash)
+        statsheet_tab_main_image.paste(num_dash, (1200, 492), mask=num_dash)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_weapon_avoid_edit(self):
+    statsheet_num = statsheet_weapon_avoid_input.get()
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab UI/weapon_stat_bg_2num.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (1392, 500))
+    if len(statsheet_num) == 1:
+        num_image1 = Image.open('UI Resources/Fonts/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (1424, 500), mask=num_image1)
+    if len(statsheet_num) == 2:
+        num_image1 = Image.open('UI Resources/Fonts/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (1392, 500), mask=num_image1)
+        num_image2 = Image.open('UI Resources/Fonts/num' + statsheet_num[1] + '.png')
+        statsheet_tab_main_image.paste(num_image2, (1424, 500), mask=num_image2)
+    if statsheet_num == '':
+        num_dash = Image.open('UI Resources/Statsheet tab UI/rank_none.png')
+        statsheet_tab_main_image.paste(num_dash, (1392, 492), mask=num_dash)
+        statsheet_tab_main_image.paste(num_dash, (1424, 492), mask=num_dash)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_weapon_weight_edit(self):
+    statsheet_num = statsheet_weapon_weight_input.get()
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab UI/weapon_stat_bg_2num.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (1168, 564))
+    if len(statsheet_num) == 1:
+        num_image1 = Image.open('UI Resources/Fonts/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (1200, 564), mask=num_image1)
+    if len(statsheet_num) == 2:
+        num_image1 = Image.open('UI Resources/Fonts/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (1168, 564), mask=num_image1)
+        num_image2 = Image.open('UI Resources/Fonts/num' + statsheet_num[1] + '.png')
+        statsheet_tab_main_image.paste(num_image2, (1200, 564), mask=num_image2)
+    if statsheet_num == '':
+        num_dash = Image.open('UI Resources/Statsheet tab UI/rank_none.png')
+        statsheet_tab_main_image.paste(num_dash, (1168, 556), mask=num_dash)
+        statsheet_tab_main_image.paste(num_dash, (1200, 556), mask=num_dash)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_weapon_range_edit(self):
+    statsheet_num = statsheet_weapon_range_input.get()
+    statsheet_word_background = Image.open('UI Resources/Statsheet tab UI/weapon_stat_bg_3num.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (1360, 564))
+    if len(statsheet_num) == 1:
+        num_image1 = Image.open('UI Resources/Fonts/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (1424, 564), mask=num_image1)
+    if len(statsheet_num) == 3 and statsheet_num[1] == '-':
+        num_image1 = Image.open('UI Resources/Fonts/num' + statsheet_num[0] + '.png')
+        statsheet_tab_main_image.paste(num_image1, (1364, 564), mask=num_image1)
+        num_dash = Image.open('UI Resources/Statsheet tab UI/rank_none.png')
+        statsheet_tab_main_image.paste(num_dash, (1392, 560), mask=num_dash)
+        num_image2 = Image.open('UI Resources/Fonts/num' + statsheet_num[2] + '.png')
+        statsheet_tab_main_image.paste(num_image2, (1424, 564), mask=num_image2)
+    if statsheet_num == '':
+        num_dash = Image.open('UI Resources/Statsheet tab UI/rank_none.png')
+        statsheet_tab_main_image.paste(num_dash, (1392, 556), mask=num_dash)
+        statsheet_tab_main_image.paste(num_dash, (1424, 556), mask=num_dash)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 # </editor-fold>
 
 # <editor-fold desc="Statsheet tab - proficiency update functions">
@@ -1430,9 +1594,9 @@ statsheet_trait4_input.place(x=52, y=401)
 
 statsheet_portrait_name = StringVar()
 statsheet_sprite_name = StringVar()
-statsheet_portrait_menu = Combobox(tab_statsheet, textvariable=statsheet_portrait_name, width=10)
-statsheet_sprite_menu = Combobox(tab_statsheet, textvariable=statsheet_sprite_name, width=10)
-statsheet_portrait_menu['values'] = [''] + ['- HELLIONS -'] + portrait_names_hellions_no_ext + [''] + ['- ALLIES -'] + portrait_names_allies_no_ext + [''] + ['- FOES -'] + portrait_names_foes_no_ext + [''] + ['- GENERIC -'] + portrait_names_generic_units_no_ext + [''] + ['- MONSTERS -'] + portrait_names_monsters_no_ext
+statsheet_portrait_menu = Combobox(tab_statsheet, textvariable=statsheet_portrait_name, width=15, justify='center')
+statsheet_sprite_menu = Combobox(tab_statsheet, textvariable=statsheet_sprite_name, width=15, justify='center')
+statsheet_portrait_menu['values'] = [''] + ['-- HELLIONS --'] + portrait_names_hellions_no_ext + [''] + ['-- ALLIES --'] + portrait_names_allies_no_ext + [''] + ['-- FOES --'] + portrait_names_foes_no_ext + [''] + ['-- GENERIC --'] + portrait_names_generic_units_no_ext + [''] + ['-- MONSTERS --'] + portrait_names_monsters_no_ext
 #statsheet_sprite_menu['values'] = sprite_names_no_ext
 statsheet_portrait_menu.bind('<<ComboboxSelected>>', statsheet_portrait_edit)
 statsheet_portrait_menu.bind('<KeyRelease>', statsheet_portrait_edit)
@@ -1443,8 +1607,8 @@ statsheet_sprite_menu.place(x=342, y=80)
 
 statsheet_custom_portrait_button = Button(tab_statsheet, text='Custom', command=statsheet_custom_portrait)
 statsheet_custom_sprite_button = Button(tab_statsheet, text='Custom', command=statsheet_custom_sprite)
-statsheet_custom_portrait_button.place(x=434, y=46)
-statsheet_custom_sprite_button.place(x=434, y=78)
+statsheet_custom_portrait_button.place(x=466, y=46)
+statsheet_custom_sprite_button.place(x=466, y=78)
 
 statsheet_VIT_input = Entry(tab_statsheet, width=5, justify='center')
 statsheet_MGT_input = Entry(tab_statsheet, width=5, justify='center')
@@ -1484,6 +1648,12 @@ statsheet_MOV_input.place(x=468, y=145)
 statsheet_CON_input.place(x=468, y=177)
 statsheet_unit_affinity_input.place(x=468, y=209)
 
+statsheet_mount_type = StringVar
+statsheet_mount_type_input = Combobox(tab_statsheet, values=['Horse', 'Pegasus', 'Wyvern', 'None'], width=2,
+                                      justify='center', textvariable=statsheet_mount_type)
+statsheet_mount_type_input.bind('<<ComboboxSelected>>', statsheet_mount_edit)
+statsheet_mount_type_input.place(x=510, y=144)
+
 statsheet_equip1_name = StringVar()
 statsheet_equip2_name = StringVar()
 statsheet_equip3_name = StringVar()
@@ -1516,20 +1686,23 @@ statsheet_equip4_input.place(x=600, y=176)
 statsheet_equip5_input.place(x=600, y=208)
 
 statsheet_weapon_attack_input = Entry(tab_statsheet, width=8, justify='center')
-statsheet_weapon_accuracy_input = Entry(tab_statsheet, width=8, justify='center')
-statsheet_weapon_range_input = Entry(tab_statsheet, width=8, justify='center')
-statsheet_weapon_weight_input = Entry(tab_statsheet, width=8, justify='center')
 statsheet_weapon_critical_input = Entry(tab_statsheet, width=8, justify='center')
+statsheet_weapon_accuracy_input = Entry(tab_statsheet, width=8, justify='center')
+statsheet_weapon_avoid_input = Entry(tab_statsheet, width=8, justify='center')
+statsheet_weapon_weight_input = Entry(tab_statsheet, width=8, justify='center')
+statsheet_weapon_range_input = Entry(tab_statsheet, width=8, justify='center')
 statsheet_weapon_attack_input.bind('<KeyRelease>', statsheet_weapon_attack_edit)
-statsheet_weapon_accuracy_input.bind('<KeyRelease>', statsheet_weapon_accuracy_edit)
-statsheet_weapon_range_input.bind('<KeyRelease>', statsheet_weapon_range_edit)
-statsheet_weapon_weight_input.bind('<KeyRelease>', statsheet_weapon_weight_edit)
 statsheet_weapon_critical_input.bind('<KeyRelease>', statsheet_weapon_critical_edit)
-statsheet_weapon_attack_input.place(x=680, y=273)
-statsheet_weapon_accuracy_input.place(x=680, y=305)
-statsheet_weapon_range_input.place(x=680, y=337)
-statsheet_weapon_weight_input.place(x=680, y=369)
-statsheet_weapon_critical_input.place(x=680, y=401)
+statsheet_weapon_accuracy_input.bind('<KeyRelease>', statsheet_weapon_accuracy_edit)
+statsheet_weapon_avoid_input.bind('<KeyRelease>', statsheet_weapon_avoid_edit)
+statsheet_weapon_weight_input.bind('<KeyRelease>', statsheet_weapon_weight_edit)
+statsheet_weapon_range_input.bind('<KeyRelease>', statsheet_weapon_range_edit)
+statsheet_weapon_attack_input.place(x=690, y=241)
+statsheet_weapon_critical_input.place(x=690, y=273)
+statsheet_weapon_accuracy_input.place(x=690, y=305)
+statsheet_weapon_avoid_input.place(x=690, y=337)
+statsheet_weapon_weight_input.place(x=690, y=369)
+statsheet_weapon_range_input.place(x=690, y=401)
 
 statsheet_proficiency_type1 = StringVar()
 statsheet_proficiency_type2 = StringVar()
