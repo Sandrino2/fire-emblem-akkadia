@@ -1,5 +1,4 @@
 import os
-# from tkinter import *
 from tkinter import ttk, Tk, Frame, Label, Button, Entry, StringVar
 from tkinter.ttk import Combobox
 from tkinter.filedialog import askopenfilename, asksaveasfile
@@ -53,8 +52,13 @@ portrait_names_generic_units = os.listdir('UI Resources/Unit portraits/Generic u
 portrait_names_generic_units_no_ext = [os.path.splitext(file)[0] for file in portrait_names_generic_units]
 portrait_names_monsters = os.listdir('UI Resources/Unit portraits/Monsters')
 portrait_names_monsters_no_ext = [os.path.splitext(file)[0] for file in portrait_names_monsters]
-#sprite_names = os.listdir('UI Resources/Unit sprites')
-#sprite_names_no_ext = [os.path.splitext(file)[0] for file in sprite_names]
+
+sprite_names_hellions = os.listdir('UI Resources/Unit sprites/Hellions')
+sprite_names_hellions_no_ext = [os.path.splitext(file)[0] for file in sprite_names_hellions]
+sprite_names_allies = os.listdir('UI Resources/Unit sprites/Allies')
+sprite_names_allies_no_ext = [os.path.splitext(file)[0] for file in sprite_names_allies]
+sprite_names_foes = os.listdir('UI Resources/Unit sprites/Foes')
+sprite_names_foes_no_ext = [os.path.splitext(file)[0] for file in sprite_names_foes]
 
 equipment_file = open('UI Resources/Equipment sprites/- Equipment list.txt', 'r')
 equipment_list = equipment_file.read().splitlines()
@@ -184,6 +188,8 @@ def lvlup_custom_portrait():
     lvlup_tab_ui_new = ImageTk.PhotoImage(lvlup_tab_ui.resize([1000, 750]))
     lvlup_tab_ui_label.configure(image=lvlup_tab_ui_new)
     lvlup_tab_ui_label.image = lvlup_tab_ui_new
+    new_display = os.path.split(filename)[1]
+    lvlup_unit_name.set(os.path.splitext(new_display)[0])
 
 def lvlup_background_edit(self):
     lvlup_tab_ui_crop_stats = lvlup_tab_ui.crop([544, 872, 1072, 1144])
@@ -453,7 +459,7 @@ lvlup_DEF_plus_input.place(x=158, y=433)
 lvlup_SPR_plus_input.place(x=158, y=465)
 
 lvlup_unit_name = StringVar()
-lvlup_portrait_menu = Combobox(tab_levelup, textvariable=lvlup_unit_name, width=10)
+lvlup_portrait_menu = Combobox(tab_levelup, textvariable=lvlup_unit_name, width=10, justify='center')
 lvlup_portrait_menu['values'] = [''] + ['- HELLIONS -'] + portrait_names_hellions_no_ext + [''] + ['- ALLIES -'] + portrait_names_allies_no_ext + [''] + ['- FOES -'] + portrait_names_foes_no_ext
 lvlup_portrait_menu.bind('<<ComboboxSelected>>', lvlup_portrait_edit)
 lvlup_portrait_menu.bind('<KeyRelease>', lvlup_portrait_edit)
@@ -465,7 +471,8 @@ lvlup_custom_portrait_button.place(x=446, y=46)
 lvlup_background_names = os.listdir('UI Resources/Battle backgrounds')
 lvlup_background_names_no_ext = [os.path.splitext(file)[0] for file in lvlup_background_names]
 lvlup_background_name = StringVar()
-lvlup_background_menu = Combobox(tab_levelup, textvariable=lvlup_background_name, width=16)
+lvlup_background_name.set('Plains')
+lvlup_background_menu = Combobox(tab_levelup, textvariable=lvlup_background_name, width=16, justify='center')
 lvlup_background_menu['values'] = lvlup_background_names_no_ext
 lvlup_background_menu.bind('<<ComboboxSelected>>', lvlup_background_edit)
 lvlup_background_menu.bind('<KeyRelease>', lvlup_background_edit)
@@ -565,29 +572,33 @@ def statsheet_portrait_edit(self):
     statsheet_portrait_background = Image.open('UI Resources/Statsheet tab UI/portrait_bg.png')
     statsheet_tab_main_image.paste(statsheet_portrait_background, (16, 16))
     if statsheet_portrait_name.get().capitalize() in portrait_names_hellions_no_ext:
-        unit_portrait = Image.open('UI Resources/Unit portraits/Hellions/' + statsheet_portrait_name.get() + '.png').resize((384, 384))
-        unit_portrait_crop = unit_portrait.crop([24, 68, 344, 356])
+        folder = 'Hellions'
     elif statsheet_portrait_name.get().capitalize() in portrait_names_allies_no_ext:
-        unit_portrait = Image.open('UI Resources/Unit portraits/Allies/' + statsheet_portrait_name.get() + '.png').resize((384, 384))
-        unit_portrait_crop = unit_portrait.crop([24, 68, 344, 356])
+        folder = 'Allies'
     elif statsheet_portrait_name.get().capitalize() in portrait_names_foes_no_ext:
-        unit_portrait = Image.open('UI Resources/Unit portraits/Foes/' + statsheet_portrait_name.get() + '.png').resize((384, 384))
-        unit_portrait_crop = unit_portrait.crop([24, 68, 344, 356])
+        folder = 'Foes'
     elif statsheet_portrait_name.get().capitalize() in portrait_names_generic_units_no_ext:
-        unit_portrait_crop = Image.open('UI Resources/Unit portraits/Generic units/' + statsheet_portrait_name.get() + '.png')
+        folder = 'Generic units'
     elif statsheet_portrait_name.get().capitalize() in portrait_names_monsters_no_ext:
-        unit_portrait_crop = Image.open('UI Resources/Unit portraits/Monsters/' + statsheet_portrait_name.get() + '.png')
+        folder = 'Monsters'
     else:
         unit_portrait = Image.open('UI Resources/Unit portraits/empty_portrait.png')
         unit_portrait_crop = unit_portrait.crop([24, 68, 344, 356])
-    statsheet_tab_main_image.paste(unit_portrait_crop, (32, 32), mask=unit_portrait_crop)
+        return
+    unit_portrait = Image.open('UI Resources/Unit portraits/' + folder + '/' + statsheet_portrait_name.get() + '.png')
+    if folder in ['Hellions', 'Allies', 'Foes']:
+        unit_portrait_crop = unit_portrait.resize((384, 384)).crop([24, 68, 344, 356])
+        statsheet_tab_main_image.paste(unit_portrait_crop, (32, 32), mask=unit_portrait_crop)
+    if folder in ['Generic units', 'Monsters']:
+        statsheet_tab_main_image.paste(unit_portrait, (32, 32), mask=unit_portrait)
     statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
     statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
     statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_custom_portrait():
-    filename = askopenfilename(initialdir='Desktop', title='Select an image', filetypes=(("png files", "*.png"),("all files", "*")))
+    filename = askopenfilename(initialdir='Desktop', title='Select an image',
+                               filetypes=(("png files", "*.png"),("all files", "*")))
     if not filename:
         return
     statsheet_portrait_background = Image.open('UI Resources/Statsheet tab UI/portrait_bg.png')
@@ -599,12 +610,43 @@ def statsheet_custom_portrait():
     statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
     statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
+    new_display = os.path.split(filename)[1]
+    statsheet_portrait_name.set(os.path.splitext(new_display)[0])
 
 def statsheet_sprite_edit(self):
-    return
+    statsheet_sprite_background = Image.open('UI Resources/Statsheet tab UI/unit_sprite_bg.png')
+    statsheet_tab_main_image.paste(statsheet_sprite_background, (256, 416))
+    unit_sprite = statsheet_sprite_name.get().capitalize()
+    if unit_sprite in sprite_names_hellions_no_ext:
+        folder = 'Hellions'
+    elif unit_sprite in sprite_names_allies_no_ext:
+        folder = 'Allies'
+    elif unit_sprite in sprite_names_foes_no_ext:
+        folder = 'Foes'
+    else:
+        return
+    statsheet_unit_sprite_image = Image.open('UI Resources/Unit sprites/'+ folder + '/' + unit_sprite + '.png').resize((128, 128))
+    statsheet_tab_main_image.paste(statsheet_unit_sprite_image, (256, 422), mask=statsheet_unit_sprite_image)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_custom_sprite():
-    return
+    filename = askopenfilename(initialdir='UI Resources/Unit sprites', title='Select an image',
+                               filetypes=(("png files", "*.png"), ("all files", "*")))
+    if not filename:
+        return
+    statsheet_sprite_background = Image.open('UI Resources/Statsheet tab UI/unit_sprite_bg.png')
+    statsheet_tab_main_image.paste(statsheet_sprite_background, (256, 416))
+    statsheet_unit_sprite_image = Image.open(filename).resize((128, 128))
+    statsheet_tab_main_image.paste(statsheet_unit_sprite_image, (256, 422), mask=statsheet_unit_sprite_image)
+    statsheet_tab_ui.paste(statsheet_tab_main_image.resize([1560, 480]), (216, 912))
+    statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
+    statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
+    statsheet_tab_ui_label.image = statsheet_tab_ui_new
+    new_display = os.path.split(filename)[1]
+    statsheet_sprite_name.set(os.path.splitext(new_display)[0])
 # </editor-fold>
 
 # <editor-fold desc="Statsheet tab - traits update functions">
@@ -1594,16 +1636,16 @@ statsheet_trait4_input.place(x=52, y=401)
 
 statsheet_portrait_name = StringVar()
 statsheet_sprite_name = StringVar()
-statsheet_portrait_menu = Combobox(tab_statsheet, textvariable=statsheet_portrait_name, width=15, justify='center')
-statsheet_sprite_menu = Combobox(tab_statsheet, textvariable=statsheet_sprite_name, width=15, justify='center')
-statsheet_portrait_menu['values'] = [''] + ['-- HELLIONS --'] + portrait_names_hellions_no_ext + [''] + ['-- ALLIES --'] + portrait_names_allies_no_ext + [''] + ['-- FOES --'] + portrait_names_foes_no_ext + [''] + ['-- GENERIC --'] + portrait_names_generic_units_no_ext + [''] + ['-- MONSTERS --'] + portrait_names_monsters_no_ext
-#statsheet_sprite_menu['values'] = sprite_names_no_ext
-statsheet_portrait_menu.bind('<<ComboboxSelected>>', statsheet_portrait_edit)
-statsheet_portrait_menu.bind('<KeyRelease>', statsheet_portrait_edit)
-statsheet_sprite_menu.bind('<<ComboboxSelected>>', statsheet_sprite_edit)
-statsheet_sprite_menu.bind('<KeyRelease>', statsheet_sprite_edit)
-statsheet_portrait_menu.place(x=342, y=48)
-statsheet_sprite_menu.place(x=342, y=80)
+statsheet_portrait_name_input = Combobox(tab_statsheet, textvariable=statsheet_portrait_name, width=17, justify='center')
+statsheet_sprite_name_input = Combobox(tab_statsheet, textvariable=statsheet_sprite_name, width=17, justify='center')
+statsheet_portrait_name_input['values'] = [''] + ['-- HELLIONS --'] + portrait_names_hellions_no_ext + [''] + ['-- ALLIES --'] + portrait_names_allies_no_ext + [''] + ['-- FOES --'] + portrait_names_foes_no_ext + [''] + ['-- GENERIC --'] + portrait_names_generic_units_no_ext + [''] + ['-- MONSTERS --'] + portrait_names_monsters_no_ext
+statsheet_sprite_name_input['values'] = [''] + ['-- HELLIONS --'] + sprite_names_hellions_no_ext + [''] + ['-- ALLIES --'] + sprite_names_allies_no_ext + [''] + ['-- FOES --'] + sprite_names_foes_no_ext
+statsheet_portrait_name_input.bind('<<ComboboxSelected>>', statsheet_portrait_edit)
+statsheet_portrait_name_input.bind('<KeyRelease>', statsheet_portrait_edit)
+statsheet_sprite_name_input.bind('<<ComboboxSelected>>', statsheet_sprite_edit)
+statsheet_sprite_name_input.bind('<KeyRelease>', statsheet_sprite_edit)
+statsheet_portrait_name_input.place(x=330, y=48)
+statsheet_sprite_name_input.place(x=330, y=80)
 
 statsheet_custom_portrait_button = Button(tab_statsheet, text='Custom', command=statsheet_custom_portrait)
 statsheet_custom_sprite_button = Button(tab_statsheet, text='Custom', command=statsheet_custom_sprite)
@@ -1638,6 +1680,7 @@ statsheet_SPR_input.place(x=310, y=369)
 statsheet_MOV_input = Entry(tab_statsheet, width=5, justify='center')
 statsheet_CON_input = Entry(tab_statsheet, width=5, justify='center')
 statsheet_unit_affinity_type = StringVar()
+statsheet_unit_affinity_type.set('None')
 statsheet_unit_affinity_input = Combobox(tab_statsheet, values=affinity_types, width=8, justify='center',
                                          textvariable=statsheet_unit_affinity_type)
 statsheet_MOV_input.bind('<KeyRelease>', statsheet_mov_num_edit)
@@ -1705,9 +1748,13 @@ statsheet_weapon_weight_input.place(x=690, y=369)
 statsheet_weapon_range_input.place(x=690, y=401)
 
 statsheet_proficiency_type1 = StringVar()
+statsheet_proficiency_type1.set('Swords')
 statsheet_proficiency_type2 = StringVar()
+statsheet_proficiency_type2.set('Axes')
 statsheet_proficiency_type3 = StringVar()
+statsheet_proficiency_type3.set('Spears')
 statsheet_proficiency_type4 = StringVar()
+statsheet_proficiency_type4.set('Bows')
 statsheet_proficiency_type1_input = Combobox(tab_statsheet, values=weapon_types, width=10, justify='center',
                                              textvariable=statsheet_proficiency_type1)
 statsheet_proficiency_type2_input = Combobox(tab_statsheet, values=weapon_types, width=10, justify='center',
