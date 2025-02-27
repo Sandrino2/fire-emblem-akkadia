@@ -150,12 +150,17 @@ def lvlup_level_edit(self):
     lvlup_tab_ui_label.image = lvlup_tab_ui_new
 
 def lvlup_portrait_edit(self):
-    if lvlup_unit_name.get().capitalize() in portrait_names_hellions_no_ext:
-        unit_portrait = Image.open('UI Resources/Unit portraits/Hellions/' + lvlup_unit_name.get() + '.png').resize((384, 384))
-    elif lvlup_unit_name.get().capitalize() in portrait_names_allies_no_ext:
-        unit_portrait = Image.open('UI Resources/Unit portraits/Allies/' + lvlup_unit_name.get() + '.png').resize((384, 384))
-    elif lvlup_unit_name.get().capitalize() in portrait_names_foes_no_ext:
-        unit_portrait = Image.open('UI Resources/Unit portraits/Foes/' + lvlup_unit_name.get() + '.png').resize((384, 384))
+    unit_name = lvlup_unit_name.get().capitalize()
+    if unit_name in portrait_names_hellions_no_ext:
+        folder = 'Hellions'
+    elif unit_name in portrait_names_allies_no_ext:
+        folder = 'Allies'
+    elif unit_name in portrait_names_foes_no_ext:
+        folder = 'Foes'
+    else:
+        folder = ''
+    if folder in ['Hellions', 'Allies', 'Foes']:
+        unit_portrait = Image.open('UI Resources/Unit portraits/' + folder + '/' + unit_name + '.png').resize((384, 384))
     else:
         unit_portrait = Image.open('UI Resources/Unit portraits/empty_portrait.png')
     if lvlup_background_name.get().capitalize() in lvlup_background_names_no_ext:
@@ -1073,6 +1078,9 @@ def statsheet_unit_affinity_edit(self):
 # </editor-fold>
 
 # <editor-fold desc="Statsheet tab - equipment update functions">
+def statsheet_equipped_item_edit(self):
+    return
+
 def statsheet_equip1_edit(self):
     statsheet_str = statsheet_equip1_input.get().capitalize()
     statsheet_word_background = Image.open('UI Resources/Statsheet tab UI/no_equip_bg.png')
@@ -1217,6 +1225,21 @@ def statsheet_equip5_edit(self):
     statsheet_tab_ui_new = ImageTk.PhotoImage(statsheet_tab_ui.resize([1000, 750]))
     statsheet_tab_ui_label.configure(image=statsheet_tab_ui_new)
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
+
+def statsheet_equip1_uses_edit(self):
+    return
+
+def statsheet_equip2_uses_edit(self):
+    return
+
+def statsheet_equip3_uses_edit(self):
+    return
+
+def statsheet_equip4_uses_edit(self):
+    return
+
+def statsheet_equip5_uses_edit(self):
+    return
 
 def statsheet_weapon_attack_edit(self):
     statsheet_num = statsheet_weapon_attack_input.get()
@@ -1697,6 +1720,14 @@ statsheet_mount_type_input = Combobox(tab_statsheet, values=['Horse', 'Pegasus',
 statsheet_mount_type_input.bind('<<ComboboxSelected>>', statsheet_mount_edit)
 statsheet_mount_type_input.place(x=510, y=144)
 
+statsheet_equipped_item = StringVar()
+statsheet_equipped_item.set('#1')
+statsheet_equipped_item_input = Combobox(tab_statsheet, values=['#1', '#2', '#3', '#4', '#5', 'None'], width=5,
+                                         justify='center', textvariable=statsheet_equipped_item)
+statsheet_equipped_item_input.bind('<<ComboboxSelected>>', statsheet_equipped_item_edit)
+statsheet_equipped_item_input.bind('<KeyRelease>', statsheet_equipped_item_edit)
+statsheet_equipped_item_input.place(x=696, y=49)
+
 statsheet_equip1_name = StringVar()
 statsheet_equip2_name = StringVar()
 statsheet_equip3_name = StringVar()
@@ -1722,11 +1753,27 @@ statsheet_equip2_input.bind('<KeyRelease>', statsheet_equip2_edit)
 statsheet_equip3_input.bind('<KeyRelease>', statsheet_equip3_edit)
 statsheet_equip4_input.bind('<KeyRelease>', statsheet_equip4_edit)
 statsheet_equip5_input.bind('<KeyRelease>', statsheet_equip5_edit)
-statsheet_equip1_input.place(x=600, y=80)
-statsheet_equip2_input.place(x=600, y=112)
-statsheet_equip3_input.place(x=600, y=144)
-statsheet_equip4_input.place(x=600, y=176)
-statsheet_equip5_input.place(x=600, y=208)
+statsheet_equip1_input.place(x=600, y=79)
+statsheet_equip2_input.place(x=600, y=111)
+statsheet_equip3_input.place(x=600, y=143)
+statsheet_equip4_input.place(x=600, y=175)
+statsheet_equip5_input.place(x=600, y=207)
+
+statsheet_equip1_uses_input = Entry(tab_statsheet, width=6, justify='center')
+statsheet_equip2_uses_input = Entry(tab_statsheet, width=6, justify='center')
+statsheet_equip3_uses_input = Entry(tab_statsheet, width=6, justify='center')
+statsheet_equip4_uses_input = Entry(tab_statsheet, width=6, justify='center')
+statsheet_equip5_uses_input = Entry(tab_statsheet, width=6, justify='center')
+statsheet_equip1_uses_input.bind('<KeyRelease>', statsheet_equip1_uses_edit)
+statsheet_equip2_uses_input.bind('<KeyRelease>', statsheet_equip2_uses_edit)
+statsheet_equip3_uses_input.bind('<KeyRelease>', statsheet_equip3_uses_edit)
+statsheet_equip4_uses_input.bind('<KeyRelease>', statsheet_equip4_uses_edit)
+statsheet_equip5_uses_input.bind('<KeyRelease>', statsheet_equip5_uses_edit)
+statsheet_equip1_uses_input.place(x=714, y=80)
+statsheet_equip2_uses_input.place(x=714, y=112)
+statsheet_equip3_uses_input.place(x=714, y=144)
+statsheet_equip4_uses_input.place(x=714, y=176)
+statsheet_equip5_uses_input.place(x=714, y=208)
 
 statsheet_weapon_attack_input = Entry(tab_statsheet, width=8, justify='center')
 statsheet_weapon_critical_input = Entry(tab_statsheet, width=8, justify='center')
