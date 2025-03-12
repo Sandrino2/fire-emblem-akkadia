@@ -217,7 +217,7 @@ def lvlup_background_edit(self):
 def levelup_vit_edit(self):
     levelup_num = lvlup_VIT_input.get()
     levelup_plus = lvlup_VIT_plus_input.get()
-    if levelup_plus in ['1','2','3','4','5']:
+    if levelup_plus in ['1','2','3','4','5', '6']:
         lvlup_stat_background = Image.open('UI Resources/Level up tab UI/VIT_levelup.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (588, 876), mask=lvlup_stat_background)
         lvlup_stat_background = Image.open('UI Resources/Level up tab UI/plus_' + levelup_plus + '.png')
@@ -240,7 +240,7 @@ def levelup_vit_edit(self):
 def levelup_mgt_edit(self):
     levelup_num = lvlup_MGT_input.get()
     levelup_plus = lvlup_MGT_plus_input.get()
-    if levelup_plus in ['1','2','3','4','5']:
+    if levelup_plus in ['1','2','3','4','5', '6']:
         lvlup_stat_background = Image.open('UI Resources/Level up tab UI/MGT_levelup.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (588, 940), mask=lvlup_stat_background)
         lvlup_stat_background = Image.open('UI Resources/Level up tab UI/plus_' + levelup_plus + '.png')
@@ -263,7 +263,7 @@ def levelup_mgt_edit(self):
 def levelup_mnd_edit(self):
     levelup_num = lvlup_MND_input.get()
     levelup_plus = lvlup_MND_plus_input.get()
-    if levelup_plus in ['1','2','3','4','5']:
+    if levelup_plus in ['1','2','3','4','5', '6']:
         lvlup_stat_background = Image.open('UI Resources/Level up tab UI/MND_levelup.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (588, 1004), mask=lvlup_stat_background)
         lvlup_stat_background = Image.open('UI Resources/Level up tab UI/plus_' + levelup_plus + '.png')
@@ -286,7 +286,7 @@ def levelup_mnd_edit(self):
 def levelup_skl_edit(self):
     levelup_num = lvlup_SKL_input.get()
     levelup_plus = lvlup_SKL_plus_input.get()
-    if levelup_plus in ['1','2','3','4','5']:
+    if levelup_plus in ['1','2','3','4','5', '6']:
         lvlup_stat_background = Image.open('UI Resources/Level up tab UI/SKL_levelup.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (588, 1068), mask=lvlup_stat_background)
         lvlup_stat_background = Image.open('UI Resources/Level up tab UI/plus_' + levelup_plus + '.png')
@@ -309,7 +309,7 @@ def levelup_skl_edit(self):
 def levelup_spd_edit(self):
     levelup_num = lvlup_SPD_input.get()
     levelup_plus = lvlup_SPD_plus_input.get()
-    if levelup_plus in ['1','2','3','4','5']:
+    if levelup_plus in ['1','2','3','4','5', '6']:
         lvlup_stat_background = Image.open('UI Resources/Level up tab UI/SPD_levelup.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (844, 876), mask=lvlup_stat_background)
         lvlup_stat_background = Image.open('UI Resources/Level up tab UI/plus_' + levelup_plus + '.png')
@@ -332,7 +332,7 @@ def levelup_spd_edit(self):
 def levelup_luk_edit(self):
     levelup_num = lvlup_LUK_input.get()
     levelup_plus = lvlup_LUK_plus_input.get()
-    if levelup_plus in ['1','2','3','4','5']:
+    if levelup_plus in ['1','2','3','4','5', '6']:
         lvlup_stat_background = Image.open('UI Resources/Level up tab UI/LUK_levelup.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (844, 940), mask=lvlup_stat_background)
         lvlup_stat_background = Image.open('UI Resources/Level up tab UI/plus_' + levelup_plus + '.png')
@@ -355,7 +355,7 @@ def levelup_luk_edit(self):
 def levelup_def_edit(self):
     levelup_num = lvlup_DEF_input.get()
     levelup_plus = lvlup_DEF_plus_input.get()
-    if levelup_plus in ['1','2','3','4','5']:
+    if levelup_plus in ['1','2','3','4','5', '6']:
         lvlup_stat_background = Image.open('UI Resources/Level up tab UI/DEF_levelup.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (844, 1004), mask=lvlup_stat_background)
         lvlup_stat_background = Image.open('UI Resources/Level up tab UI/plus_' + levelup_plus + '.png')
@@ -378,7 +378,7 @@ def levelup_def_edit(self):
 def levelup_spr_edit(self):
     levelup_num = lvlup_SPR_input.get()
     levelup_plus = lvlup_SPR_plus_input.get()
-    if levelup_plus in ['1','2','3','4','5']:
+    if levelup_plus in ['1','2','3','4','5', '6']:
         lvlup_stat_background = Image.open('UI Resources/Level up tab UI/SPR_levelup.png')
         lvlup_tab_ui.paste(lvlup_stat_background, (844, 1068), mask=lvlup_stat_background)
         lvlup_stat_background = Image.open('UI Resources/Level up tab UI/plus_' + levelup_plus + '.png')
@@ -602,7 +602,7 @@ def statsheet_portrait_edit(self):
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_custom_portrait():
-    filename = askopenfilename(initialdir='Desktop', title='Select an image',
+    filename = askopenfilename(initialdir='UI Resources/Unit portraits', title='Select an image',
                                filetypes=(("png files", "*.png"),("all files", "*")))
     if not filename:
         return
