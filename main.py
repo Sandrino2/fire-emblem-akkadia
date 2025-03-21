@@ -64,6 +64,11 @@ equipment_file = open('UI Resources/Equipment sprites/- Equipment list.txt', 'r'
 equipment_list = equipment_file.read().splitlines()
 equipment_images = os.listdir('UI Resources/Equipment sprites')
 equipment_images_no_ext = [os.path.splitext(file)[0] for file in equipment_images]
+equip1_image_name = ""
+equip2_image_name = ""
+equip3_image_name = ""
+equip4_image_name = ""
+equip5_image_name = ""
 
 rank_levels = ['S', 'A', 'B', 'C', 'D', 'E', 'None']
 affinity_types = ['Fire', 'Thunder', 'Wind', 'Ice', 'Dark', 'Light', 'Anima', 'None']
@@ -1079,20 +1084,29 @@ def statsheet_unit_affinity_edit(self):
 
 # <editor-fold desc="Statsheet tab - equipment update functions">
 def statsheet_equipped_item_edit(self):
-    return
+    statsheet_equip1_edit(self)
+    statsheet_equip2_edit(self)
+    statsheet_equip3_edit(self)
+    statsheet_equip4_edit(self)
+    statsheet_equip5_edit(self)
 
 def statsheet_equip1_edit(self):
+    global equip1_image_name
+    statsheet_str = statsheet_equipped_item_input.get()
+    if statsheet_str == '#1':
+        statsheet_word_background = Image.open('UI Resources/Statsheet tab UI/equip_bg.png')
+    else:
+        statsheet_word_background = Image.open('UI Resources/Statsheet tab UI/no_equip_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (976, 96))
     statsheet_str = statsheet_equip1_input.get().capitalize()
-    statsheet_word_background = Image.open('UI Resources/Statsheet tab UI/no_equip_bg.png')
-    statsheet_tab_main_image.paste(statsheet_word_background, (1040, 108))
-    if statsheet_str == '':
-        statsheet_weapon_image_background = Image.open('UI Resources/Statsheet tab UI/equip_sprite_bg.png')
-        statsheet_tab_main_image.paste(statsheet_weapon_image_background, (976, 96))
-    elif statsheet_str in equipment_images_no_ext:
-        statsheet_weapon_image_background = Image.open('UI Resources/Statsheet tab UI/equip_sprite_bg.png')
-        statsheet_tab_main_image.paste(statsheet_weapon_image_background, (976, 96))
-        statsheet_weapon_image = Image.open('UI Resources/Equipment sprites/' + statsheet_str + '.png')
-        statsheet_tab_main_image.paste(statsheet_weapon_image, (976, 96), mask=statsheet_weapon_image)
+    if statsheet_str != '':
+        if statsheet_str in equipment_images_no_ext:
+            equip1_image_name = statsheet_str
+            statsheet_weapon_image = Image.open('UI Resources/Equipment sprites/' + statsheet_str + '.png')
+            statsheet_tab_main_image.paste(statsheet_weapon_image, (976, 96), mask=statsheet_weapon_image)
+        elif equip1_image_name in equipment_images_no_ext:
+            statsheet_weapon_image = Image.open('UI Resources/Equipment sprites/' + equip1_image_name + '.png')
+            statsheet_tab_main_image.paste(statsheet_weapon_image, (976, 96), mask=statsheet_weapon_image)
     word_x_coord = 0
     for letter in statsheet_str:
         if letter.isupper():
@@ -1111,17 +1125,22 @@ def statsheet_equip1_edit(self):
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_equip2_edit(self):
+    global equip2_image_name
+    statsheet_str = statsheet_equipped_item_input.get()
+    if statsheet_str == '#2':
+        statsheet_word_background = Image.open('UI Resources/Statsheet tab UI/equip_bg.png')
+    else:
+        statsheet_word_background = Image.open('UI Resources/Statsheet tab UI/no_equip_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (976, 160))
     statsheet_str = statsheet_equip2_input.get().capitalize()
-    statsheet_word_background = Image.open('UI Resources/Statsheet tab UI/no_equip_bg.png')
-    statsheet_tab_main_image.paste(statsheet_word_background, (1040, 172))
-    if statsheet_str == '':
-        statsheet_weapon_image_background = Image.open('UI Resources/Statsheet tab UI/equip_sprite_bg.png')
-        statsheet_tab_main_image.paste(statsheet_weapon_image_background, (976, 160))
-    elif statsheet_str in equipment_images_no_ext:
-        statsheet_weapon_image_background = Image.open('UI Resources/Statsheet tab UI/equip_sprite_bg.png')
-        statsheet_tab_main_image.paste(statsheet_weapon_image_background, (976, 160))
-        statsheet_weapon_image = Image.open('UI Resources/Equipment sprites/' + statsheet_str + '.png')
-        statsheet_tab_main_image.paste(statsheet_weapon_image, (976, 160), mask=statsheet_weapon_image)
+    if statsheet_str != '':
+        if statsheet_str in equipment_images_no_ext:
+            equip2_image_name = statsheet_str
+            statsheet_weapon_image = Image.open('UI Resources/Equipment sprites/' + statsheet_str + '.png')
+            statsheet_tab_main_image.paste(statsheet_weapon_image, (976, 160), mask=statsheet_weapon_image)
+        elif equip2_image_name in equipment_images_no_ext:
+            statsheet_weapon_image = Image.open('UI Resources/Equipment sprites/' + equip2_image_name + '.png')
+            statsheet_tab_main_image.paste(statsheet_weapon_image, (976, 160), mask=statsheet_weapon_image)
     word_x_coord = 0
     for letter in statsheet_str:
         if letter.isupper():
@@ -1140,17 +1159,22 @@ def statsheet_equip2_edit(self):
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_equip3_edit(self):
+    global equip3_image_name
+    statsheet_str = statsheet_equipped_item_input.get()
+    if statsheet_str == '#3':
+        statsheet_word_background = Image.open('UI Resources/Statsheet tab UI/equip_bg.png')
+    else:
+        statsheet_word_background = Image.open('UI Resources/Statsheet tab UI/no_equip_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (976, 224))
     statsheet_str = statsheet_equip3_input.get().capitalize()
-    statsheet_word_background = Image.open('UI Resources/Statsheet tab UI/no_equip_bg.png')
-    statsheet_tab_main_image.paste(statsheet_word_background, (1040, 236))
-    if statsheet_str == '':
-        statsheet_weapon_image_background = Image.open('UI Resources/Statsheet tab UI/equip_sprite_bg.png')
-        statsheet_tab_main_image.paste(statsheet_weapon_image_background, (976, 224))
-    elif statsheet_str in equipment_images_no_ext:
-        statsheet_weapon_image_background = Image.open('UI Resources/Statsheet tab UI/equip_sprite_bg.png')
-        statsheet_tab_main_image.paste(statsheet_weapon_image_background, (976, 224))
-        statsheet_weapon_image = Image.open('UI Resources/Equipment sprites/' + statsheet_str + '.png')
-        statsheet_tab_main_image.paste(statsheet_weapon_image, (976, 224), mask=statsheet_weapon_image)
+    if statsheet_str != '':
+        if statsheet_str in equipment_images_no_ext:
+            equip3_image_name = statsheet_str
+            statsheet_weapon_image = Image.open('UI Resources/Equipment sprites/' + statsheet_str + '.png')
+            statsheet_tab_main_image.paste(statsheet_weapon_image, (976, 224), mask=statsheet_weapon_image)
+        elif equip3_image_name in equipment_images_no_ext:
+            statsheet_weapon_image = Image.open('UI Resources/Equipment sprites/' + equip3_image_name + '.png')
+            statsheet_tab_main_image.paste(statsheet_weapon_image, (976, 224), mask=statsheet_weapon_image)
     word_x_coord = 0
     for letter in statsheet_str:
         if letter.isupper():
@@ -1169,17 +1193,22 @@ def statsheet_equip3_edit(self):
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_equip4_edit(self):
+    global equip4_image_name
+    statsheet_str = statsheet_equipped_item_input.get()
+    if statsheet_str == '#4':
+        statsheet_word_background = Image.open('UI Resources/Statsheet tab UI/equip_bg.png')
+    else:
+        statsheet_word_background = Image.open('UI Resources/Statsheet tab UI/no_equip_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (976, 288))
     statsheet_str = statsheet_equip4_input.get().capitalize()
-    statsheet_word_background = Image.open('UI Resources/Statsheet tab UI/no_equip_bg.png')
-    statsheet_tab_main_image.paste(statsheet_word_background, (1040, 300))
-    if statsheet_str == '':
-        statsheet_weapon_image_background = Image.open('UI Resources/Statsheet tab UI/equip_sprite_bg.png')
-        statsheet_tab_main_image.paste(statsheet_weapon_image_background, (976, 288))
-    elif statsheet_str in equipment_images_no_ext:
-        statsheet_weapon_image_background = Image.open('UI Resources/Statsheet tab UI/equip_sprite_bg.png')
-        statsheet_tab_main_image.paste(statsheet_weapon_image_background, (976, 288))
-        statsheet_weapon_image = Image.open('UI Resources/Equipment sprites/' + statsheet_str + '.png')
-        statsheet_tab_main_image.paste(statsheet_weapon_image, (976, 288), mask=statsheet_weapon_image)
+    if statsheet_str != '':
+        if statsheet_str in equipment_images_no_ext:
+            equip4_image_name = statsheet_str
+            statsheet_weapon_image = Image.open('UI Resources/Equipment sprites/' + statsheet_str + '.png')
+            statsheet_tab_main_image.paste(statsheet_weapon_image, (976, 288), mask=statsheet_weapon_image)
+        elif equip4_image_name in equipment_images_no_ext:
+            statsheet_weapon_image = Image.open('UI Resources/Equipment sprites/' + equip4_image_name + '.png')
+            statsheet_tab_main_image.paste(statsheet_weapon_image, (976, 288), mask=statsheet_weapon_image)
     word_x_coord = 0
     for letter in statsheet_str:
         if letter.isupper():
@@ -1198,17 +1227,22 @@ def statsheet_equip4_edit(self):
     statsheet_tab_ui_label.image = statsheet_tab_ui_new
 
 def statsheet_equip5_edit(self):
+    global equip5_image_name
+    statsheet_str = statsheet_equipped_item_input.get()
+    if statsheet_str == '#5':
+        statsheet_word_background = Image.open('UI Resources/Statsheet tab UI/equip_bg.png')
+    else:
+        statsheet_word_background = Image.open('UI Resources/Statsheet tab UI/no_equip_bg.png')
+    statsheet_tab_main_image.paste(statsheet_word_background, (976, 352))
     statsheet_str = statsheet_equip5_input.get().capitalize()
-    statsheet_word_background = Image.open('UI Resources/Statsheet tab UI/no_equip_bg.png')
-    statsheet_tab_main_image.paste(statsheet_word_background, (1040, 364))
-    if statsheet_str == '':
-        statsheet_weapon_image_background = Image.open('UI Resources/Statsheet tab UI/equip_sprite_bg.png')
-        statsheet_tab_main_image.paste(statsheet_weapon_image_background, (976, 352))
-    elif statsheet_str in equipment_images_no_ext:
-        statsheet_weapon_image_background = Image.open('UI Resources/Statsheet tab UI/equip_sprite_bg.png')
-        statsheet_tab_main_image.paste(statsheet_weapon_image_background, (976, 352))
-        statsheet_weapon_image = Image.open('UI Resources/Equipment sprites/' + statsheet_str + '.png')
-        statsheet_tab_main_image.paste(statsheet_weapon_image, (976, 352), mask=statsheet_weapon_image)
+    if statsheet_str != '':
+        if statsheet_str in equipment_images_no_ext:
+            equip5_image_name = statsheet_str
+            statsheet_weapon_image = Image.open('UI Resources/Equipment sprites/' + statsheet_str + '.png')
+            statsheet_tab_main_image.paste(statsheet_weapon_image, (976, 352), mask=statsheet_weapon_image)
+        elif equip5_image_name in equipment_images_no_ext:
+            statsheet_weapon_image = Image.open('UI Resources/Equipment sprites/' + equip5_image_name + '.png')
+            statsheet_tab_main_image.paste(statsheet_weapon_image, (976, 352), mask=statsheet_weapon_image)
     word_x_coord = 0
     for letter in statsheet_str:
         if letter.isupper():
@@ -1721,7 +1755,7 @@ statsheet_mount_type_input.bind('<<ComboboxSelected>>', statsheet_mount_edit)
 statsheet_mount_type_input.place(x=510, y=144)
 
 statsheet_equipped_item = StringVar()
-statsheet_equipped_item.set('#1')
+statsheet_equipped_item.set('None')
 statsheet_equipped_item_input = Combobox(tab_statsheet, values=['#1', '#2', '#3', '#4', '#5', 'None'], width=5,
                                          justify='center', textvariable=statsheet_equipped_item)
 statsheet_equipped_item_input.bind('<<ComboboxSelected>>', statsheet_equipped_item_edit)
