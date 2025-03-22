@@ -1,0 +1,68 @@
+
+If you find anything that doesn't work correctly, anything the crashes the program or anything you'd suggest changing, just hit me up.
+
+-----------
+LEVELUP TAB
+-----------
+Text
+When entering text for UNIT and CLASS, the program allows you to keep writing over other UI elements, but deleting only works in the area that text is meant for. The only way to fix this is to refresh other sections as well, though sometimes you might be better off just starting over.
+
+Numbers
+Both level and stats go from 0 to 99.
+Level up bonuses can range from +1 to +6, allowing this to showcase a unit's levelup as well a promotion.
+
+Portrait
+The dropdown menu shows portraits of a few units we've seen in the story so far. If you want to expand the list with more entries, just add a portrait to the corresponding folder. They are shown in a 384x384 size, but smaller sizes work as well with the program automatically resizing them (I have tested 192x192, I haven't tried with 96x96).
+If you create portraits with the generator you can just paste them over without further edits.
+
+Background
+The 'none' option doesn't work properly at the moment, I noticed as I was writing this, so I'll fix it whenever I have some time.
+
+Export
+Self explanatory. I might add an import button later but it's not as useful for such a quick process, so I might not.
+
+-------------
+STATSHEET TAB
+-------------
+Text
+Same concept as the LEVELUP TAB, though messing up can be more time consuming if it means having to start from scratch. If it seems like the next letter would go over a line, maybe export your current image to be safe.
+
+Traits
+I had space for 4 lines, so I did 4. This might have to change in case we need to add the AID stat.
+
+Portrait
+Same concept as the LEVELUP TAB. The games have a weird way of centering portraits for this menu, so your portrait might not look as good as in other areas. Could be fixed by editing the portrait itself, shifting it up or down a couple pixels (edit in steps of 2px if 192x192 and 4px if 384x384).
+
+Sprite
+The dropdown menu only shows the most commonly used ones, meaning core units and generic enemies. If you want anything more, the CUSTOM button will take you to the corresponding folders which you can also add to if you want to.
+
+Stats
+There currently isn't an option to increase the bar length to show stat caps. The numbers can go from 0 to 99, but for anything over 20 the yellow bar will look the same.
+
+Equipment
+Only one item can be equipped at any given time.
+
+Equipment stats
+I might add a way to do these automatically (with the option to edit), but for now it has to be done by hand. Weight was added since this is a static image and we can't inspect a unit's inventory.
+ATK: weapon damage + MIGHT (MIND if magical)
+CRIT: (SKILL /2) + weapon crit
+HIT: (SKILL x2) + (LUCK /2) + weapon hit rate
+AVOID: SPEED + LUCK + (SKILL /3) - (WEIGHT - CON)
+WEIGHT: weapon's base weight
+RNG: weapon's base range
+
+Equipment uses
+This is currently not a feature. Reason #1 is adding it would require some work which I don't have much time for. Reason #2 is having this option encourages updating the statsheet with every turn, which is a level of upkeep I know not everyone wants to have.
+There's always our calc on Drive for all of that.
+Not sure if this will change, but probably not for a while.
+
+Proficiency
+Self explanatory, up to 4 can be selected and ranks go from none to S.
+
+Supports
+Self explanatory, up to 3 can be selected and ranks go from none to S. There's space for one more below that, which could go to a 4th support or something else. Maybe a unit's gold.
+
+-------
+MAP TAB
+-------
+Currently still in the conceptual stage, I'll see if I can implement it eventually.
