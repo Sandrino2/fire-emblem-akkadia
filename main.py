@@ -168,12 +168,10 @@ def lvlup_portrait_edit(self):
         unit_portrait = Image.open('UI Resources/Unit portraits/' + folder + '/' + unit_name + '.png').resize((384, 384))
     else:
         unit_portrait = Image.open('UI Resources/Unit portraits/empty_portrait.png')
-    if lvlup_background_name.get().capitalize() in lvlup_background_names_no_ext:
+    if lvlup_background_name.get() in lvlup_background_names_no_ext:
         background_image = Image.open('UI Resources/Battle backgrounds/' + lvlup_background_name.get() + '.png')
-    else:
-        background_image = Image.open('UI Resources/Battle backgrounds/Plains.png')
-    background_image_crop = background_image.crop([568, 256, 952, 640])
-    lvlup_tab_ui.paste(background_image_crop, (1088, 816))
+        background_image_crop = background_image.crop([568, 256, 952, 640])
+        lvlup_tab_ui.paste(background_image_crop, (1088, 816))
     lvlup_tab_ui.paste(unit_portrait, (1088, 816), mask=unit_portrait)
     lvlup_tab_ui_new = ImageTk.PhotoImage(lvlup_tab_ui.resize([1000, 750]))
     lvlup_tab_ui_label.configure(image=lvlup_tab_ui_new)
@@ -202,20 +200,22 @@ def lvlup_custom_portrait():
     lvlup_unit_name.set(os.path.splitext(new_display)[0])
 
 def lvlup_background_edit(self):
-    lvlup_tab_ui_crop_stats = lvlup_tab_ui.crop([544, 872, 1072, 1144])
-    lvlup_tab_ui_crop_class = lvlup_tab_ui.crop([556, 744, 1060, 824])
-    lvlup_tab_ui_crop_name = lvlup_tab_ui.crop([1260, 584, 1480, 664])
-    background_image = Image.open('UI Resources/Battle backgrounds/' + lvlup_background_name.get() + '.png')
-    lvlup_tab_ui.paste(background_image, (520, 560))
-    lvlup_tab_ui_template = Image.open('UI Resources/Level up tab UI/levelup_template.png')
-    lvlup_tab_ui.paste(lvlup_tab_ui_template, (520, 560), mask=lvlup_tab_ui_template)
-    lvlup_tab_ui.paste(lvlup_tab_ui_crop_stats, (544, 872))
-    lvlup_tab_ui.paste(lvlup_tab_ui_crop_class, (556, 744))
-    lvlup_tab_ui.paste(lvlup_tab_ui_crop_name, (1260, 584))
-    lvlup_portrait_edit(0)
-    lvlup_tab_ui_new = ImageTk.PhotoImage(lvlup_tab_ui.resize([1000, 750]))
-    lvlup_tab_ui_label.configure(image=lvlup_tab_ui_new)
-    lvlup_tab_ui_label.image = lvlup_tab_ui_new
+    background_name = lvlup_background_name.get()
+    if background_name in lvlup_background_names_no_ext:
+        lvlup_tab_ui_crop_stats = lvlup_tab_ui.crop([544, 872, 1072, 1144])
+        lvlup_tab_ui_crop_class = lvlup_tab_ui.crop([556, 744, 1060, 824])
+        lvlup_tab_ui_crop_name = lvlup_tab_ui.crop([1260, 584, 1480, 664])
+        background_image = Image.open('UI Resources/Battle backgrounds/' + lvlup_background_name.get() + '.png')
+        lvlup_tab_ui.paste(background_image, (520, 560))
+        lvlup_tab_ui_template = Image.open('UI Resources/Level up tab UI/levelup_template.png')
+        lvlup_tab_ui.paste(lvlup_tab_ui_template, (520, 560), mask=lvlup_tab_ui_template)
+        lvlup_tab_ui.paste(lvlup_tab_ui_crop_stats, (544, 872))
+        lvlup_tab_ui.paste(lvlup_tab_ui_crop_class, (556, 744))
+        lvlup_tab_ui.paste(lvlup_tab_ui_crop_name, (1260, 584))
+        lvlup_portrait_edit(0)
+        lvlup_tab_ui_new = ImageTk.PhotoImage(lvlup_tab_ui.resize([1000, 750]))
+        lvlup_tab_ui_label.configure(image=lvlup_tab_ui_new)
+        lvlup_tab_ui_label.image = lvlup_tab_ui_new
 # </editor-fold>
 
 # <editor-fold desc="Levelup tab - stat update functions">

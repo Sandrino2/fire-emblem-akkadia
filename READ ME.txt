@@ -16,7 +16,8 @@ The dropdown menu shows portraits of a few units we've seen in the story so far.
 If you create portraits with the generator you can just paste them over without further edits.
 
 Background
-The 'none' option doesn't work properly at the moment, I noticed as I was writing this, so I'll fix it whenever I have some time.
+Taken from FE6, FE7 and FE8. Conversation backgrounds could be used as well, in case you want to add any to the backgrounds folder (make sure you resize them to 960x640).
+If you want to use a map as background (similar to when a unit levels up without combat animations), remember to lower the brightness to around 55% so the amount of details doesn't look overwhelming (they do this in the games as well).
 
 Export
 Self explanatory. I might add an import button later but it's not as useful for such a quick process, so I might not.
