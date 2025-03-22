@@ -9,7 +9,7 @@ window = Tk()
 window.title("Fire Emblem Akkadia")
 window.geometry("1000x750+150+20")
 window.resizable(False, False)
-window.iconbitmap('UI Resources/fe_akkadia.ico')
+window.iconbitmap('UI Resources/win_icon.ico')
 
 tabControl = ttk.Notebook(window)
 tab_levelup = Frame(tabControl)
