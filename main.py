@@ -1678,19 +1678,6 @@ statsheet_name_input.place(x=104, y=146)
 statsheet_class_input.place(x=104, y=178)
 statsheet_level_input.place(x=134, y=210)
 
-statsheet_trait1_input = Entry(tab_statsheet, width=17, justify='center')
-statsheet_trait2_input = Entry(tab_statsheet, width=17, justify='center')
-statsheet_trait3_input = Entry(tab_statsheet, width=17, justify='center')
-statsheet_trait4_input = Entry(tab_statsheet, width=17, justify='center')
-statsheet_trait1_input.bind('<KeyRelease>', statsheet_trait1_edit)
-statsheet_trait2_input.bind('<KeyRelease>', statsheet_trait2_edit)
-statsheet_trait3_input.bind('<KeyRelease>', statsheet_trait3_edit)
-statsheet_trait4_input.bind('<KeyRelease>', statsheet_trait4_edit)
-statsheet_trait1_input.place(x=52, y=305)
-statsheet_trait2_input.place(x=52, y=337)
-statsheet_trait3_input.place(x=52, y=369)
-statsheet_trait4_input.place(x=52, y=401)
-
 statsheet_portrait_name = StringVar()
 statsheet_sprite_name = StringVar()
 statsheet_portrait_name_input = Combobox(tab_statsheet, textvariable=statsheet_portrait_name, width=17, justify='center')
@@ -1701,13 +1688,13 @@ statsheet_portrait_name_input.bind('<<ComboboxSelected>>', statsheet_portrait_ed
 statsheet_portrait_name_input.bind('<KeyRelease>', statsheet_portrait_edit)
 statsheet_sprite_name_input.bind('<<ComboboxSelected>>', statsheet_sprite_edit)
 statsheet_sprite_name_input.bind('<KeyRelease>', statsheet_sprite_edit)
-statsheet_portrait_name_input.place(x=330, y=48)
-statsheet_sprite_name_input.place(x=330, y=80)
+statsheet_portrait_name_input.place(x=326, y=48)
+statsheet_sprite_name_input.place(x=326, y=80)
 
 statsheet_custom_portrait_button = Button(tab_statsheet, text='Custom', command=statsheet_custom_portrait)
 statsheet_custom_sprite_button = Button(tab_statsheet, text='Custom', command=statsheet_custom_sprite)
-statsheet_custom_portrait_button.place(x=466, y=46)
-statsheet_custom_sprite_button.place(x=466, y=78)
+statsheet_custom_portrait_button.place(x=462, y=46)
+statsheet_custom_sprite_button.place(x=462, y=78)
 
 statsheet_VIT_input = Entry(tab_statsheet, width=5, justify='center')
 statsheet_MGT_input = Entry(tab_statsheet, width=5, justify='center')
@@ -1725,14 +1712,14 @@ statsheet_SPD_input.bind('<KeyRelease>', statsheet_spd_num_edit)
 statsheet_LUK_input.bind('<KeyRelease>', statsheet_luk_num_edit)
 statsheet_DEF_input.bind('<KeyRelease>', statsheet_def_num_edit)
 statsheet_SPR_input.bind('<KeyRelease>', statsheet_spr_num_edit)
-statsheet_VIT_input.place(x=310, y=145)
-statsheet_MGT_input.place(x=310, y=177)
-statsheet_MND_input.place(x=310, y=209)
-statsheet_SKL_input.place(x=310, y=241)
-statsheet_SPD_input.place(x=310, y=273)
-statsheet_LUK_input.place(x=310, y=305)
-statsheet_DEF_input.place(x=310, y=337)
-statsheet_SPR_input.place(x=310, y=369)
+statsheet_VIT_input.place(x=306, y=145)
+statsheet_MGT_input.place(x=306, y=177)
+statsheet_MND_input.place(x=306, y=209)
+statsheet_SKL_input.place(x=306, y=241)
+statsheet_SPD_input.place(x=306, y=273)
+statsheet_LUK_input.place(x=306, y=305)
+statsheet_DEF_input.place(x=306, y=337)
+statsheet_SPR_input.place(x=306, y=369)
 
 statsheet_MOV_input = Entry(tab_statsheet, width=5, justify='center')
 statsheet_CON_input = Entry(tab_statsheet, width=5, justify='center')
@@ -1744,15 +1731,28 @@ statsheet_MOV_input.bind('<KeyRelease>', statsheet_mov_num_edit)
 statsheet_CON_input.bind('<KeyRelease>', statsheet_con_num_edit)
 statsheet_unit_affinity_input.bind('<<ComboboxSelected>>', statsheet_unit_affinity_edit)
 statsheet_unit_affinity_input.bind('<KeyRelease>', statsheet_unit_affinity_edit)
-statsheet_MOV_input.place(x=468, y=145)
-statsheet_CON_input.place(x=468, y=177)
-statsheet_unit_affinity_input.place(x=468, y=209)
+statsheet_MOV_input.place(x=444, y=145)
+statsheet_CON_input.place(x=444, y=177)
+statsheet_unit_affinity_input.place(x=444, y=209)
 
 statsheet_mount_type = StringVar
-statsheet_mount_type_input = Combobox(tab_statsheet, values=['Horse', 'Pegasus', 'Wyvern', 'None'], width=2,
+statsheet_mount_type_input = Combobox(tab_statsheet, values=['Horse', 'Pegasus', 'Wyvern', 'None'], width=8,
                                       justify='center', textvariable=statsheet_mount_type)
 statsheet_mount_type_input.bind('<<ComboboxSelected>>', statsheet_mount_edit)
-statsheet_mount_type_input.place(x=510, y=144)
+statsheet_mount_type_input.place(x=444, y=241)
+
+statsheet_trait1_input = Entry(tab_statsheet, width=20, justify='center')
+statsheet_trait2_input = Entry(tab_statsheet, width=20, justify='center')
+statsheet_trait3_input = Entry(tab_statsheet, width=20, justify='center')
+statsheet_trait4_input = Entry(tab_statsheet, width=20, justify='center')
+statsheet_trait1_input.bind('<KeyRelease>', statsheet_trait1_edit)
+statsheet_trait2_input.bind('<KeyRelease>', statsheet_trait2_edit)
+statsheet_trait3_input.bind('<KeyRelease>', statsheet_trait3_edit)
+statsheet_trait4_input.bind('<KeyRelease>', statsheet_trait4_edit)
+statsheet_trait1_input.place(x=388, y=305)
+statsheet_trait2_input.place(x=388, y=337)
+statsheet_trait3_input.place(x=388, y=369)
+statsheet_trait4_input.place(x=388, y=401)
 
 statsheet_equipped_item = StringVar()
 statsheet_equipped_item.set('None')
@@ -1760,22 +1760,22 @@ statsheet_equipped_item_input = Combobox(tab_statsheet, values=['#1', '#2', '#3'
                                          justify='center', textvariable=statsheet_equipped_item)
 statsheet_equipped_item_input.bind('<<ComboboxSelected>>', statsheet_equipped_item_edit)
 statsheet_equipped_item_input.bind('<KeyRelease>', statsheet_equipped_item_edit)
-statsheet_equipped_item_input.place(x=696, y=49)
+statsheet_equipped_item_input.place(x=668, y=49)
 
 statsheet_equip1_name = StringVar()
 statsheet_equip2_name = StringVar()
 statsheet_equip3_name = StringVar()
 statsheet_equip4_name = StringVar()
 statsheet_equip5_name = StringVar()
-statsheet_equip1_input = Combobox(tab_statsheet, values=equipment_list, width=13, justify='center',
+statsheet_equip1_input = Combobox(tab_statsheet, values=equipment_list, width=17, justify='center',
                                   textvariable=statsheet_equip1_name)
-statsheet_equip2_input = Combobox(tab_statsheet, values=equipment_list, width=13, justify='center',
+statsheet_equip2_input = Combobox(tab_statsheet, values=equipment_list, width=17, justify='center',
                                   textvariable=statsheet_equip2_name)
-statsheet_equip3_input = Combobox(tab_statsheet, values=equipment_list, width=13, justify='center',
+statsheet_equip3_input = Combobox(tab_statsheet, values=equipment_list, width=17, justify='center',
                                   textvariable=statsheet_equip3_name)
-statsheet_equip4_input = Combobox(tab_statsheet, values=equipment_list, width=13, justify='center',
+statsheet_equip4_input = Combobox(tab_statsheet, values=equipment_list, width=17, justify='center',
                                   textvariable=statsheet_equip4_name)
-statsheet_equip5_input = Combobox(tab_statsheet, values=equipment_list, width=13, justify='center',
+statsheet_equip5_input = Combobox(tab_statsheet, values=equipment_list, width=17, justify='center',
                                   textvariable=statsheet_equip5_name)
 statsheet_equip1_input.bind('<<ComboboxSelected>>', statsheet_equip1_edit)
 statsheet_equip2_input.bind('<<ComboboxSelected>>', statsheet_equip2_edit)
@@ -1787,11 +1787,11 @@ statsheet_equip2_input.bind('<KeyRelease>', statsheet_equip2_edit)
 statsheet_equip3_input.bind('<KeyRelease>', statsheet_equip3_edit)
 statsheet_equip4_input.bind('<KeyRelease>', statsheet_equip4_edit)
 statsheet_equip5_input.bind('<KeyRelease>', statsheet_equip5_edit)
-statsheet_equip1_input.place(x=600, y=79)
-statsheet_equip2_input.place(x=600, y=111)
-statsheet_equip3_input.place(x=600, y=143)
-statsheet_equip4_input.place(x=600, y=175)
-statsheet_equip5_input.place(x=600, y=207)
+statsheet_equip1_input.place(x=584, y=79)
+statsheet_equip2_input.place(x=584, y=111)
+statsheet_equip3_input.place(x=584, y=143)
+statsheet_equip4_input.place(x=584, y=175)
+statsheet_equip5_input.place(x=584, y=207)
 
 statsheet_equip1_uses_input = Entry(tab_statsheet, width=6, justify='center')
 statsheet_equip2_uses_input = Entry(tab_statsheet, width=6, justify='center')
@@ -1803,11 +1803,6 @@ statsheet_equip2_uses_input.bind('<KeyRelease>', statsheet_equip2_uses_edit)
 statsheet_equip3_uses_input.bind('<KeyRelease>', statsheet_equip3_uses_edit)
 statsheet_equip4_uses_input.bind('<KeyRelease>', statsheet_equip4_uses_edit)
 statsheet_equip5_uses_input.bind('<KeyRelease>', statsheet_equip5_uses_edit)
-statsheet_equip1_uses_input.place(x=714, y=80)
-statsheet_equip2_uses_input.place(x=714, y=112)
-statsheet_equip3_uses_input.place(x=714, y=144)
-statsheet_equip4_uses_input.place(x=714, y=176)
-statsheet_equip5_uses_input.place(x=714, y=208)
 
 statsheet_weapon_attack_input = Entry(tab_statsheet, width=8, justify='center')
 statsheet_weapon_critical_input = Entry(tab_statsheet, width=8, justify='center')
@@ -1821,12 +1816,12 @@ statsheet_weapon_accuracy_input.bind('<KeyRelease>', statsheet_weapon_accuracy_e
 statsheet_weapon_avoid_input.bind('<KeyRelease>', statsheet_weapon_avoid_edit)
 statsheet_weapon_weight_input.bind('<KeyRelease>', statsheet_weapon_weight_edit)
 statsheet_weapon_range_input.bind('<KeyRelease>', statsheet_weapon_range_edit)
-statsheet_weapon_attack_input.place(x=690, y=241)
-statsheet_weapon_critical_input.place(x=690, y=273)
-statsheet_weapon_accuracy_input.place(x=690, y=305)
-statsheet_weapon_avoid_input.place(x=690, y=337)
-statsheet_weapon_weight_input.place(x=690, y=369)
-statsheet_weapon_range_input.place(x=690, y=401)
+statsheet_weapon_attack_input.place(x=650, y=241)
+statsheet_weapon_critical_input.place(x=650, y=273)
+statsheet_weapon_accuracy_input.place(x=650, y=305)
+statsheet_weapon_avoid_input.place(x=650, y=337)
+statsheet_weapon_weight_input.place(x=650, y=369)
+statsheet_weapon_range_input.place(x=650, y=401)
 
 statsheet_proficiency_type1 = StringVar()
 statsheet_proficiency_type1.set('Swords')
@@ -1836,13 +1831,13 @@ statsheet_proficiency_type3 = StringVar()
 statsheet_proficiency_type3.set('Spears')
 statsheet_proficiency_type4 = StringVar()
 statsheet_proficiency_type4.set('Bows')
-statsheet_proficiency_type1_input = Combobox(tab_statsheet, values=weapon_types, width=10, justify='center',
+statsheet_proficiency_type1_input = Combobox(tab_statsheet, values=weapon_types, width=12, justify='center',
                                              textvariable=statsheet_proficiency_type1)
-statsheet_proficiency_type2_input = Combobox(tab_statsheet, values=weapon_types, width=10, justify='center',
+statsheet_proficiency_type2_input = Combobox(tab_statsheet, values=weapon_types, width=12, justify='center',
                                              textvariable=statsheet_proficiency_type2)
-statsheet_proficiency_type3_input = Combobox(tab_statsheet, values=weapon_types, width=10, justify='center',
+statsheet_proficiency_type3_input = Combobox(tab_statsheet, values=weapon_types, width=12, justify='center',
                                              textvariable=statsheet_proficiency_type3)
-statsheet_proficiency_type4_input = Combobox(tab_statsheet, values=weapon_types, width=10, justify='center',
+statsheet_proficiency_type4_input = Combobox(tab_statsheet, values=weapon_types, width=12, justify='center',
                                              textvariable=statsheet_proficiency_type4)
 statsheet_proficiency_type1_input.bind('<<ComboboxSelected>>', statsheet_proficiency_type1_edit)
 statsheet_proficiency_type2_input.bind('<<ComboboxSelected>>', statsheet_proficiency_type2_edit)
@@ -1852,22 +1847,22 @@ statsheet_proficiency_type1_input.bind('<KeyRelease>', statsheet_proficiency_typ
 statsheet_proficiency_type2_input.bind('<KeyRelease>', statsheet_proficiency_type2_edit)
 statsheet_proficiency_type3_input.bind('<KeyRelease>', statsheet_proficiency_type3_edit)
 statsheet_proficiency_type4_input.bind('<KeyRelease>', statsheet_proficiency_type4_edit)
-statsheet_proficiency_type1_input.place(x=816, y=80)
-statsheet_proficiency_type2_input.place(x=816, y=112)
-statsheet_proficiency_type3_input.place(x=816, y=144)
-statsheet_proficiency_type4_input.place(x=816, y=176)
+statsheet_proficiency_type1_input.place(x=776, y=80)
+statsheet_proficiency_type2_input.place(x=776, y=112)
+statsheet_proficiency_type3_input.place(x=776, y=144)
+statsheet_proficiency_type4_input.place(x=776, y=176)
 
 statsheet_proficiency_rank1 = StringVar()
 statsheet_proficiency_rank2 = StringVar()
 statsheet_proficiency_rank3 = StringVar()
 statsheet_proficiency_rank4 = StringVar()
-statsheet_proficiency_rank1_input = Combobox(tab_statsheet, values=rank_levels, width=5, justify='center',
+statsheet_proficiency_rank1_input = Combobox(tab_statsheet, values=rank_levels, width=6, justify='center',
                                              textvariable=statsheet_proficiency_rank1)
-statsheet_proficiency_rank2_input = Combobox(tab_statsheet, values=rank_levels, width=5, justify='center',
+statsheet_proficiency_rank2_input = Combobox(tab_statsheet, values=rank_levels, width=6, justify='center',
                                              textvariable=statsheet_proficiency_rank2)
-statsheet_proficiency_rank3_input = Combobox(tab_statsheet, values=rank_levels, width=5, justify='center',
+statsheet_proficiency_rank3_input = Combobox(tab_statsheet, values=rank_levels, width=6, justify='center',
                                              textvariable=statsheet_proficiency_rank3)
-statsheet_proficiency_rank4_input = Combobox(tab_statsheet, values=rank_levels, width=5, justify='center',
+statsheet_proficiency_rank4_input = Combobox(tab_statsheet, values=rank_levels, width=6, justify='center',
                                              textvariable=statsheet_proficiency_rank4)
 statsheet_proficiency_rank1_input.bind('<<ComboboxSelected>>', statsheet_proficiency_rank1_edit)
 statsheet_proficiency_rank2_input.bind('<<ComboboxSelected>>', statsheet_proficiency_rank2_edit)
@@ -1877,19 +1872,19 @@ statsheet_proficiency_rank1_input.bind('<KeyRelease>', statsheet_proficiency_ran
 statsheet_proficiency_rank2_input.bind('<KeyRelease>', statsheet_proficiency_rank2_edit)
 statsheet_proficiency_rank3_input.bind('<KeyRelease>', statsheet_proficiency_rank3_edit)
 statsheet_proficiency_rank4_input.bind('<KeyRelease>', statsheet_proficiency_rank4_edit)
-statsheet_proficiency_rank1_input.place(x=910, y=80)
-statsheet_proficiency_rank2_input.place(x=910, y=112)
-statsheet_proficiency_rank3_input.place(x=910, y=144)
-statsheet_proficiency_rank4_input.place(x=910, y=176)
+statsheet_proficiency_rank1_input.place(x=886, y=80)
+statsheet_proficiency_rank2_input.place(x=886, y=112)
+statsheet_proficiency_rank3_input.place(x=886, y=144)
+statsheet_proficiency_rank4_input.place(x=886, y=176)
 
 statsheet_support_affinity_type1 = StringVar()
 statsheet_support_affinity_type2 = StringVar()
 statsheet_support_affinity_type3 = StringVar()
-statsheet_support1_affinity_input = Combobox(tab_statsheet, values=affinity_types, width=3, justify='center',
+statsheet_support1_affinity_input = Combobox(tab_statsheet, values=affinity_types, width=8, justify='center',
                                              textvariable=statsheet_support_affinity_type1)
-statsheet_support2_affinity_input = Combobox(tab_statsheet, values=affinity_types, width=3, justify='center',
+statsheet_support2_affinity_input = Combobox(tab_statsheet, values=affinity_types, width=8, justify='center',
                                              textvariable=statsheet_support_affinity_type2)
-statsheet_support3_affinity_input = Combobox(tab_statsheet, values=affinity_types, width=3, justify='center',
+statsheet_support3_affinity_input = Combobox(tab_statsheet, values=affinity_types, width=8, justify='center',
                                              textvariable=statsheet_support_affinity_type3)
 statsheet_support1_affinity_input.bind('<<ComboboxSelected>>', statsheet_support1_affinity_edit)
 statsheet_support2_affinity_input.bind('<<ComboboxSelected>>', statsheet_support2_affinity_edit)
@@ -1897,9 +1892,9 @@ statsheet_support3_affinity_input.bind('<<ComboboxSelected>>', statsheet_support
 statsheet_support1_affinity_input.bind('<KeyRelease>', statsheet_support1_affinity_edit)
 statsheet_support2_affinity_input.bind('<KeyRelease>', statsheet_support2_affinity_edit)
 statsheet_support3_affinity_input.bind('<KeyRelease>', statsheet_support3_affinity_edit)
-statsheet_support1_affinity_input.place(x=810, y=272)
-statsheet_support2_affinity_input.place(x=810, y=304)
-statsheet_support3_affinity_input.place(x=810, y=336)
+statsheet_support1_affinity_input.place(x=776, y=272)
+statsheet_support2_affinity_input.place(x=776, y=304)
+statsheet_support3_affinity_input.place(x=776, y=336)
 
 statsheet_support1_name_input = Entry(tab_statsheet, width=10, justify='center')
 statsheet_support2_name_input = Entry(tab_statsheet, width=10, justify='center')
@@ -1907,9 +1902,9 @@ statsheet_support3_name_input = Entry(tab_statsheet, width=10, justify='center')
 statsheet_support1_name_input.bind('<KeyRelease>', statsheet_support1_name_edit)
 statsheet_support2_name_input.bind('<KeyRelease>', statsheet_support2_name_edit)
 statsheet_support3_name_input.bind('<KeyRelease>', statsheet_support3_name_edit)
-statsheet_support1_name_input.place(x=860, y=273)
-statsheet_support2_name_input.place(x=860, y=305)
-statsheet_support3_name_input.place(x=860, y=337)
+statsheet_support1_name_input.place(x=853, y=273)
+statsheet_support2_name_input.place(x=853, y=305)
+statsheet_support3_name_input.place(x=853, y=337)
 
 statsheet_support_rank1 = StringVar()
 statsheet_support_rank2 = StringVar()
@@ -1926,9 +1921,9 @@ statsheet_support2_rank_input.bind('<<ComboboxSelected>>', statsheet_support2_ra
 statsheet_support2_rank_input.bind('<KeyRelease>', statsheet_support2_rank_edit)
 statsheet_support3_rank_input.bind('<<ComboboxSelected>>', statsheet_support3_rank_edit)
 statsheet_support3_rank_input.bind('<KeyRelease>', statsheet_support3_rank_edit)
-statsheet_support1_rank_input.place(x=932, y=272)
-statsheet_support2_rank_input.place(x=932, y=304)
-statsheet_support3_rank_input.place(x=932, y=336)
+statsheet_support1_rank_input.place(x=924, y=272)
+statsheet_support2_rank_input.place(x=924, y=304)
+statsheet_support3_rank_input.place(x=924, y=336)
 # </editor-fold>
 
 window.mainloop()
